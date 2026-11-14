@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f4f8fc">
+  <title>Day6｜用自己的英文，寫出第一段</title>
+  <style>
+    :root { --ink:#183047;--muted:#52667a;--blue:#176e9d;--blue-light:#eaf5fc;--bg:#f4f8fc;--card:#fff;--line:#dce6ed;--red:#c52b38;--warn:#fff4df;--focus:#0263aa;--success:#13795b;}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:19px;line-height:1.82;letter-spacing:.012em}
+    button,textarea{font:inherit}button{cursor:pointer}button:focus-visible,textarea:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #1676bf;outline-offset:3px}
+    .wrap{max-width:790px;margin:0 auto;padding:22px 18px 78px}
+    .topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+    .course-id{font-weight:800;letter-spacing:.08em;color:var(--blue);font-size:13px}
+    .teacher-tools{display:flex;gap:8px;flex-wrap:wrap}
+    .teacher-btn{border:1px solid #b4c9d8;border-radius:999px;background:white;color:#345771;padding:7px 11px;font-size:13px;font-weight:700;line-height:1.35}
+    .teacher-btn.is-on{color:#774500;background:var(--warn);border-color:#edb450}
+    .teacher-cue{font-size:13px;color:#86580f;background:#fff5df;border:1px solid #f0d498;padding:7px 12px;border-radius:9px;margin:-4px 0 14px;display:none}
+    .teacher-cue.show{display:block}
+    .hero{border-radius:20px;padding:25px 22px 23px;background:linear-gradient(145deg,#eff8ff,#ffffff 70%);border:1px solid #d9e8f3;box-shadow:0 5px 30px rgba(28,82,120,.05);margin-bottom:18px}
+    .eyebrow{font-size:13px;color:var(--blue);font-weight:800;letter-spacing:.065em}
+    h1{font-size:clamp(27px,6vw,37px);line-height:1.32;letter-spacing:-.025em;margin:12px 0 14px}
+    .lead{font-weight:650;font-size:21px;line-height:1.68;margin:0 0 10px}
+    .hero p:last-child{margin-bottom:0}
+    .soft{color:var(--muted)}
+    .tiny{font-size:14px}.small{font-size:16px}.bold{font-weight:750}
+    .stepbar{display:flex;gap:7px;flex-wrap:wrap;margin-top:19px}
+    .stepbar span{background:white;border:1px solid #d3e2ed;border-radius:999px;padding:5px 10px;font-size:13px;font-weight:700;color:#38617b}
+    .card{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:25px 22px;margin:18px 0;box-shadow:0 2px 14px rgba(31,79,117,.03)}
+    h2{font-size:25px;line-height:1.35;margin:0 0 15px;letter-spacing:-.018em}h3{font-size:21px;line-height:1.4;margin:18px 0 10px}
+    p{margin:11px 0}ul,ol{padding-left:1.25em}li{margin:6px 0}
+    .section-kicker{color:var(--blue);font-weight:800;letter-spacing:.055em;font-size:13px;margin-bottom:8px}
+    .divider{height:1px;background:var(--line);margin:23px 0}
+    .quote-lines{display:grid;gap:12px;margin:14px 0 12px}
+    .idea{border:1px solid #e0e9ed;background:#f8fbfd;border-radius:13px;padding:13px 15px}
+    .idea .num{display:block;font-size:15px;font-weight:800;color:var(--blue);margin-bottom:4px}
+    .idea p{margin:0;font-size:18px}
+    details{background:#f6fafc;border:1px solid var(--line);border-radius:12px;padding:10px 15px;margin:16px 0}
+    summary{font-weight:800;color:#16638d;cursor:pointer;line-height:1.65}
+    details[open]{padding-bottom:14px}
+    .fullprompt{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+    .em-red,.memorize{color:var(--red);font-weight:850}
+    /* English memorization frames stay red; Chinese fill-in guidance stays black. */
+    .zh-slot{color:#111111!important;font-weight:800} /* 中文填空提示一律黑字 */
+    .example .frame-word{color:var(--red);font-weight:850} /* 例句只標紅固定英文句構 */
+    .structure{border:1px solid #e4eaf0;border-radius:14px;padding:17px 16px;margin:14px 0;background:#fff}
+    .structure .pill{font-size:13px;line-height:1.4;font-weight:800;color:#33678a;background:#eaf4fb;padding:5px 9px;border-radius:8px;display:inline-block}
+    .pattern{font-size:clamp(19px,4.7vw,23px);font-weight:830;line-height:1.58;letter-spacing:0;word-break:normal;margin:10px 0;color:var(--red)}
+    .example{margin:8px 0 0;padding:12px 14px;border-left:4px solid #afc8d8;background:#f6fafc;font-size:18px;line-height:1.76}
+    .pill-note{display:inline-block;background:#edf7f2;border:1px solid #d1eadc;color:#176a4a;border-radius:6px;font-size:14px;font-weight:800;padding:2px 8px}
+    .point{border-left:4px solid #60a8ca;padding:9px 13px;background:#f1f8fc;border-radius:0 9px 9px 0;margin:14px 0;font-size:17px}
+    .important-message{background:#fff3a8;border:1px solid #e7d36a;border-radius:13px;padding:16px 18px;margin:15px 0 18px;font-weight:750;color:#3b351d;line-height:1.75}
+    .pattern{overflow-wrap:anywhere}
+    .review-box{margin-top:16px;background:#fffdf7;border-color:#e9ddc5}
+    .review-list{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:12px}
+    .review-list li{background:#fff;border:1px solid #e9e3d9;border-radius:11px;padding:10px 13px;margin:0}
+    .review-pattern{font-size:18px;line-height:1.7;overflow-wrap:anywhere;margin:0 0 3px}
+    .review-explain{font-size:15px;color:var(--muted);line-height:1.6;margin:3px 0 0}
+    .word-target{font-weight:750;color:#185d81}
+    .field-label{display:block;font-weight:800;font-size:18px;margin:14px 0 5px}
+    textarea{background:#fff;border:1.5px solid #b9cbd9;border-radius:12px;display:block;padding:15px 14px;width:100%;resize:vertical;line-height:1.7;min-height:138px;color:#152f43;font-size:19px}
+    textarea::placeholder{color:#8392a0;opacity:1}
+    textarea:focus{border-color:#2586b7}
+    textarea.short{min-height:92px}
+    .field-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px;margin-top:6px;color:var(--muted);font-size:13px}
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
+    .btn{border:1px solid #1673a3;padding:11px 16px;border-radius:11px;font-weight:800;font-size:16px;line-height:1.5;background:#19769f;color:white}
+    .btn.secondary{background:white;color:#17688c;border-color:#9bbdcc}
+    .btn.minor{background:#f2f7fb;color:#2a5b78;border-color:#cadbe7}
+    .btn.danger{background:white;color:#bd2d39;border-color:#e6b3b9}
+    .btn:disabled{opacity:.55;cursor:not-allowed}
+    .notice{font-size:15px;color:#566b7d;margin:8px 0}
+    .hidden{display:none!important}
+    .light-list{margin:12px 0;padding:0;list-style:none}
+    .light-list li{padding:11px 12px;background:#f7fafc;border:1px solid #e2eaf0;border-radius:10px;margin:9px 0;font-size:17px}
+    .checklist{display:grid;gap:9px;margin-top:12px}
+    .check{display:flex;align-items:flex-start;gap:10px;border:1px solid #e1e9ed;border-radius:10px;padding:9px 11px;font-size:17px;background:#fafcfd}
+    .check input{width:21px;height:21px;flex:none;margin-top:5px;accent-color:#1976a3}
+    .footer-note{border-top:1px solid #d7e1e8;padding-top:19px;color:var(--muted);font-size:14px;margin-top:22px}
+    .status{font-size:15px;font-weight:800;color:var(--success)}
+    dialog{width:min(640px,calc(100vw - 24px));max-height:min(86vh,900px);overflow:auto;background:white;color:var(--ink);border:1px solid #d0dfe8;border-radius:17px;padding:22px 20px;box-shadow:0 16px 65px rgba(11,36,52,.22)}
+    dialog::backdrop{background:rgba(12,27,39,.57)}
+    dialog h2{font-size:24px;margin:0 0 14px}
+    dialog .small-label{font-size:14px;font-weight:800;color:#42617c;margin:14px 0 5px}
+    dialog .original-box{font-size:17px;background:#f4f7fa;border:1px solid #e1e7ec;padding:11px 12px;border-radius:9px;max-height:180px;overflow:auto;white-space:pre-wrap;line-height:1.7}
+    dialog textarea{min-height:120px;font-size:17px}
+    .dialog-close{float:right;background:#f0f5f8;color:#466078;border:1px solid #d2e0e9;border-radius:8px;padding:0 9px;font-size:24px;line-height:1.5}
+    .note-item{border:1px solid #dce6ed;border-radius:12px;padding:12px;margin:12px 0;background:#fafcfd}
+    .note-item strong{font-size:15px;color:#23678f}.note-item p{font-size:15px;margin:5px 0;white-space:pre-wrap;overflow-wrap:anywhere}
+    .note-actions{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}
+    .note-actions button{background:white;border:1px solid #b9cbd7;border-radius:8px;font-size:14px;padding:5px 9px;color:#315d7b}
+    .annotate-on [data-note-target]{outline:2px dashed #e4ab48;outline-offset:4px;cursor:copy;border-radius:5px;transition:background .1s}
+    .annotate-on [data-note-target]:hover{background:#fff2d4}
+    .annotate-on .teacher-tools{position:relative;z-index:3}
+    .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);max-width:calc(100vw - 30px);background:#1c3e54;color:#fff;padding:10px 16px;border-radius:10px;font-size:15px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:30}
+    @media(max-width:580px){
+      body{font-size:19px;line-height:1.85}
+      .wrap{padding:15px 14px 80px}
+      .hero,.card{padding:21px 17px;border-radius:15px}
+      h2{font-size:24px}h3{font-size:20px}.idea p,.example{font-size:18px}
+      .btnrow .btn{flex:1 1 100%}
+      .teacher-btn{font-size:13px;padding:7px 10px}
+      textarea{font-size:19px}
+    }
+    @media print{.teacher-tools,.btnrow,.teacher-cue,.footer-note{display:none!important}.wrap{max-width:100%;padding:0}.card,.hero{box-shadow:none;break-inside:avoid}}
+  
+    .original-prompt {background:#f8fbfd;border-left:4px solid #176e9d;padding:16px 18px;border-radius:0 12px 12px 0;line-height:1.9;font-size:19px}
+    .original-prompt p{margin:0}
+    .task-note{font-weight:750;color:#1c5272;font-size:17px}
+    .student-note{font-size:17px;line-height:1.8;color:#394e61}
+    textarea#firstParagraph{min-height:270px}
+    .first-para-note{background:#f5faff;border:1px solid #d7e9f7;padding:13px 15px;border-radius:12px}
+    @media(max-width:580px){.original-prompt{padding:13px 14px;font-size:19px}textarea#firstParagraph{min-height:310px}}
+  </style>
+</head>
+<body>
+  <main class="wrap" id="lesson">
+    <div class="topline">
+      <div class="course-id">GSAT ENGLISH · DAY 06</div>
+      <div class="teacher-tools" aria-label="教材修改工具">
+        <button type="button" class="teacher-btn" id="annotationToggle" aria-pressed="false">✎ 開啟批註模式</button>
+        <button type="button" class="teacher-btn" id="openNotes">批註清單（<span id="noteCount">0</span>）</button>
+      </div>
+    </div>
+    <div class="teacher-cue" id="annotationCue">批註模式已開啟。點選教材文字即可提出修改意見，不影響學生作答。</div>
+
+    <header class="hero" data-section="Day6｜今日任務">
+      <div class="eyebrow" data-note-target>DAY 06 · 學測英文作文 · 約 20 分鐘</div>
+      <h1 data-note-target>用自己的英文，寫出第一段</h1>
+      <p class="lead" data-note-target>今天先不學新句構，也不看範文。請用你目前會的英文，認真寫出自己的想法。</p>
+      <p class="important-message" data-note-target><strong>今天的目的：</strong>先了解你目前能寫到什麼程度。老師會先看你的原稿、找出可以改進的地方，再教你用更好的句構提升作文。</p>
+      <p class="soft small" data-note-target>不求難字，也不用刻意寫得漂亮。把意思說清楚最重要。</p>
+    </header>
+
+    <section class="card" data-section="一、作文原題">
+      <div class="section-kicker" data-note-target>01 / 先看題目</div>
+      <h2 data-note-target>一、作文原題｜校園安全</h2>
+      <p class="small soft" data-note-target>109 學年度指考英文作文題目</p>
+      <div class="original-prompt" data-note-target>
+        <p>維護校園安全是校園內每個成員的責任，請寫一篇英文作文，說明應該如何維護校園安全。文分兩段，第一段說明校園安全的重要性及校園內可能發生的安全問題；第二段說明身為校園的一份子，你覺得校內成員應該採取哪些作為以維護校園安全。</p>
+      </div>
+      <p class="first-para-note" data-note-target><strong>今天只寫第一段：</strong>說明校園安全的重要性，以及可能發生的安全問題。第二段的改善方法以後再練。</p>
+    </section>
+
+    <section class="card" data-section="二、Day5 的中文想法">
+      <div class="section-kicker" data-note-target>02 / 看看自己的想法</div>
+      <h2 data-note-target>二、你在 Day5 寫的三個重點</h2>
+      <p class="student-note" data-note-target>這是你上次自己想的內容。今天請用它們寫英文，不需要重新想題目。</p>
+      <div class="quote-lines">
+        <div class="idea"><span class="num" data-note-target>① 定題</span><p data-note-target>校園安全非常重要，因為若有安全的環境，學生受到傷害的風險會減少</p></div>
+        <div class="idea"><span class="num" data-note-target>② 回題</span><p data-note-target>校園裡，老舊的牆上可能會掉落一些磁磚</p></div>
+        <div class="idea"><span class="num" data-note-target>③ 補實</span><p data-note-target>掉落的磁磚很有可能會砸到經過的學生，導致學生受傷</p></div>
+      </div>
+    </section>
+
+    <section class="card" data-section="三、英文寫作">
+      <div class="section-kicker" data-note-target>03 / 自己寫英文</div>
+      <h2 data-note-target>三、把三個重點寫成英文第一段</h2>
+      <p data-note-target>請用<strong>你目前會的英文</strong>，把上面的三個想法寫成一段完整的英文。</p>
+      <p class="point" data-note-target><strong>不是逐字翻譯：</strong>不必每個中文句子對應一句英文。你可以調整語序、拆成幾句，只要把三個重點說清楚。</p>
+      <p class="student-note" data-note-target>請先獨立完成，不用翻譯工具或 AI 改寫。遇到不會的字，可以換成自己熟悉的說法。文法不確定也先試著寫，老師之後會一起修改。</p>
+      <label class="field-label" for="firstParagraph">我的英文第一段</label>
+      <textarea id="firstParagraph" rows="9" spellcheck="false" lang="en" placeholder="在這裡寫下你目前能寫出的英文。"></textarea>
+      <div class="field-meta"><span>沒有字數限制，先把意思寫完整。</span><span id="p1Count">0 個英文單字</span></div>
+      <p class="first-para-note" data-note-target>寫完後檢查：有沒有交代<strong>安全的重要性、磁磚掉落的危險、可能造成的傷害</strong>？三點都有，就可以交給老師。</p>
+    </section>
+
+    <section class="card" data-section="四、保存與繳交">
+      <div class="section-kicker" data-note-target>04 / 交給老師</div>
+      <h2 data-note-target>四、保存你的原稿</h2>
+      <p data-note-target>完成後直接複製或匯出。<strong>先保留原稿，不用對照範文修改。</strong></p>
+      <div class="btnrow">
+        <button class="btn" type="button" id="copyAnswer">複製我的英文</button>
+        <button class="btn secondary" type="button" id="downloadAnswer">匯出我的英文 TXT</button>
+      </div>
+      <p class="status" id="saveStatus" role="status" aria-live="polite">作答會暫存在此瀏覽器</p>
+      <p class="notice" data-note-target>答案只暫存在目前的瀏覽器。完成後請複製或匯出備份。這頁沒有清除按鈕，以免誤刪。</p>
+    </section>
+    <footer class="footer-note" data-note-target>Day 06｜先寫原稿，再學如何用句構提升作文。教材批註與學生作答分開保存。</footer>
+  </main>
+
+  <dialog id="noteDialog" aria-labelledby="noteDialogTitle">
+    <button type="button" class="dialog-close" id="closeNoteDialog" aria-label="關閉批註">×</button>
+    <h2 id="noteDialogTitle">提出教材修改意見</h2>
+    <div class="small-label">所在位置</div><div id="selectedLocation" class="original-box"></div>
+    <div class="small-label">原文（自動帶入）</div><div id="selectedText" class="original-box"></div>
+    <label class="field-label" for="noteComment">想怎麼修改？</label>
+    <textarea id="noteComment" placeholder="請寫下要調整的內容。"></textarea>
+    <div class="btnrow"><button type="button" id="saveNote" class="btn">儲存批註</button><button type="button" id="cancelNote" class="btn secondary">取消</button></div>
+  </dialog>
+  <dialog id="notesDialog" aria-labelledby="notesDialogTitle">
+    <button type="button" class="dialog-close" id="closeNotesDialog" aria-label="關閉清單">×</button>
+    <h2 id="notesDialogTitle">Day6｜教材批註清單</h2>
+    <p class="small soft">批註可複製回 ChatGPT，不會改動學生作答。</p>
+    <div id="notesList"></div>
+    <div class="btnrow"><button type="button" class="btn" id="copyNotes">複製全部意見</button><button type="button" class="btn secondary" id="downloadNotes">匯出批註 TXT</button><button type="button" class="btn danger" id="clearNotes">清空全部批註</button></div>
+  </dialog>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script>
+  (() => {
+    'use strict';
+    const $ = (id) => document.getElementById(id);
+    const answerKey = 'gsat-day6-diagnostic-student-v2';
+    const noteKey = 'gsat-day6-diagnostic-annotations-v2';
+    let canPersist = true;
+    let annotationMode = false;
+    let notes = [];
+    let editingNoteId = null;
+    let draftTarget = null;
+    let toastTimeout;
+    function storageGet(key) { try {return localStorage.getItem(key)} catch(e) {canPersist=false;return null} }
+    function storageSet(key, value) { try {localStorage.setItem(key,value);return true} catch(e) {canPersist=false;return false} }
+    function notify(message) { const box=$('toast');box.textContent=message;box.classList.remove('hidden');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>box.classList.add('hidden'),3400); }
+    function wordCount(value) { const m=value.trim().match(/[A-Za-z]+(?:['’-][A-Za-z]+)*/g); return m?m.length:0; }
+    function updateCounts() { $('p1Count').textContent=wordCount($('firstParagraph').value)+' 個英文單字'; }
+    function saveAnswers() { const ok=storageSet(answerKey,JSON.stringify({firstParagraph:$('firstParagraph').value}));$('saveStatus').textContent=ok?'✓ 已暫存在此瀏覽器':'無法自動儲存，請匯出 TXT 備份';updateCounts(); }
+    function restoreAnswers() { const raw=storageGet(answerKey);if(raw){try{const data=JSON.parse(raw);if(typeof data.firstParagraph==='string')$('firstParagraph').value=data.firstParagraph;}catch(e){}}$('firstParagraph').addEventListener('input',saveAnswers);if(!canPersist)$('saveStatus').textContent='無法自動儲存，請匯出 TXT 備份';updateCounts(); }
+    function answerText() { const answer=$('firstParagraph').value.trim();if(!answer)return '';return 'Day6｜英文作文第一段｜學生原稿\n題目：校園安全\n\n'+answer; }
+    async function copyText(value) {if(navigator.clipboard && window.isSecureContext){try{await navigator.clipboard.writeText(value);return true}catch(e){}}const ta=document.createElement('textarea');ta.value=value;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.focus();ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}ta.remove();return ok;}
+    function downloadText(txt,filename) {const blob=new Blob(['\ufeff',txt],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+    $('copyAnswer').addEventListener('click',async()=>{const txt=answerText();if(!txt){notify('請先寫下英文');return;}notify(await copyText(txt)?'已複製你的英文原稿':'複製失敗，請使用 TXT 匯出');});
+    $('downloadAnswer').addEventListener('click',()=>{const txt=answerText();if(!txt){notify('請先寫下英文');return;}downloadText(txt,'Day6_英文原稿.txt');notify('已準備匯出英文原稿');});
+
+    // Parent/teacher annotations: entirely separate from student response storage.
+
+    function loadNotes(){const raw=storageGet(noteKey);if(raw){try{const arr=JSON.parse(raw);notes=Array.isArray(arr)?arr.filter(n=>n&&typeof n.comment==='string'):[];}catch(e){notes=[]}}updateNoteCount();}
+    function persistNotes(){storageSet(noteKey,JSON.stringify(notes));updateNoteCount();}
+    function updateNoteCount(){$('noteCount').textContent=String(notes.length)}
+    function safeText(el,value){el.textContent=String(value??'');return el}
+    function openAnnotationDialog(target, existing=null){editingNoteId=existing?existing.id:null;draftTarget=target;$('selectedLocation').textContent=target.section;$('selectedText').textContent=target.original;$('noteComment').value=existing?existing.comment:'';$('noteDialog').showModal();setTimeout(()=>$('noteComment').focus(),70);}
+    function closeAnnotationDialog(){$('noteDialog').close();draftTarget=null;editingNoteId=null;}
+    $('annotationToggle').addEventListener('click',()=>{annotationMode=!annotationMode;document.body.classList.toggle('annotate-on',annotationMode);$('annotationToggle').classList.toggle('is-on',annotationMode);$('annotationToggle').setAttribute('aria-pressed',String(annotationMode));$('annotationToggle').textContent=annotationMode?'✎ 關閉批註模式':'✎ 開啟批註模式';$('annotationCue').classList.toggle('show',annotationMode);notify(annotationMode?'批註模式已開啟，請點選教材文字':'已關閉批註模式');});
+    document.addEventListener('click',(event)=>{if(!annotationMode)return; if(event.target.closest('button, textarea, input, summary, dialog, a'))return;const element=event.target.closest('[data-note-target]');if(!element)return; const section=element.closest('[data-section]');const selected=window.getSelection?window.getSelection().toString().trim():'';const original=(selected||element.innerText||element.textContent||'').trim();if(!original)return;event.preventDefault();openAnnotationDialog({section:section?section.getAttribute('data-section'):'Day6教材',original:original.slice(0,1200)});});
+    $('saveNote').addEventListener('click',()=>{const comment=$('noteComment').value.trim();if(!comment){notify('請輸入修改意見');$('noteComment').focus();return;}if(editingNoteId){const note=notes.find(n=>n.id===editingNoteId);if(note)note.comment=comment;}else if(draftTarget){notes.push({id:String(Date.now())+'-'+Math.random().toString(36).slice(2,7),section:draftTarget.section,original:draftTarget.original,comment:comment});}persistNotes();closeAnnotationDialog();notify('已儲存教材批註');if($('notesDialog').open)renderNotes();});
+    $('closeNoteDialog').addEventListener('click',closeAnnotationDialog);$('cancelNote').addEventListener('click',closeAnnotationDialog);
+    $('noteDialog').addEventListener('close',()=>{draftTarget=null;editingNoteId=null});
+    function makeNoteLine(heading,value){const p=document.createElement('p');const label=document.createElement('strong');safeText(label,heading+'：');p.appendChild(label);p.appendChild(document.createTextNode(value));return p;}
+    function renderNotes(){const root=$('notesList');root.replaceChildren();if(!notes.length){const p=document.createElement('p');p.className='small soft';p.textContent='目前沒有批註。請先開啟批註模式，再點選教材文字。';root.appendChild(p);return;}notes.forEach((n,index)=>{const wrap=document.createElement('div');wrap.className='note-item';const header=document.createElement('strong');header.textContent='#'+(index+1)+'　'+n.section;wrap.appendChild(header);wrap.appendChild(makeNoteLine('原文',n.original));wrap.appendChild(makeNoteLine('修改',n.comment));const actions=document.createElement('div');actions.className='note-actions';const edit=document.createElement('button');edit.type='button';edit.textContent='編輯這則';edit.addEventListener('click',()=>{const target={section:n.section,original:n.original};$('notesDialog').close();openAnnotationDialog(target,n);});const remove=document.createElement('button');remove.type='button';remove.textContent='刪除此則';remove.addEventListener('click',()=>{if(!confirm('確定刪除此則批註？'))return;notes=notes.filter(item=>item.id!==n.id);persistNotes();renderNotes();});actions.append(edit,remove);wrap.appendChild(actions);root.appendChild(wrap);});}
+    function formatNotes(){if(!notes.length)return '';return 'Day6｜教材修改意見\n共 '+notes.length+' 筆批註\n\n'+notes.map((n,i)=>'#'+(i+1)+' '+n.section+'\n原文：'+n.original+'\n修改：'+n.comment).join('\n\n');}
+    $('openNotes').addEventListener('click',()=>{renderNotes();$('notesDialog').showModal();});
+    $('closeNotesDialog').addEventListener('click',()=>$('notesDialog').close());
+    $('copyNotes').addEventListener('click',async()=>{const text=formatNotes();if(!text){notify('目前沒有批註');return;}notify(await copyText(text)?'已複製全部教材批註':'複製失敗，請使用 TXT 匯出');});
+    $('downloadNotes').addEventListener('click',()=>{const text=formatNotes();if(!text){notify('目前沒有批註');return;}downloadText(text,'Day6_教材批註.txt');notify('已準備匯出批註');});
+    $('clearNotes').addEventListener('click',()=>{if(!notes.length){notify('目前沒有批註');return;}if(!confirm('確定清空全部批註？清空後無法復原，但不影響學生作答。'))return;notes=[];persistNotes();renderNotes();notify('已清空教材批註（學生作答保留）');});
+    restoreAnswers();loadNotes();
+  })();
+  </script>
+</body>
+</html>
