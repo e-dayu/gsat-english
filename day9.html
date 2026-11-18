@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fbfaf7">
+<title>Day9｜合成一篇完整作文，自己當閱卷老師</title>
+<style>
+:root{--ink:#1b2733;--muted:#566473;--blue:#0f5f8c;--blue-light:#e6f2f9;--bg:#fbfaf7;--card:#fff;--line:#e3e0d8;--red:#c81e2d;--red-bg:#fdf1f1;--del:#7b8794;--warn:#fff3d6;--good:#0e7a55;--good-bg:#eaf7f1}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:19px;line-height:1.85}
+button,textarea{font:inherit}button{cursor:pointer}
+.wrap{max-width:720px;margin:0 auto;padding:18px 16px 90px}
+a{color:var(--blue)}
+a.back{font-size:16px;text-decoration:none}
+.course-id{font-weight:800;letter-spacing:.08em;color:var(--blue);font-size:13.5px;margin-top:12px}
+h1{font-size:26px;line-height:1.4;margin:4px 0 8px}
+.sub{color:var(--muted);font-size:17px;margin:4px 0 14px}
+.step{font-size:14px;font-weight:800;color:var(--blue);letter-spacing:.06em;margin-top:40px}
+h2{font-size:22px;line-height:1.45;margin:0 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 1px 2px rgba(27,39,51,.04)}
+.goal{background:var(--blue-light);border-color:#c3deee}
+.praise{background:var(--good-bg);border-color:#c4e6d6}
+.praise li{margin-bottom:6px}
+ul{padding-left:22px;margin:6px 0}
+.tip{background:var(--warn);border-left:5px solid #e0a43a;border-radius:10px;padding:10px 13px;font-size:17.5px;margin:12px 0}
+.legend{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 13px}
+/* 英文：手機上用無襯線、字放大 */
+.en{font-family:"Helvetica Neue",Arial,system-ui,sans-serif;font-size:20px;line-height:1.75;letter-spacing:.005em;color:var(--ink)}
+.fix{color:var(--red);font-weight:400}
+del{color:var(--del);text-decoration-thickness:1.5px}
+.must{color:var(--red);font-weight:700}
+.must u,.en u{text-decoration-thickness:2px;text-underline-offset:4px}
+.must u{color:var(--ink)}
+.zh{font-size:16.5px;color:var(--muted)}
+.n{display:inline-block;font-size:13.5px;font-weight:800;color:var(--blue);letter-spacing:.04em;margin-bottom:2px}
+.fixed{margin-top:10px;padding:10px 12px;background:var(--red-bg);border-radius:12px}
+.note{font-size:17px;line-height:1.8;color:#2a3a49;margin-top:10px}
+.note .en{font-size:18px}
+.rule{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line)}
+.rule:last-child{border-bottom:0}
+.num{flex:none;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:16px;margin-top:3px}
+.rule b{display:block}
+.rule small{font-size:16.5px;color:var(--muted);display:block;line-height:1.7}
+.q{padding:14px 0;border-bottom:1px solid var(--line)}
+.q:first-child{padding-top:0}.q:last-child{border-bottom:0;padding-bottom:0}
+.show{display:block;margin-top:10px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:9px 18px;font-size:17px;font-weight:700;min-height:44px}
+.ans{display:none;margin-top:10px;background:var(--red-bg);border-radius:12px;padding:11px 13px}
+.ans.open{display:block}
+.why{color:#2a3a49;font-size:16.5px;display:block;margin-top:4px;line-height:1.7}
+.pt{display:inline-block;font-size:13.5px;font-weight:700;color:var(--blue);background:var(--blue-light);border-radius:999px;padding:2px 11px;margin-bottom:6px}
+.pat .zh{margin-top:6px}
+textarea{width:100%;border:1.5px solid #a9bac7;border-radius:12px;padding:12px;font-size:19px;line-height:1.7;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;color:var(--ink);background:#fff;resize:vertical;margin-top:8px}
+textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
+.count{font-size:15px;color:var(--muted);text-align:right}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;font-size:17.5px;border-bottom:1px dashed var(--line)}
+.check label:last-child{border-bottom:0}
+.check input{width:24px;height:24px;flex:none;margin-top:5px;accent-color:var(--blue)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.btn{border:0;border-radius:12px;background:var(--blue);color:#fff;font-weight:700;padding:12px 20px;font-size:18px;min-height:48px}
+.btn.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}
+.msg{font-size:16px;color:var(--good);min-height:1.7em;margin-top:6px}
+.foot{font-size:15px;color:var(--muted);margin-top:30px;text-align:center}
+.tapline{line-height:2.3}
+.w{display:inline-block;padding:1px 5px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tapline.done .w{border-color:transparent;background:none;cursor:default;padding:1px 0}
+.w.hit{background:var(--red-bg)!important}
+.w.miss{background:#e9edf1;color:var(--del)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← 回課程首頁</a>
+<div class="course-id">GSAT ENGLISH · DAY 09 · 約 20 分鐘</div>
+<h1>合成一篇完整作文，<br>自己當閱卷老師</h1>
+<p class="sub">你已經寫完「校園安全」的兩段。今天把它們合起來，親手把錯誤抓乾淨。</p>
+
+<div class="card goal">
+<b>今天的路線</b><br>
+① Day8 回饋 → ② 點名詞練習 → ③ safe 還是 safety → ④ 改自己的全文
+</div>
+
+<div class="step">01 / 2 分鐘</div>
+<h2>一、Day8 第二段：寫得不錯</h2>
+<div class="card praise"><ul>
+<li><span class="en">To keep our campus safe, …</span> 開頭用對了。</li>
+<li><span class="en">should</span> 後面都是原形動詞；<span class="en">By doing so</span> 用對了。</li>
+<li><span class="en">our studies</span> 這次寫對了，上次的錯沒有再犯。</li>
+<li><span class="en">notify their teachers</span>、<span class="en">deal with these problems immediately</span> 是你自己的說法，清楚又自然。</li>
+<li><span class="en">to ensure students have a safe place to concentrate on their studies</span> 這句很好，還呼應了第一段。</li>
+</ul></div>
+<div class="tip">句構和動詞都穩了。現在只剩<b>名詞</b>：這次又有兩個裸奔（<span class="en">student</span>、<span class="en">make effort</span>），而且你四項檢查都打了勾。所以今天不講新規則，直接<b>動手練檢查</b>。</div>
+
+<div class="step">02 / 4 分鐘</div>
+<h2>二、點名詞練習</h2>
+<p class="sub">每句有一個名詞在裸奔。<b>用手指點出那個字。</b>點對了會變紅並顯示改法。</p>
+<div class="card" id="tap"></div>
+<div class="tip">口訣再一次：點到名詞就問「<b>有 s 嗎？前面有 a / the / our 嗎？</b>」<br>特別注意 <span class="en">student、school、accident、effort</span>，這四個你最常漏。</div>
+
+<div class="step">03 / 3 分鐘</div>
+<h2>三、safe 還是 safety？</h2>
+<div class="card">
+<div class="note" style="margin-top:0">你寫的：</div>
+<div class="en">… improve campus <del>safe</del> <span class="fix">safety</span>.</div>
+<div class="fixed">
+<div class="en"><b>safe</b> <span class="zh">形容詞・安全的</span><br>a <span class="fix">safe</span> place　·　keep our campus <span class="fix">safe</span></div>
+<div class="en" style="margin-top:8px"><b>safety</b> <span class="zh">名詞・安全</span><br>campus <span class="fix">safety</span>　·　improve <span class="fix">safety</span></div>
+</div>
+<div class="note">判斷法：後面還有名詞、或在 be / keep 後面 → <span class="en">safe</span>。<br>它自己就是「一件事」（重視安全、改善安全）→ <span class="en">safety</span>。<br>同一組：<span class="en">dangerous</span>（危險的）／<span class="en">danger</span>（危險）。</div>
+</div>
+<div class="card">
+<b>小測驗</b>
+<div class="q" style="padding-top:10px"><div class="en">Schools should pay more attention to campus ____ .</div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">safety</span></div><span class="why">pay attention to + 名詞。</span></div></div>
+<div class="q"><div class="en">Everyone wants to study in a ____ environment.</div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">safe</span></div><span class="why">後面有名詞 environment → 形容詞。</span></div></div>
+<div class="q"><div class="en">Running in the hallway is ____ .</div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">dangerous</span></div><span class="why">be 動詞後面，形容「跑步這件事」→ 形容詞。</span></div></div>
+<div class="q"><div class="en">Students should tell a teacher when they see any ____ .</div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">danger</span></div><span class="why">see 的受詞 → 名詞。</span></div></div>
+</div>
+
+<div class="card">
+<b>再記一個固定說法</b>
+<div class="en" style="margin-top:6px"><del>in schools</del> → <span class="fix">at school</span> <span class="zh">在學校</span></div>
+<div class="note">「在學校（裡發生的事）」固定說 <span class="en">at school</span>，不加 s、不加 the。<br><span class="en">everyone <span class="fix">at school</span></span>　·　<span class="en">accidents <span class="fix">at school</span></span></div>
+</div>
+
+<div class="step">04 / 10 分鐘</div>
+<h2>四、改自己的全文</h2>
+<p class="sub">下面框裡是<b>你自己寫的兩段原文</b>（Day7 第一段＋Day8 第二段），一個字都沒改。請直接在框裡修改。</p>
+<div class="card">
+<b>這篇裡至少有 13 個地方要改</b>
+<ul class="note" style="margin-top:4px">
+<li>名詞裸奔或少了 s：<b>6 處</b></li>
+<li><span class="en">safe / safety</span> 用錯：<b>1 處</b></li>
+<li><span class="en">in schools</span> → <span class="en">at school</span>：<b>3 處</b></li>
+<li><span class="en">so that</span> 應該是 <span class="en">, so</span>：<b>1 處</b></li>
+<li>標點與空格（漏逗號、句號後沒空格）：<b>2 處</b></li>
+<li>第二段中間多換了一行：每一段要寫成<b>完整的一塊</b>。</li>
+</ul>
+<div class="zh">做法：先一段一段點名詞，再找 so that，最後看標點。</div>
+</div>
+<div class="card">
+<textarea id="essay" rows="22" autocapitalize="sentences" spellcheck="false" style="margin-top:0"></textarea>
+<div class="count"><span id="wc">0</span> 個英文單字（學測要求至少 120 字）</div>
+<button class="show" id="reset" style="border-color:#a9bac7;color:#566473;font-size:15px;min-height:38px;padding:6px 14px">還原成我的原文</button>
+</div>
+
+<div class="card check">
+<b>改完再確認</b>
+<label><input type="checkbox" data-k="c1"><span><b>點名詞</b>：兩段都點過一遍。</span></label>
+<label><input type="checkbox" data-k="c2"><span><span class="en">safe / safety</span> 都用對。</span></label>
+<label><input type="checkbox" data-k="c3"><span>沒有 <span class="en">in schools</span>；<span class="en">so that</span> 已改。</span></label>
+<label><input type="checkbox" data-k="c4"><span>分成<b>兩段</b>，兩段中間空一行；總字數 120 以上。</span></label>
+</div>
+
+<div class="card">
+<b>交給老師</b>
+<div class="btns"><button class="btn" id="copy">複製我的作答</button><button class="btn ghost" id="export">匯出 TXT</button></div>
+<div class="msg" id="msg"></div>
+<div class="zh">作答只暫存在這個瀏覽器，完成後請複製貼到 LINE。</div>
+</div>
+
+<div class="card">
+<b>交出後再看：老師的修正版</b>
+<div class="zh">紅字是改過的地方。數數看，你抓到幾個？</div>
+<button class="show">看修正版</button><div class="ans">
+<div class="en">As a student, I think campus safety is very important. If we study in a safe place, we don't have to worry about getting hurt.<span class="fix">␣As a result</span>, we can concentrate on our <span class="fix">studies</span> and other activities. However<span class="fix">,</span> there is a good chance that <span class="fix">accidents</span> might happen <span class="fix">at school</span>. For example, old tiles might fall off the walls<span class="fix">, so</span> students are likely to get hurt. For this reason, I think <span class="fix">schools</span> should pay more attention to campus safety.</div>
+<div class="en" style="margin-top:14px">To keep our campus safe, students should notify their teachers when they see something dangerous. Additionally, schools should deal with these problems immediately to ensure students have a safe place to concentrate on their studies. By doing so, <span class="fix">the dangers</span> hidden <span class="fix">at school</span> will decrease<span class="fix">,</span> and <span class="fix">students</span> will be safe. To sum up, everyone <span class="fix">at school</span> should make <span class="fix">an effort</span> to improve campus <span class="fix">safety</span>.</div>
+<span class="why">␣ 表示要空一格。<br>Besides（此外）改成 As a result（因此）：這裡是「不用擔心，所以能專心」的因果，這一處沒算在 13 個裡，沒改到沒關係。<br>全文約 135 字，已達學測 120 字的要求。</span></div>
+</div>
+
+<p class="foot">Day 09｜寫完不是結束，檢查完才是。<br>這是你第一篇完整的兩段式作文。</p>
+</div>
+<script>
+(function(){
+var ORIG="As a student, I think campus safety is very important. If we study in a safe place, we don't have to worry about getting hurt.Besides, we can concentrate on our study and other activities. However there is a good chance that accident might happen in schools. For example, old tiles might fall off the walls so that students are likely to get hurt. For this reason, I think school should pay more attention to campus safety.\n\nTo keep our campus safe, students should notify their teachers when they see something dangerous. Additionally, schools should deal with these problems immediately to ensure students have a safe place to concentrate on their studies.\nBy doing so, danger hidden in schools will decrease and student will be safe. To sum up, everyone in schools should make effort to improve campus safe.";
+var KEY='gsat-day9-v1',data={};
+try{data=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+
+/* 點名詞 */
+var items=[
+ {s:'By doing so, student will be safe.',bad:'student',fix:'students',why:'泛指學生 → 複數。'},
+ {s:'Everyone should make effort to improve campus safety.',bad:'effort',fix:'an effort',why:'make an effort 是固定搭配，effort 前面要有 an。'},
+ {s:'There is a good chance that accident might happen.',bad:'accident',fix:'accidents',why:'泛指意外 → 複數。'},
+ {s:'I think school should pay more attention to campus safety.',bad:'school',fix:'schools',why:'泛指所有學校 → 複數；指自己的學校 → our school。'},
+ {s:'If tile falls, it might hit a student.',bad:'tile',fix:'a tile',why:'一片磁磚 → a tile。後面的 a student 是對的。'}
+];
+var box=document.getElementById('tap');
+items.forEach(function(it,i){
+  var q=document.createElement('div');q.className='q';
+  var n=document.createElement('span');n.className='n';n.textContent='第 '+(i+1)+' 句';q.appendChild(n);
+  var line=document.createElement('div');line.className='en tapline';
+  var why=document.createElement('span');why.className='why';why.style.display='none';
+  it.s.split(' ').forEach(function(w){
+    var sp=document.createElement('span');sp.className='w';sp.textContent=w;
+    sp.addEventListener('click',function(){
+      if(line.classList.contains('done'))return;
+      if(w.replace(/[.,]/g,'')===it.bad){
+        var tail=w.slice(it.bad.length);
+        sp.innerHTML='<del>'+it.bad+'</del> <span class="fix">'+it.fix+'</span>'+tail;
+        sp.classList.add('hit');line.classList.add('done');
+        why.textContent='✓ '+it.why;why.style.display='block';
+      }else{
+        sp.classList.add('miss');setTimeout(function(){sp.classList.remove('miss')},500);
+        why.textContent='這個字沒問題，再找找看。';why.style.display='block';
+      }
+    });
+    line.appendChild(sp);line.appendChild(document.createTextNode(' '));
+  });
+  q.appendChild(line);q.appendChild(why);box.appendChild(q);
+});
+
+document.querySelectorAll('.show').forEach(function(b){
+  if(b.id==='reset')return;
+  var label=b.textContent;
+  b.addEventListener('click',function(){
+    var a=b.nextElementSibling,open=a.classList.toggle('open');
+    b.textContent=open?'收起':label;
+  });
+});
+var ta=document.getElementById('essay'),wc=document.getElementById('wc');
+function count(v){var m=v.match(/[A-Za-z]+(?:['’\-][A-Za-z]+)*/g);return m?m.length:0}
+ta.value=(typeof data.essay==='string')?data.essay:ORIG;
+wc.textContent=count(ta.value);
+ta.addEventListener('input',function(){data.essay=ta.value;save();wc.textContent=count(ta.value)});
+document.getElementById('reset').addEventListener('click',function(){
+  if(confirm('確定要還原成原文嗎？你目前的修改會消失。')){ta.value=ORIG;data.essay=ORIG;save();wc.textContent=count(ORIG)}
+});
+document.querySelectorAll('.check input').forEach(function(c){
+  var k=c.getAttribute('data-k');c.checked=!!data[k];
+  c.addEventListener('change',function(){data[k]=c.checked;save()});
+});
+function output(){
+  var n=document.querySelectorAll('.check input:checked').length;
+  var hit=document.querySelectorAll('.tapline.done').length;
+  return 'Day9｜學生作答\n題目：校園安全（全文自我修改）\n\n【我修改後的全文】\n'+(ta.value.trim()||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n點名詞練習完成：'+hit+' / '+items.length+'\n自我檢查已勾選：'+n+' / 4';
+}
+var msg=document.getElementById('msg');
+function fallback(v){var t=document.createElement('textarea');t.value=v;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();return ok}
+function copyText(v){
+  if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(v).then(function(){return true},function(){return fallback(v)})}
+  return Promise.resolve(fallback(v));
+}
+document.getElementById('copy').addEventListener('click',function(){
+  copyText(output()).then(function(ok){msg.textContent=ok?'已複製，請貼到 LINE 傳給老師。':'無法自動複製，請改用匯出 TXT 或手動選取。'});
+});
+document.getElementById('export').addEventListener('click',function(){
+  var blob=new Blob(['﻿'+output()],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='Day9_我的作答.txt';document.body.appendChild(a);a.click();a.remove();
+  msg.textContent='已匯出 Day9_我的作答.txt。';
+});
+})();
+</script>
+</body>
+</html>
