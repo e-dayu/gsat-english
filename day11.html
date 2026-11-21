@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fbfaf7">
+<title>Day11｜s 不是越多越好：先看名詞前面的字</title>
+<style>
+:root{--ink:#1b2733;--muted:#566473;--blue:#0f5f8c;--blue-light:#e6f2f9;--bg:#fbfaf7;--card:#fff;--line:#e3e0d8;--red:#c81e2d;--red-bg:#fdf1f1;--del:#7b8794;--warn:#fff3d6;--good:#0e7a55;--good-bg:#eaf7f1}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:19px;line-height:1.85}
+button,textarea{font:inherit}button{cursor:pointer}
+.wrap{max-width:720px;margin:0 auto;padding:18px 16px 90px}
+a{color:var(--blue)}
+a.back{font-size:16px;text-decoration:none}
+.course-id{font-weight:800;letter-spacing:.08em;color:var(--blue);font-size:13.5px;margin-top:12px}
+h1{font-size:26px;line-height:1.4;margin:4px 0 8px}
+.sub{color:var(--muted);font-size:17px;margin:4px 0 14px}
+.step{font-size:14px;font-weight:800;color:var(--blue);letter-spacing:.06em;margin-top:40px}
+h2{font-size:22px;line-height:1.45;margin:0 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 1px 2px rgba(27,39,51,.04)}
+.goal{background:var(--blue-light);border-color:#c3deee}
+.praise{background:var(--good-bg);border-color:#c4e6d6}
+.praise li{margin-bottom:6px}
+ul{padding-left:22px;margin:6px 0}
+.tip{background:var(--warn);border-left:5px solid #e0a43a;border-radius:10px;padding:10px 13px;font-size:17.5px;margin:12px 0}
+.legend{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 13px}
+/* 英文：手機上用無襯線、字放大 */
+.en{font-family:"Helvetica Neue",Arial,system-ui,sans-serif;font-size:20px;line-height:1.75;letter-spacing:.005em;color:var(--ink)}
+.fix{color:var(--red);font-weight:400}
+del{color:var(--del);text-decoration-thickness:1.5px}
+.must{color:var(--red);font-weight:700}
+.must u,.en u{text-decoration-thickness:2px;text-underline-offset:4px}
+.must u{color:var(--ink)}
+.zh{font-size:16.5px;color:var(--muted)}
+.n{display:inline-block;font-size:13.5px;font-weight:800;color:var(--blue);letter-spacing:.04em;margin-bottom:2px}
+.fixed{margin-top:10px;padding:10px 12px;background:var(--red-bg);border-radius:12px}
+.note{font-size:17px;line-height:1.8;color:#2a3a49;margin-top:10px}
+.note .en{font-size:18px}
+.rule{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line)}
+.rule:last-child{border-bottom:0}
+.num{flex:none;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:16px;margin-top:3px}
+.rule b{display:block}
+.rule small{font-size:16.5px;color:var(--muted);display:block;line-height:1.7}
+.q{padding:14px 0;border-bottom:1px solid var(--line)}
+.q:first-child{padding-top:0}.q:last-child{border-bottom:0;padding-bottom:0}
+.show{display:block;margin-top:10px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:9px 18px;font-size:17px;font-weight:700;min-height:44px}
+.ans{display:none;margin-top:10px;background:var(--red-bg);border-radius:12px;padding:11px 13px}
+.ans.open{display:block}
+.why{color:#2a3a49;font-size:16.5px;display:block;margin-top:4px;line-height:1.7}
+.pt{display:inline-block;font-size:13.5px;font-weight:700;color:var(--blue);background:var(--blue-light);border-radius:999px;padding:2px 11px;margin-bottom:6px}
+.pat .zh{margin-top:6px}
+textarea{width:100%;border:1.5px solid #a9bac7;border-radius:12px;padding:12px;font-size:19px;line-height:1.7;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;color:var(--ink);background:#fff;resize:vertical;margin-top:8px}
+textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
+.count{font-size:15px;color:var(--muted);text-align:right}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;font-size:17.5px;border-bottom:1px dashed var(--line)}
+.check label:last-child{border-bottom:0}
+.check input{width:24px;height:24px;flex:none;margin-top:5px;accent-color:var(--blue)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.btn{border:0;border-radius:12px;background:var(--blue);color:#fff;font-weight:700;padding:12px 20px;font-size:18px;min-height:48px}
+.btn.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}
+.msg{font-size:16px;color:var(--good);min-height:1.7em;margin-top:6px}
+.foot{font-size:15px;color:var(--muted);margin-top:30px;text-align:center}
+.tapline{line-height:2.3}
+.w{display:inline-block;padding:1px 5px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tapline.done .w{border-color:transparent;background:none;cursor:default;padding:1px 0}
+.w.hit{background:var(--red-bg)!important}
+.w.miss{background:#e9edf1;color:var(--del)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← 回課程首頁</a>
+<div class="course-id">GSAT ENGLISH · DAY 11 · 約 20 分鐘</div>
+<h1>s 不是越多越好：<br>先看名詞前面的字</h1>
+<p class="sub">Day10 你第一次自己寫新題目。句構很穩，今天把名詞的 s 和三個搭配修乾淨。</p>
+
+<div class="card goal">
+<b>今天的路線</b><br>
+① Day10 回饋 → ② s 該不該有 → ③ 三個搭配 → ④ 改自己的段落
+</div>
+
+<div class="step">01 / 3 分鐘</div>
+<h2>一、Day10：新題目也寫得出來</h2>
+<div class="card praise"><ul>
+<li><span class="en">Although smartphones are useful for everyone, excessive use may cause problems.</span><br>這個開頭是你自己寫的，文法全對，比範例還好。</li>
+<li><span class="en">For example, / As a result, / Additionally, / By doing so,</span> 四個逗號全對。</li>
+<li><span class="en">many students</span>、<span class="en">their teachers</span>、<span class="en">should</span>＋原形、<span class="en">To solve …,</span> 都用對。</li>
+<li><span class="en">excessive、concentration、appropriately</span> 這些字都拼對、位置也對。</li>
+<li>寫成完整一段，85 字，達到要求。</li>
+</ul></div>
+<div class="tip">你填「檢查時改了 0 處」，四項也都打勾，可是名詞還有 3 個問題。<br>而且這次<b>不是少了 s，是多了 s</b>：<span class="en">this problems、homeworks、students's</span>。<br>所以口訣要升級：不是問「有 s 嗎」，而是<b>先看名詞前面的字</b>。</div>
+
+<div class="step">02 / 5 分鐘</div>
+<h2>二、s 該不該有？先看前面</h2>
+<div class="card">
+<div class="rule"><span class="num">1</span><div><b>前面是 this / a / every → 不加 s</b>
+<div class="en">To solve this <del>problems</del> <span class="fix">problem</span>, …</div>
+<small>this 是「這一個」。很多個要用 these：these problems。</small></div></div>
+<div class="rule"><span class="num">2</span><div><b>前面是 many / these / other → 要加 s</b>
+<div class="en">many <span class="fix">students</span>　·　other <span class="fix">students</span></div>
+<small>這個你已經寫對了。</small></div></div>
+<div class="rule"><span class="num">3</span><div><b>有些字永遠不加 s</b>
+<div class="en">finish their <del>homeworks</del> <span class="fix">homework</span></div>
+<small>不能數的名詞：<span class="en">homework、information、advice</span>。也不能說 a homework。</small></div></div>
+<div class="rule"><span class="num">4</span><div><b>已經有 s 的複數，「的」只加一撇</b>
+<div class="en">other <del>students's</del> <span class="fix">students'</span> concentration</div>
+<small>一個學生的：<span class="en">a student's</span>。很多學生的：<span class="en">students'</span>。</small></div></div>
+</div>
+<p class="sub">練習：每句有一個名詞錯了，有的少 s、有的多 s。<b>用手指點出那個字。</b></p>
+<div class="card" id="tap"></div>
+
+<div class="step">03 / 4 分鐘</div>
+<h2>三、三個搭配</h2>
+<div class="card">
+<span class="pt">搭配 ①</span>
+<div><b>手機是「用」的：use，不是 play</b></div>
+<div class="en" style="margin-top:6px">many students <del>play</del> <span class="fix">use</span> their smartphones during class</div>
+<div class="note"><span class="en">play</span> 後面接遊戲、球、樂器：<span class="en">play games / play basketball</span>。<br>手機是工具 → <span class="en">use their phones</span>。想說「玩手機遊戲」→ <span class="en">play games on their phones</span>。</div>
+</div>
+<div class="card">
+<span class="pt">搭配 ②</span>
+<div><b>「確保」是 make sure</b></div>
+<div class="en" style="margin-top:6px">students should <del>assure</del> <span class="fix">make sure</span> that they can understand …</div>
+<div class="note"><span class="en">make sure (that) + 主詞 + 動詞</span>＝確保、確認。<br><span class="en">assure</span> 是「向某人保證」，用法不同，作文先不用。</div>
+</div>
+<div class="card">
+<span class="pt">搭配 ③</span>
+<div><b>avoid 後面的動詞加 -ing</b></div>
+<div class="en" style="margin-top:6px">avoid <del>teachers mad</del> <span class="fix">making their teachers angry</span></div>
+<div class="note">和 Day1 的 <span class="en">enjoy + V-ing</span> 同一組：<span class="en">avoid + V-ing</span>＝避免做某事。<br><span class="en">make + 人 + 形容詞</span>＝讓某人…：<span class="en">make their teachers angry</span>。</div>
+</div>
+<div class="card">
+<b>小測驗</b>
+<div class="q" style="padding-top:10px"><div class="en">Some students ____ their phones while walking.</div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">use</span></div><span class="why">手機是工具。</span></div></div>
+<div class="q"><div class="en">They ____ games on their phones late at night.</div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">play</span></div><span class="why">後面是 games。</span></div></div>
+<div class="q"><div class="en">Students should ____ ____ that they get enough sleep.</div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">make sure</span></div></div></div>
+<div class="q"><div class="en">We should avoid ____ (use) our phones in class.</div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">using</span></div><span class="why">avoid + V-ing。</span></div></div>
+</div>
+<div class="card">
+<b>再兩個小地方</b>
+<ul class="note" style="margin-top:4px">
+<li><span class="en">this <del>require</del></span>：require 是動詞（要求），名詞是 requirement。這裡直接說 <span class="en fix">If they can't do this,</span> 最簡單。</li>
+<li><span class="en"><del>that</del> <span class="fix">they</span> have to put their smartphones away</span>：打錯字，檢查時唸出來就抓得到。</li>
+</ul>
+</div>
+
+<div class="step">04 / 8 分鐘</div>
+<h2>四、改自己的段落</h2>
+<p class="sub">下面框裡是<b>你 Day10 寫的原文</b>，一個字都沒改。請直接在框裡修改。</p>
+<div class="card">
+<b>這段裡有 10 個地方要改</b>
+<ul class="note" style="margin-top:4px">
+<li>名詞的 s（多了或撇號錯）：<b>3 處</b></li>
+<li><span class="en">play</span> → <span class="en">use</span>：<b>3 處</b>（其中一個是 playing）</li>
+<li><span class="en">assure</span>、<span class="en">this require</span>、<span class="en">that</span>、<span class="en">avoid teachers mad</span>：<b>各 1 處</b></li>
+</ul>
+<div class="zh">做法：先點名詞（看前面的字），再找 play，最後小聲唸一遍。</div>
+</div>
+<div class="card">
+<textarea id="essay" rows="16" autocapitalize="sentences" spellcheck="false" style="margin-top:0"></textarea>
+<div class="count"><span id="wc">0</span> 個英文單字</div>
+<button class="show" id="reset" style="border-color:#a9bac7;color:#566473;font-size:15px;min-height:38px;padding:6px 14px">還原成我的原文</button>
+</div>
+
+<div class="card check">
+<b>改完再打勾</b>
+<label><input type="checkbox" data-k="c1"><span><b>點名詞，先看前面</b>：<span class="en">this</span> 後面沒有 s；<span class="en">many / other</span> 後面有 s。</span></label>
+<label><input type="checkbox" data-k="c2"><span><span class="en">homework</span> 沒有 s；<span class="en">students'</span> 只有一撇。</span></label>
+<label><input type="checkbox" data-k="c3"><span>手機都是 <span class="en">use</span>；「確保」是 <span class="en">make sure</span>。</span></label>
+<label><input type="checkbox" data-k="c4"><span><span class="en">avoid</span> 後面是 V-ing；整段小聲唸過一遍。</span></label>
+</div>
+
+<div class="card">
+<b>交給老師</b>
+<div class="btns"><button class="btn" id="copy">複製我的作答</button><button class="btn ghost" id="export">匯出 TXT</button></div>
+<div class="msg" id="msg"></div>
+<div class="zh">作答只暫存在這個瀏覽器，完成後請複製貼到 LINE。</div>
+</div>
+
+<div class="card">
+<b>交出後再看：老師的修正版</b>
+<div class="zh">紅字是改過的地方。數數看，你抓到幾個？</div>
+<button class="show">看修正版</button><div class="ans">
+<div class="en">Although smartphones are useful for everyone, excessive use may cause problems. For example, many students <span class="fix">use</span> their smartphones during class. As a result, they can't hear what <span class="fix">their</span> teachers say. Additionally, <span class="fix">using them</span> too much may affect other <span class="fix">students'</span> concentration. To solve this <span class="fix">problem</span>, I think students should <span class="fix">make sure</span> that they can understand what their teachers say and finish their <span class="fix">homework</span>. If they can't <span class="fix">do this</span>, <span class="fix">they</span> have to put their smartphones away. By doing so, they can <span class="fix">use</span> their smartphones appropriately and avoid <span class="fix">making their teachers angry</span>.</div>
+<span class="why">what <b>their</b> teachers say：加 their 更清楚，這一處沒算在 10 個裡。<br>內容都是你自己的想法，老師只改了用字。</span></div>
+</div>
+
+<p class="foot">Day 11｜點名詞，先看前面的字。<br>手機用 use；確保 make sure；avoid + V-ing。</p>
+</div>
+<script>
+(function(){
+var ORIG="Although smartphones are useful for everyone, excessive use may cause problems. For example, many students play their smartphones during class. As a result, they can't hear what teachers say. Additionally, playing too much may affect other students's concentration. To solve this problems, I think students should assure that they can understand what their teachers say and finish their homeworks. If they can't achieve this require, that have to put their smartphones away. By doing so, they can play their smartphones appropriately and avoid teachers mad.";
+var KEY='gsat-day11-v1',data={};
+try{data=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+
+var items=[
+ {s:'To solve this problems, students should put their phones away.',bad:'problems',fix:'problem',why:'this 後面是單數。'},
+ {s:'Students should finish their homeworks first.',bad:'homeworks',fix:'homework',why:'homework 不能數，永遠不加 s。'},
+ {s:"Noise may affect other students's concentration.",bad:"students's",fix:"students'",why:'複數已經有 s，只加一撇。'},
+ {s:'Many student use their phones during class.',bad:'student',fix:'students',why:'many 後面要加 s。'},
+ {s:'We can find a lot of informations on the Internet.',bad:'informations',fix:'information',why:'information 不能數，永遠不加 s。'},
+ {s:'Every students should follow these rules.',bad:'students',fix:'student',why:'every 後面是單數；these rules 是對的。'}
+];
+var box=document.getElementById('tap');
+items.forEach(function(it,i){
+  var q=document.createElement('div');q.className='q';
+  var n=document.createElement('span');n.className='n';n.textContent='第 '+(i+1)+' 句';q.appendChild(n);
+  var line=document.createElement('div');line.className='en tapline';
+  var why=document.createElement('span');why.className='why';why.style.display='none';
+  it.s.split(' ').forEach(function(w){
+    var sp=document.createElement('span');sp.className='w';sp.textContent=w;
+    sp.addEventListener('click',function(){
+      if(line.classList.contains('done'))return;
+      if(w.replace(/[.,]/g,'')===it.bad){
+        var tail=w.slice(it.bad.length);
+        sp.textContent='';
+        var d=document.createElement('del');d.textContent=it.bad;
+        var f=document.createElement('span');f.className='fix';f.textContent=it.fix;
+        sp.appendChild(d);sp.appendChild(document.createTextNode(' '));sp.appendChild(f);sp.appendChild(document.createTextNode(tail));
+        sp.classList.add('hit');line.classList.add('done');
+        why.textContent='✓ '+it.why;why.style.display='block';
+      }else{
+        sp.classList.add('miss');setTimeout(function(){sp.classList.remove('miss')},500);
+        why.textContent='這個字沒問題，再找找看。';why.style.display='block';
+      }
+    });
+    line.appendChild(sp);line.appendChild(document.createTextNode(' '));
+  });
+  q.appendChild(line);q.appendChild(why);box.appendChild(q);
+});
+
+document.querySelectorAll('.show').forEach(function(b){
+  if(b.id==='reset')return;
+  var label=b.textContent;
+  b.addEventListener('click',function(){
+    var a=b.nextElementSibling,open=a.classList.toggle('open');
+    b.textContent=open?'收起':label;
+  });
+});
+var ta=document.getElementById('essay'),wc=document.getElementById('wc');
+function count(v){var m=v.match(/[A-Za-z]+(?:['’\-][A-Za-z]+)*/g);return m?m.length:0}
+ta.value=(typeof data.essay==='string')?data.essay:ORIG;
+wc.textContent=count(ta.value);
+ta.addEventListener('input',function(){data.essay=ta.value;save();wc.textContent=count(ta.value)});
+document.getElementById('reset').addEventListener('click',function(){
+  if(confirm('確定要還原成原文嗎？你目前的修改會消失。')){ta.value=ORIG;data.essay=ORIG;save();wc.textContent=count(ORIG)}
+});
+document.querySelectorAll('.check input').forEach(function(c){
+  var k=c.getAttribute('data-k');c.checked=!!data[k];
+  c.addEventListener('change',function(){data[k]=c.checked;save()});
+});
+function output(){
+  var n=document.querySelectorAll('.check input:checked').length;
+  var hit=document.querySelectorAll('.tapline.done').length;
+  return 'Day11｜學生作答\n題目：手機造成的問題（段落自我修改）\n\n【我修改後的段落】\n'+(ta.value.trim()||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n點名詞練習完成：'+hit+' / '+items.length+'\n自我檢查已勾選：'+n+' / 4';
+}
+var msg=document.getElementById('msg');
+function fallback(v){var t=document.createElement('textarea');t.value=v;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();return ok}
+function copyText(v){
+  if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(v).then(function(){return true},function(){return fallback(v)})}
+  return Promise.resolve(fallback(v));
+}
+document.getElementById('copy').addEventListener('click',function(){
+  copyText(output()).then(function(ok){msg.textContent=ok?'已複製，請貼到 LINE 傳給老師。':'無法自動複製，請改用匯出 TXT 或手動選取。'});
+});
+document.getElementById('export').addEventListener('click',function(){
+  var blob=new Blob(['﻿'+output()],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='Day11_我的作答.txt';document.body.appendChild(a);a.click();a.remove();
+  msg.textContent='已匯出 Day11_我的作答.txt。';
+});
+})();
+</script>
+</body>
+</html>
