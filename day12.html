@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fbfaf7">
+<title>Day12｜訂正：記一整組，不是記一個字</title>
+<style>
+:root{--ink:#1b2733;--muted:#566473;--blue:#0f5f8c;--blue-light:#e6f2f9;--bg:#fbfaf7;--card:#fff;--line:#e3e0d8;--red:#c81e2d;--red-bg:#fdf1f1;--del:#7b8794;--warn:#fff3d6;--good:#0e7a55;--good-bg:#eaf7f1}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:19px;line-height:1.85}
+button,textarea{font:inherit}button{cursor:pointer}
+.wrap{max-width:720px;margin:0 auto;padding:18px 16px 90px}
+a{color:var(--blue)}
+a.back{font-size:16px;text-decoration:none}
+.course-id{font-weight:800;letter-spacing:.08em;color:var(--blue);font-size:13.5px;margin-top:12px}
+h1{font-size:26px;line-height:1.4;margin:4px 0 8px}
+.sub{color:var(--muted);font-size:17px;margin:4px 0 14px}
+.step{font-size:14px;font-weight:800;color:var(--blue);letter-spacing:.06em;margin-top:40px}
+h2{font-size:22px;line-height:1.45;margin:0 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 1px 2px rgba(27,39,51,.04)}
+.goal{background:var(--blue-light);border-color:#c3deee}
+.praise{background:var(--good-bg);border-color:#c4e6d6}
+.praise li{margin-bottom:6px}
+ul{padding-left:22px;margin:6px 0}
+.tip{background:var(--warn);border-left:5px solid #e0a43a;border-radius:10px;padding:10px 13px;font-size:17.5px;margin:12px 0}
+.legend{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 13px}
+/* 英文：手機上用無襯線、字放大 */
+.en{font-family:"Helvetica Neue",Arial,system-ui,sans-serif;font-size:20px;line-height:1.75;letter-spacing:.005em;color:var(--ink)}
+.fix{color:var(--red);font-weight:400}
+del{color:var(--del);text-decoration-thickness:1.5px}
+.must{color:var(--red);font-weight:700}
+.must u,.en u{text-decoration-thickness:2px;text-underline-offset:4px}
+.must u{color:var(--ink)}
+.zh{font-size:16.5px;color:var(--muted)}
+.n{display:inline-block;font-size:13.5px;font-weight:800;color:var(--blue);letter-spacing:.04em;margin-bottom:2px}
+.fixed{margin-top:10px;padding:10px 12px;background:var(--red-bg);border-radius:12px}
+.note{font-size:17px;line-height:1.8;color:#2a3a49;margin-top:10px}
+.note .en{font-size:18px}
+.rule{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line)}
+.rule:last-child{border-bottom:0}
+.num{flex:none;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:16px;margin-top:3px}
+.rule b{display:block}
+.rule small{font-size:16.5px;color:var(--muted);display:block;line-height:1.7}
+.q{padding:14px 0;border-bottom:1px solid var(--line)}
+.q:first-child{padding-top:0}.q:last-child{border-bottom:0;padding-bottom:0}
+.show{display:block;margin-top:10px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:9px 18px;font-size:17px;font-weight:700;min-height:44px}
+.ans{display:none;margin-top:10px;background:var(--red-bg);border-radius:12px;padding:11px 13px}
+.ans.open{display:block}
+.why{color:#2a3a49;font-size:16.5px;display:block;margin-top:4px;line-height:1.7}
+.pt{display:inline-block;font-size:13.5px;font-weight:700;color:var(--blue);background:var(--blue-light);border-radius:999px;padding:2px 11px;margin-bottom:6px}
+.pat .zh{margin-top:6px}
+textarea{width:100%;border:1.5px solid #a9bac7;border-radius:12px;padding:12px;font-size:19px;line-height:1.7;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;color:var(--ink);background:#fff;resize:vertical;margin-top:8px}
+textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
+.count{font-size:15px;color:var(--muted);text-align:right}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;font-size:17.5px;border-bottom:1px dashed var(--line)}
+.check label:last-child{border-bottom:0}
+.check input{width:24px;height:24px;flex:none;margin-top:5px;accent-color:var(--blue)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.btn{border:0;border-radius:12px;background:var(--blue);color:#fff;font-weight:700;padding:12px 20px;font-size:18px;min-height:48px}
+.btn.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}
+.msg{font-size:16px;color:var(--good);min-height:1.7em;margin-top:6px}
+.foot{font-size:15px;color:var(--muted);margin-top:30px;text-align:center}
+.tapline{line-height:2.3}
+.w{display:inline-block;padding:1px 5px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tapline.done .w{border-color:transparent;background:none;cursor:default;padding:1px 0}
+.w.hit{background:var(--red-bg)!important}
+.w.miss{background:#e9edf1;color:var(--del)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← 回課程首頁</a>
+<div class="course-id">GSAT ENGLISH · DAY 12 · 訂正 · 約 12 分鐘</div>
+<h1>訂正：<br>記「一整組」，不是記一個字</h1>
+<p class="sub">Day11 你改對了大部分。今天只處理剩下的 3 個地方，沒有新題目。</p>
+
+<div class="card goal">
+<b>今天的路線</b><br>
+① Day11 結果 → ② make ＋ 人 ＋ 形容詞 → ③ 兩個小地方 → ④ 把段落改完
+</div>
+
+<div class="step">01 / 2 分鐘</div>
+<h2>一、Day11：10 個裡你改對 7 個</h2>
+<div class="card praise"><ul>
+<li><span class="en">this problem</span>、<span class="en">homework</span>：多出來的 s 都拿掉了。</li>
+<li><span class="en">use their smartphones</span>：兩個 play 都換成 use。</li>
+<li><span class="en">make sure that …</span>、<span class="en">they have to …</span> 都改對。</li>
+<li><span class="en">this requirement</span>：你自己把動詞 require 換成名詞，詞性對了。</li>
+</ul></div>
+<p class="sub">剩下 3 個地方，其中一個最重要。</p>
+
+<div class="step">02 / 5 分鐘</div>
+<h2>二、make ＋ 人 ＋ 形容詞</h2>
+<div class="card">
+<div class="note" style="margin-top:0">你寫的：</div>
+<div class="en">… avoid <del>teachers madding</del>.</div>
+<div class="note">你記得 <span class="en">avoid</span> 後面要 -ing，這個方向是對的。<br>可是 <span class="en">mad</span> 是<b>形容詞</b>（生氣的），形容詞不能加 -ing。<br>-ing 要加在<b>動詞</b>上，這句少了一個動詞。</div>
+</div>
+<div class="card pat">
+<span class="pt">整組記</span>
+<div class="en must">make <u>their teachers</u> <u>angry</u></div>
+<div class="zh">讓＿＿（人）變得＿＿（形容詞）</div>
+<div class="fixed">
+<div class="en"><span class="zh">第一步　先說「讓老師生氣」</span><br><span class="fix">make</span> their teachers angry</div>
+<div class="en" style="margin-top:8px"><span class="zh">第二步　前面有 avoid → make 加 -ing</span><br>avoid <span class="fix">making</span> their teachers angry</div>
+</div>
+<div class="note">mad 也可以，但 mad 比較口語，作文用 <span class="en">angry</span> 比較穩。<br>同一組：<span class="en">make my parents worried</span>（讓爸媽擔心）、<span class="en">make students sleepy</span>（讓學生想睡）。</div>
+</div>
+<div class="card">
+<b>小測驗</b>
+<div class="zh">先自己在心裡說出答案，再按鈕。</div>
+<div class="q" style="padding-top:10px"><div class="en">Using phones in class makes teachers ____ . <span class="zh">（生氣）</span></div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">angry</span></div><span class="why">make ＋ 人 ＋ 形容詞。不是 angrily、不是 anger。</span></div></div>
+<div class="q"><div class="en">We should avoid ____ our parents worried. <span class="zh">（讓）</span></div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">making</span></div><span class="why">avoid 後面的動詞 make 加 -ing。</span></div></div>
+<div class="q"><div class="en">Staying up late makes students ____ at school. <span class="zh">（想睡）</span></div>
+<button class="show">看答案</button><div class="ans"><div class="en"><span class="fix">sleepy</span></div><span class="why">形容詞 sleepy；at school 沒有 s。</span></div></div>
+<div class="q"><div class="zh">把這句中文說成英文：</div><div>他們可以避免讓老師生氣。</div>
+<button class="show">看答案</button><div class="ans"><div class="en">They can avoid <span class="fix">making their teachers angry</span>.</div></div></div>
+</div>
+
+<div class="step">03 / 2 分鐘</div>
+<h2>三、兩個小地方</h2>
+<div class="card">
+<span class="pt">小地方 ①</span>
+<div><b>use 後面要有「用什麼」</b></div>
+<div class="en" style="margin-top:6px">using <span class="fix">them</span> too much may affect …</div>
+<div class="note"><span class="en">use</span> 不能單獨站著，後面一定要有東西。前一句已經說過 smartphones，這裡用 <span class="en">them</span> 代替就好。</div>
+</div>
+<div class="card">
+<span class="pt">小地方 ②</span>
+<div><b>撇號後面也要空一格</b></div>
+<div class="en" style="margin-top:6px">other students'<span class="fix">␣</span>concentration</div>
+<div class="note">撇號你加對了，只是後面黏在一起。<span class="en">students'</span> 是一個字，<span class="en">concentration</span> 是另一個字，中間要空格。</div>
+</div>
+<div class="card">
+<b>可以更自然（不算錯）</b>
+<div class="en" style="margin-top:6px"><del>achieve</del> <span class="fix">meet</span> this requirement</div>
+<div class="note">「達到要求」習慣說 <span class="en">meet this requirement</span>。想簡單一點，寫 <span class="en">If they can't do this,</span> 也可以。</div>
+</div>
+
+<div class="step">04 / 3 分鐘</div>
+<h2>四、把段落改完</h2>
+<p class="sub">下面是<b>你 Day11 交的段落</b>，一個字都沒改。還有 <b>3 個地方</b>要改（第二、三節教的那三個）。</p>
+<div class="card">
+<textarea id="essay" rows="16" autocapitalize="sentences" spellcheck="false" style="margin-top:0"></textarea>
+<div class="count"><span id="wc">0</span> 個英文單字</div>
+<button class="show" id="reset" style="border-color:#a9bac7;color:#566473;font-size:15px;min-height:38px;padding:6px 14px">還原成 Day11 的版本</button>
+</div>
+
+<div class="card check">
+<b>改完再打勾</b>
+<label><input type="checkbox" data-k="c1"><span>最後一句是 <span class="en">avoid making … angry</span>。</span></label>
+<label><input type="checkbox" data-k="c2"><span><span class="en">using</span> 後面有 <span class="en">them</span>。</span></label>
+<label><input type="checkbox" data-k="c3"><span><span class="en">students'</span> 後面有空格。</span></label>
+</div>
+
+<div class="card">
+<b>交給老師</b>
+<div class="btns"><button class="btn" id="copy">複製我的作答</button><button class="btn ghost" id="export">匯出 TXT</button></div>
+<div class="msg" id="msg"></div>
+<div class="zh">作答只暫存在這個瀏覽器，完成後請複製貼到 LINE。</div>
+</div>
+
+<div class="card">
+<b>交出後再看：完成版</b>
+<button class="show">看完成版</button><div class="ans">
+<div class="en">Although smartphones are useful for everyone, excessive use may cause problems. For example, many students use their smartphones during class. As a result, they can't hear what <span class="fix">their</span> teachers say. Additionally, using <span class="fix">them</span> too much may affect other students'<span class="fix">␣</span>concentration. To solve this problem, I think students should make sure that they can understand what their teachers say and finish their homework. If they can't <span class="fix">meet</span> this requirement, they have to put their smartphones away. By doing so, they can use their smartphones appropriately and avoid <span class="fix">making their teachers angry</span>.</div>
+<span class="why">␣ 表示要空一格。<br>their teachers、meet 是「更自然」，沒改到沒關係。<br>這一段的想法和大部分句子都是你自己的。</span></div>
+</div>
+
+<p class="foot">Day 12｜make ＋ 人 ＋ 形容詞；avoid making …<br>記一整組，不是記一個字。</p>
+</div>
+<script>
+(function(){
+var ORIG="Although smartphones are useful for everyone, excessive use may cause problems. For example, many students use their smartphones during class. As a result, they can't hear what teachers say. Additionally, using too much may affect other students'concentration. To solve this problem, I think students should make sure that they can understand what their teachers say and finish their homework. If they can't achieve this requirement, they have to put their smartphones away. By doing so, they can use their smartphones appropriately and avoid teachers madding.";
+var KEY='gsat-day12-v1',data={};
+try{data=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+document.querySelectorAll('.show').forEach(function(b){
+  if(b.id==='reset')return;
+  var label=b.textContent;
+  b.addEventListener('click',function(){
+    var a=b.nextElementSibling,open=a.classList.toggle('open');
+    b.textContent=open?'收起':label;
+  });
+});
+var ta=document.getElementById('essay'),wc=document.getElementById('wc');
+function count(v){var m=v.match(/[A-Za-z]+(?:['’\-][A-Za-z]+)*/g);return m?m.length:0}
+ta.value=(typeof data.essay==='string')?data.essay:ORIG;
+wc.textContent=count(ta.value);
+ta.addEventListener('input',function(){data.essay=ta.value;save();wc.textContent=count(ta.value)});
+document.getElementById('reset').addEventListener('click',function(){
+  if(confirm('確定要還原嗎？你目前的修改會消失。')){ta.value=ORIG;data.essay=ORIG;save();wc.textContent=count(ORIG)}
+});
+document.querySelectorAll('.check input').forEach(function(c){
+  var k=c.getAttribute('data-k');c.checked=!!data[k];
+  c.addEventListener('change',function(){data[k]=c.checked;save()});
+});
+function output(){
+  var n=document.querySelectorAll('.check input:checked').length;
+  return 'Day12｜學生作答\n題目：手機造成的問題（訂正）\n\n【我訂正後的段落】\n'+(ta.value.trim()||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n自我檢查已勾選：'+n+' / 3';
+}
+var msg=document.getElementById('msg');
+function fallback(v){var t=document.createElement('textarea');t.value=v;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();return ok}
+function copyText(v){
+  if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(v).then(function(){return true},function(){return fallback(v)})}
+  return Promise.resolve(fallback(v));
+}
+document.getElementById('copy').addEventListener('click',function(){
+  copyText(output()).then(function(ok){msg.textContent=ok?'已複製，請貼到 LINE 傳給老師。':'無法自動複製，請改用匯出 TXT 或手動選取。'});
+});
+document.getElementById('export').addEventListener('click',function(){
+  var blob=new Blob(['﻿'+output()],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='Day12_我的作答.txt';document.body.appendChild(a);a.click();a.remove();
+  msg.textContent='已匯出 Day12_我的作答.txt。';
+});
+})();
+</script>
+</body>
+</html>
