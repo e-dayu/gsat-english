@@ -82,6 +82,13 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 .item.ok .t::after{content:" ✓";color:var(--good);font-weight:800}
 .item.no .t::after{content:" ✗";color:var(--red);font-weight:800}
 .item.no .seg button.right{outline:3px solid #0e7a5566}
+.ph{padding:4px 1px;border-radius:6px;border-bottom:2px dotted #a9bac7;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ph.on{background:#fff3d6;border-bottom:2px solid #e0a43a}
+.ph.hit{background:var(--good-bg);border-bottom:2px solid var(--good);font-weight:700}
+.ph.bad{background:var(--red-bg);border-bottom:2px solid var(--red);text-decoration:line-through}
+.ph.missed{outline:2px dashed var(--good);outline-offset:1px}
+.prompt{font-size:19px;line-height:2.3}
+.seg.nums button{min-width:0;font-size:17px}
 .res{font-size:16.5px;margin-top:8px;color:#2a3a49}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 .chip{min-height:44px;border:1.5px solid #a9bac7;background:#fff;color:var(--ink);border-radius:12px;padding:6px 12px;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;font-size:18px}
@@ -114,14 +121,18 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 
 <div class="card goal">
 <b>今天的路線</b>（每一段都會自動儲存，被打斷可以回來接著做）<br>
-① 拆題 → ② 觀察卡 → ③ 排出開頭句 → ④ 寫第一段 → ⑤ 翻譯一句
+① 拆題 → ② 觀察卡 → ③ 排出開頭句 → ④ 寫第一段、對項目 → ⑤ 翻譯一句
 </div>
 
-<div class="step">01 / 4 分鐘 / 用點的</div>
-<h2>一、拆題：每一段要交代什麼？</h2>
-<p class="sub">閱卷老師說，最常見的失分是<b>漏掉題目要求的項目</b>。下筆前先花 30 秒拆題。<br>下面是三年的學測題目。每個項目點一下：該寫在<b>第一段</b>、<b>第二段</b>，還是<b>不用寫</b>。</p>
-<div id="split"></div>
-<div class="tip"><b>拆題口訣</b>：題目裡的「與」「以及」「並」前後，各是一個項目。<b>每個項目至少寫一句。</b></div>
+<div class="step">01 / 1 分鐘 / 用點的</div>
+<h2>一、拆題：題目要我交代什麼？</h2>
+<p class="sub">閱卷老師說，最常見的失分是<b>漏掉題目要求的項目</b>。<br>下面是今天的題目（114 學測）。<b>把「要我寫出來的內容」點出來</b>，背景說明和格式不用點。點完按對答案。</p>
+<div class="card">
+<div class="prompt" id="prompt"></div>
+<button class="show" id="splitGo" type="button">對答案</button>
+<div class="res" id="splitRes"></div>
+</div>
+<div class="tip"><b>拆題口訣</b>：找「描述、說明」後面的東西；「與」「以及」前後各算一項。<b>每一項至少寫一句。</b></div>
 
 <div class="step">02 / 4 分鐘 / 用點的</div>
 <h2>二、觀察卡：誰、在哪、做什麼</h2>
@@ -169,6 +180,12 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 <textarea id="essay" rows="8" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="The two pictures show …" style="margin-top:0"></textarea>
 <div class="count"><span id="wc">0</span> 個英文單字（建議 50–70 字）</div>
 <div class="zh">這個框關掉了自動修正和自動大寫，和考試手寫一樣，要自己注意。</div>
+</div>
+
+<div class="card">
+<b>對項目：我寫在第幾句？</b>
+<div class="zh">拆題找到的項目，一項一項對。找不到就是漏了，回去補一句。</div>
+<div id="cover"></div>
 </div>
 
 <div class="card check">
@@ -219,70 +236,82 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 <button class="show">看參考寫法</button><div class="ans"><div class="en">The two pictures show different scenes of people spending a typhoon day off. In the picture on the left, many people are waiting in line to buy tickets at a movie theater. They seem to enjoy their free time. In contrast, the right-hand picture shows some people riding scooters on a wet road. It is raining heavily, but they still have to go out. These two pictures show that a typhoon day off can be relaxing for some people but dangerous for others.</div></div>
 </div>
 
-<p class="foot">Day 13｜先拆題：每個項目至少一句。<br>第一段寫看得到的：誰、在哪、做什麼。</p>
+<p class="foot">Day 13｜先拆題，寫完對項目：每一項至少一句。<br>第一段寫看得到的：誰、在哪、做什麼。</p>
 </div>
 <div class="zoom" id="zoom"><img alt=""></div>
 <script>
 (function(){
-var KEY='gsat-day13-v1',data={};
+var KEY='gsat-day13-v2',data={};
 try{data=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 
 /* 一、拆題 */
-var QS=[
- {y:'114 學測',p:'每逢颱風逼近臺灣，各縣市政府會依氣象預報的內容而決定隔日是否停止上班上課。請針對這個議題寫一篇英文作文，文分兩段。第一段根據下方對比圖片，描述颱風假時，實際上可能出現的兩種不同情景；第二段說明你對放颱風假的看法與經驗。',
-  it:[['描述左圖的情景',1],['我對放颱風假的看法',2],['說明颱風是怎麼形成的',0],['描述右圖的情景',1],['我自己放颱風假的經驗',2]]},
- {y:'115 學測',p:'近年來養寵物的風氣在臺灣日漸普遍，而寵物在人們生活中的角色也與過去不同。請以此為主題，並參照下列圖片，寫一篇英文作文，文分兩段。第一段描述這些圖片中所呈現的現象；第二段則根據你自身的經驗或觀察，說明此現象的原因以及可能的影響。',
-  it:[['這個現象可能的影響',2],['描述圖片呈現的現象',1],['介紹我最喜歡的寵物品種',0],['這個現象的原因',2],['用上我自己的經驗或觀察',2]]},
- {y:'113 學測',p:'下列三張圖分別呈現青少年經常遭遇的三種問題，如果你有一個機器人小幫手可以幫你解決其中一個問題，你會選擇哪一個？請寫一篇英文作文，文分兩段，第一段說明你最想解決哪一個問題，並解釋原因。第二段說明你希望這個機器人小幫手具備什麼特質或能力、可以如何和你分工合作來解決此問題。',
-  it:[['機器人要有什麼特質或能力',2],['我最想解決哪一個問題',1],['把三張圖都仔細描述一遍',0],['我和機器人怎麼分工合作',2],['為什麼想解決這個問題',1]]}
+var PH=[
+ ['每逢颱風逼近臺灣，',0,'這是背景說明，不用寫。'],
+ ['各縣市政府會依氣象預報的內容而決定隔日是否停止上班上課。',0,'這是背景說明，不用寫。'],
+ ['請針對這個議題寫一篇英文作文，',0,'這是作答指示。'],
+ ['文分兩段。',0,'這是格式：要分兩段，但不是要寫的內容。'],
+ ['第一段根據下方對比圖片，',0,'這是告訴你依據什麼寫。'],
+ ['描述颱風假時，實際上可能出現的兩種不同情景；',1,''],
+ ['第二段說明你對放颱風假的',0,''],
+ ['看法',1,''],
+ ['與',0,''],
+ ['經驗',1,''],
+ ['。',0,'']
 ];
-var LAB=['不用寫','第一段','第二段'],ORD=[1,2,0];
-data.split=data.split||{};data.splitFirst=data.splitFirst||{};data.splitDone=data.splitDone||{};
-var sp=document.getElementById('split');
-QS.forEach(function(q,qi){
-  var card=el('div','card');
-  card.appendChild(el('span','pt','第 '+(qi+1)+' 題｜'+q.y));
-  card.appendChild(el('div',null,q.p));
-  var st=data.split[qi]=data.split[qi]||{};
-  var rows=[];
-  q.it.forEach(function(it,ii){
-    var row=el('div','item');row.appendChild(el('div','t',it[0]));
-    var seg=el('div','seg');
-    ORD.forEach(function(v){
-      var b=el('button',null,LAB[v]);b.type='button';b.setAttribute('data-v',v);
-      if(st[ii]===v)b.classList.add('on');
-      b.addEventListener('click',function(){
-        st[ii]=v;save();
-        seg.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
-        row.classList.remove('ok','no');
-      });
-      seg.appendChild(b);
-    });
-    row.appendChild(seg);card.appendChild(row);rows.push(row);
+data.pick=data.pick||{};
+var pr=document.getElementById('prompt'),sres=document.getElementById('splitRes'),spans=[];
+PH.forEach(function(p,i){
+  var s=el('span','ph',p[0]);if(data.pick[i])s.classList.add('on');
+  s.addEventListener('click',function(){
+    if(data.splitDone)return;
+    data.pick[i]=!data.pick[i];s.classList.toggle('on',!!data.pick[i]);save();
   });
-  var go=el('button','show','對答案');go.type='button';
-  var res=el('div','res');
-  function mark(){
-    var right=0;
-    q.it.forEach(function(it,ii){
-      var ok=st[ii]===it[1];if(ok)right++;
-      rows[ii].classList.toggle('ok',ok);rows[ii].classList.toggle('no',!ok);
-      rows[ii].querySelectorAll('button').forEach(function(x){x.classList.toggle('right',+x.getAttribute('data-v')===it[1])});
-    });
-    var n1=q.it.filter(function(x){return x[1]===1}).length,n2=q.it.filter(function(x){return x[1]===2}).length;
-    res.textContent='答對 '+right+' / '+q.it.length+'。這題第一段有 '+n1+' 個項目、第二段有 '+n2+' 個項目，每個至少寫一句。綠框是正確位置。';
-    return right;
-  }
-  go.addEventListener('click',function(){
-    for(var i=0;i<q.it.length;i++){if(st[i]==null){res.textContent='還有項目沒點。';return}}
-    var r=mark();
-    if(data.splitFirst[qi]==null)data.splitFirst[qi]=r;
-    data.splitDone[qi]=true;save();
+  pr.appendChild(s);spans.push(s);
+});
+function markSplit(){
+  var hit=0,wrong=0,notes=[];
+  PH.forEach(function(p,i){
+    var on=!!data.pick[i];spans[i].classList.remove('on');
+    if(p[1]&&on){hit++;spans[i].classList.add('hit')}
+    else if(p[1]&&!on){spans[i].classList.add('missed')}
+    else if(!p[1]&&on){wrong++;spans[i].classList.add('bad');if(p[2])notes.push(p[2])}
   });
-  card.appendChild(go);card.appendChild(res);sp.appendChild(card);
-  if(data.splitDone[qi])mark();
+  sres.innerHTML='';
+  sres.appendChild(el('div',null,'找到 '+hit+' / 3 項'+(wrong?'，多點了 '+wrong+' 處':'')+'。綠色是要交代的項目，虛線框是漏掉的。'));
+  notes.filter(function(x,i,a){return a.indexOf(x)===i}).forEach(function(n){sres.appendChild(el('div','zh','多點的地方：'+n))});
+  var b=el('div');b.style.marginTop='6px';
+  b.innerHTML='<b>第一段</b>：「兩種不同情景」＝ ① 左圖的情景　② 右圖的情景<br><b>第二段</b>：③ 看法　④ 經驗（「與」前後各一項）<br>今天只寫第一段，所以要交代 ①、②。';
+  sres.appendChild(b);
+  return [hit,wrong];
+}
+document.getElementById('splitGo').addEventListener('click',function(){
+  if(data.splitDone)return;
+  var any=false;for(var k in data.pick){if(data.pick[k])any=true}
+  if(!any){sres.textContent='先點出你覺得要寫的內容，再對答案。';return}
+  var r=markSplit();data.splitFirst=r[0]+' / 3，多點 '+r[1]+' 處';data.splitDone=true;save();
+});
+if(data.splitDone)markSplit();
+
+/* 四之二、對項目 */
+var COV=[['l','① 左圖的情景'],['r','② 右圖的情景']],covBox=document.getElementById('cover');
+data.cover=data.cover||{};
+COV.forEach(function(c){
+  var row=el('div','item');row.appendChild(el('div','t',c[1]));
+  var seg=el('div','seg nums'),warn=el('div','zh');
+  ['沒寫','1','2','3','4','5','6'].forEach(function(t,vi){
+    var b=el('button',null,vi?'第'+t+'句':t);b.type='button';if(vi)b.textContent=t;
+    if(data.cover[c[0]]===vi)b.classList.add('on');
+    b.addEventListener('click',function(){
+      data.cover[c[0]]=vi;save();
+      seg.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
+      warn.textContent=vi===0?'這一項漏了，回到上面補一句再回來點。':'';
+    });
+    seg.appendChild(b);
+  });
+  if(data.cover[c[0]]===0)warn.textContent='這一項漏了，回到上面補一句再回來點。';
+  row.appendChild(seg);row.appendChild(el('div','zh','點句子的號碼（第幾句）'));row.appendChild(warn);covBox.appendChild(row);
 });
 
 /* 二、觀察卡 */
@@ -386,11 +415,11 @@ trGo.addEventListener('click',function(){
 });
 
 function output(){
-  var s=QS.map(function(q,i){return data.splitFirst[i]==null?'未對答案':data.splitFirst[i]+'/'+q.it.length}).join('、');
+  var s=data.splitFirst||'未對答案';var cv=function(k){var v=data.cover[k];return v==null?'未點':(v===0?'沒寫':'第 '+v+' 句')};
   var od=OBS.filter(function(o){return data.obs[o.k]}).length;
   var tp=['t1','t2','t3','t4'].filter(function(k){return data[k]}).length;
   var n=['c1','c2','c3'].filter(function(k){return data[k]}).length;
-  return 'Day13｜學生作答\n題目：114 學測颱風題（第一段）\n\n【拆題｜第一次對答案】\n'+s+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次；排句點錯 '+data.orderTries+' 次\n\n【第一段英文】\n'+(ta.value.trim()||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n檢查時自己改了幾處：'+data.fix+'\n三項檢查已勾選：'+n+' / 3\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
+  return 'Day13｜學生作答\n題目：114 學測颱風題（第一段）\n\n【拆題｜第一次對答案】\n'+s+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次；排句點錯 '+data.orderTries+' 次\n\n【第一段英文】\n'+(ta.value.trim()||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n對項目：左圖情景 '+cv('l')+'；右圖情景 '+cv('r')+'\n檢查時自己改了幾處：'+data.fix+'\n三項檢查已勾選：'+n+' / 3\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
 }
 var msg=document.getElementById('msg');
 function fallback(v){var t=document.createElement('textarea');t.value=v;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();return ok}
