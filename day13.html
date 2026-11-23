@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fbfaf7">
+<title>Day13｜先拆題，再下筆：兩張圖的第一段</title>
+<style>
+:root{--ink:#1b2733;--muted:#566473;--blue:#0f5f8c;--blue-light:#e6f2f9;--bg:#fbfaf7;--card:#fff;--line:#e3e0d8;--red:#c81e2d;--red-bg:#fdf1f1;--del:#7b8794;--warn:#fff3d6;--good:#0e7a55;--good-bg:#eaf7f1}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:19px;line-height:1.85}
+button,textarea{font:inherit}button{cursor:pointer}
+.wrap{max-width:720px;margin:0 auto;padding:18px 16px 90px}
+a{color:var(--blue)}
+a.back{font-size:16px;text-decoration:none}
+.course-id{font-weight:800;letter-spacing:.08em;color:var(--blue);font-size:13.5px;margin-top:12px}
+h1{font-size:26px;line-height:1.4;margin:4px 0 8px}
+.sub{color:var(--muted);font-size:17px;margin:4px 0 14px}
+.step{font-size:14px;font-weight:800;color:var(--blue);letter-spacing:.06em;margin-top:40px}
+h2{font-size:22px;line-height:1.45;margin:0 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 1px 2px rgba(27,39,51,.04)}
+.goal{background:var(--blue-light);border-color:#c3deee}
+.praise{background:var(--good-bg);border-color:#c4e6d6}
+.praise li{margin-bottom:6px}
+ul{padding-left:22px;margin:6px 0}
+.tip{background:var(--warn);border-left:5px solid #e0a43a;border-radius:10px;padding:10px 13px;font-size:17.5px;margin:12px 0}
+.legend{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 13px}
+/* 英文：手機上用無襯線、字放大 */
+.en{font-family:"Helvetica Neue",Arial,system-ui,sans-serif;font-size:20px;line-height:1.75;letter-spacing:.005em;color:var(--ink)}
+.fix{color:var(--red);font-weight:400}
+del{color:var(--del);text-decoration-thickness:1.5px}
+.must{color:var(--red);font-weight:700}
+.must u,.en u{text-decoration-thickness:2px;text-underline-offset:4px}
+.must u{color:var(--ink)}
+.zh{font-size:16.5px;color:var(--muted)}
+.n{display:inline-block;font-size:13.5px;font-weight:800;color:var(--blue);letter-spacing:.04em;margin-bottom:2px}
+.fixed{margin-top:10px;padding:10px 12px;background:var(--red-bg);border-radius:12px}
+.note{font-size:17px;line-height:1.8;color:#2a3a49;margin-top:10px}
+.note .en{font-size:18px}
+.rule{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line)}
+.rule:last-child{border-bottom:0}
+.num{flex:none;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:16px;margin-top:3px}
+.rule b{display:block}
+.rule small{font-size:16.5px;color:var(--muted);display:block;line-height:1.7}
+.q{padding:14px 0;border-bottom:1px solid var(--line)}
+.q:first-child{padding-top:0}.q:last-child{border-bottom:0;padding-bottom:0}
+.show{display:block;margin-top:10px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:9px 18px;font-size:17px;font-weight:700;min-height:44px}
+.ans{display:none;margin-top:10px;background:var(--red-bg);border-radius:12px;padding:11px 13px}
+.ans.open{display:block}
+.why{color:#2a3a49;font-size:16.5px;display:block;margin-top:4px;line-height:1.7}
+.pt{display:inline-block;font-size:13.5px;font-weight:700;color:var(--blue);background:var(--blue-light);border-radius:999px;padding:2px 11px;margin-bottom:6px}
+.pat .zh{margin-top:6px}
+textarea{width:100%;border:1.5px solid #a9bac7;border-radius:12px;padding:12px;font-size:19px;line-height:1.7;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;color:var(--ink);background:#fff;resize:vertical;margin-top:8px}
+textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
+.count{font-size:15px;color:var(--muted);text-align:right}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;font-size:17.5px;border-bottom:1px dashed var(--line)}
+.check label:last-child{border-bottom:0}
+.check input{width:24px;height:24px;flex:none;margin-top:5px;accent-color:var(--blue)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.btn{border:0;border-radius:12px;background:var(--blue);color:#fff;font-weight:700;padding:12px 20px;font-size:18px;min-height:48px}
+.btn.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}
+.msg{font-size:16px;color:var(--good);min-height:1.7em;margin-top:6px}
+.foot{font-size:15px;color:var(--muted);margin-top:30px;text-align:center}
+.tapline{line-height:2.3}
+.w{display:inline-block;padding:1px 5px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tapline.done .w{border-color:transparent;background:none;cursor:default;padding:1px 0}
+.w.hit{background:var(--red-bg)!important}
+.w.miss{background:#e9edf1;color:var(--del)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← 回課程首頁</a>
+<style>
+.seg{display:flex;gap:6px;margin-top:6px}
+.seg button{flex:1;min-height:42px;border:1.5px solid #a9bac7;background:#fff;color:var(--ink);border-radius:10px;font-size:16px;padding:4px 2px}
+.seg button.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.item{padding:10px 0;border-bottom:1px dashed var(--line)}
+.item:last-of-type{border-bottom:0}
+.item.ok .t::after{content:" ✓";color:var(--good);font-weight:800}
+.item.no .t::after{content:" ✗";color:var(--red);font-weight:800}
+.item.no .seg button.right{outline:3px solid #0e7a5566}
+.res{font-size:16.5px;margin-top:8px;color:#2a3a49}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{min-height:44px;border:1.5px solid #a9bac7;background:#fff;color:var(--ink);border-radius:12px;padding:6px 12px;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;font-size:18px}
+.chip.on{background:var(--good-bg);border-color:var(--good);font-weight:700}
+.chip.miss{background:#e9edf1;color:var(--del);text-decoration:line-through}
+.chip.used{opacity:.35}
+.built{min-height:64px;border:1.5px dashed #a9bac7;border-radius:12px;padding:10px 12px;margin-top:8px;background:#fff}
+.pics{display:flex;gap:8px}
+.pics figure{flex:1;margin:0}
+.pics img{width:100%;border-radius:10px;border:1px solid var(--line);display:block}
+.pics figcaption{font-size:14.5px;color:var(--muted);text-align:center}
+.dock{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0 6px;border-bottom:1px solid var(--line)}
+.dock .tabs{display:flex;gap:6px}
+.dock .tabs button{flex:1;min-height:42px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);border-radius:10px;font-size:15.5px;font-weight:700;padding:2px}
+.dock .tabs button.on{background:var(--blue);color:#fff}
+.dock .pane{display:none;max-height:40vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:6px;font-size:16.5px}
+.dock .pane.open{display:block}
+.dock .pane .en{font-size:17.5px;line-height:1.6}
+.zoom{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:20;display:none;align-items:center;justify-content:center;padding:8px}
+.zoom.open{display:flex}
+.zoom img{max-width:100%;max-height:100%}
+.stepper{display:flex;align-items:center;gap:14px;margin-top:8px}
+.stepper button{width:52px;height:48px;border-radius:12px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);font-size:24px;font-weight:700}
+.stepper span{font-size:26px;font-weight:800;min-width:36px;text-align:center}
+.zhta{font-family:inherit;font-size:18px}
+</style>
+<div class="course-id">GSAT ENGLISH · DAY 13 · 約 25 分鐘</div>
+<h1>先拆題，再下筆：<br>兩張圖的第一段</h1>
+<p class="sub">今天開始新單元。前半用點的，後半才打字，打字只有一段和一句翻譯。</p>
+
+<div class="card goal">
+<b>今天的路線</b>（每一段都會自動儲存，被打斷可以回來接著做）<br>
+① 拆題 → ② 觀察卡 → ③ 排出開頭句 → ④ 寫第一段 → ⑤ 翻譯一句
+</div>
+
+<div class="step">01 / 4 分鐘 / 用點的</div>
+<h2>一、拆題：每一段要交代什麼？</h2>
+<p class="sub">閱卷老師說，最常見的失分是<b>漏掉題目要求的項目</b>。下筆前先花 30 秒拆題。<br>下面是三年的學測題目。每個項目點一下：該寫在<b>第一段</b>、<b>第二段</b>，還是<b>不用寫</b>。</p>
+<div id="split"></div>
+<div class="tip"><b>拆題口訣</b>：題目裡的「與」「以及」「並」前後，各是一個項目。<b>每個項目至少寫一句。</b></div>
+
+<div class="step">02 / 4 分鐘 / 用點的</div>
+<h2>二、觀察卡：誰、在哪、做什麼</h2>
+<p class="sub">今天寫 114 學測颱風題的<b>第一段</b>。先看圖（點圖可以放大），再把每一格選出來。兩個選項裡只有一個文法正確。</p>
+<div class="card">
+<div class="pics">
+<figure><img src="img/typhoon-left.png" alt="左圖" class="zoomable"><figcaption>左圖</figcaption></figure>
+<figure><img src="img/typhoon-right.jpeg" alt="右圖" class="zoomable"><figcaption>右圖</figcaption></figure>
+</div>
+</div>
+<div class="card" id="obs"></div>
+<div class="tip">第一段只寫<b>看得到的</b>：誰、在哪、做什麼。<br>「我覺得颱風假好不好」是看法，留到第二段。</div>
+
+<div class="step">03 / 2 分鐘 / 用點的</div>
+<h2>三、排出開頭句</h2>
+<p class="sub">Day2 讀過的開頭。照順序點，把句子排出來。</p>
+<div class="card">
+<div class="zh">這兩張圖呈現人們度過颱風假的不同情景。</div>
+<div class="built en" id="built"></div>
+<div class="chips" id="pool"></div>
+<button class="show" id="orderReset" style="border-color:#a9bac7;color:#566473;font-size:15px;min-height:38px;padding:6px 14px">重排</button>
+<span class="why" id="orderMsg"></span>
+</div>
+
+<section id="write">
+<div class="step">04 / 9 分鐘 / 打字</div>
+<h2>四、寫第一段</h2>
+<p class="sub">寫成<b>一段</b>，約 50–70 字。下面那一排按鈕（題目、圖片、我的卡、句構）隨時可以點開看，不用往回捲。</p>
+<div class="dock">
+<div class="tabs">
+<button data-p="p1">題目</button><button data-p="p2">圖片</button><button data-p="p3">我的卡</button><button data-p="p4">句構</button>
+</div>
+<div class="pane" id="p1">每逢颱風逼近臺灣，各縣市政府會依氣象預報的內容而決定隔日是否停止上班上課。請針對這個議題寫一篇英文作文，文分兩段。<b>第一段根據下方對比圖片，描述颱風假時，實際上可能出現的兩種不同情景</b>；第二段說明你對放颱風假的看法與經驗。<div class="zh">今天只寫第一段。</div></div>
+<div class="pane" id="p2"><div class="pics"><figure><img src="img/typhoon-left.png" alt="左圖" class="zoomable"><figcaption>左圖</figcaption></figure><figure><img src="img/typhoon-right.jpeg" alt="右圖" class="zoomable"><figcaption>右圖</figcaption></figure></div></div>
+<div class="pane" id="p3"><div id="mycard" class="en"></div></div>
+<div class="pane" id="p4">
+<div class="en must">① The two pictures show different scenes of <u>people spending a typhoon day off</u>.</div>
+<div class="en must" style="margin-top:6px">② In the picture on the left, <u>誰</u> are <u>V-ing</u> <u>在哪</u>.</div>
+<div class="en must" style="margin-top:6px">③ In contrast, the right-hand picture shows <u>誰</u> <u>V-ing</u> <u>在哪</u>.</div>
+<div class="en must" style="margin-top:6px">④ These two pictures show that a typhoon day off can be <u>形容詞</u> for some people but <u>形容詞</u> for others.</div>
+<div class="zh">②③ 後面可以各加一句自己看到的細節。</div>
+</div>
+</div>
+<div class="card">
+<textarea id="essay" rows="8" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="The two pictures show …" style="margin-top:0"></textarea>
+<div class="count"><span id="wc">0</span> 個英文單字（建議 50–70 字）</div>
+<div class="zh">這個框關掉了自動修正和自動大寫，和考試手寫一樣，要自己注意。</div>
+</div>
+
+<div class="card check">
+<b>三項檢查（一項一項真的看過再勾）</b>
+<label><input type="checkbox" data-k="c1"><span><b>名詞看前面的字</b>：<span class="en">a / the / two / many / some</span> 後面的名詞，s 對嗎？</span></label>
+<label><input type="checkbox" data-k="c2"><span><b>動詞配主詞</b>：<span class="en">pictures show</span>、<span class="en">picture shows</span>、<span class="en">people are</span>。</span></label>
+<label><input type="checkbox" data-k="c3"><span><b>每句都有動詞</b>，句號後有空格。</span></label>
+</div>
+<div class="card">
+<b>檢查時我改了幾個地方？</b>
+<div class="zh">老實點就好，0 也可以。</div>
+<div class="stepper"><button id="minus" aria-label="減一">−</button><span id="fixn">0</span><button id="plus" aria-label="加一">＋</button></div>
+</div>
+</section>
+
+<div class="step">05 / 5 分鐘 / 打字</div>
+<h2>五、翻譯一句</h2>
+<p class="sub">115 學測中譯英第 1 題。<b>先不看答案寫一次</b>，寫完再按鈕看解析。寫不出來的字先用會的字代替，不要空白。</p>
+<div class="card">
+<b>現在越來越多高中英文老師已經增加在課堂上使用英文的百分比。</b>
+<div class="zh">提示：百分比 percentage　·　增加 increase</div>
+<textarea id="tr" rows="4" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="Nowadays, …"></textarea>
+<button class="btn" id="trGo" style="margin-top:10px">寫好了，看解析</button>
+<div class="msg" id="trMsg"></div>
+<div id="trAns" style="display:none">
+<div class="fixed"><div class="zh">參考譯法（老師寫的，不是官方答案；寫法不只一種）</div>
+<div class="en">Nowadays, <span class="fix">more and more</span> high school English <span class="fix">teachers have increased</span> <span class="fix">the percentage of</span> English they use <span class="fix">in class</span>.</div></div>
+<div class="note">翻譯是<b>一個錯扣 0.5 分</b>。對照你的句子，寫對的部分打勾：</div>
+<div class="check">
+<label><input type="checkbox" data-k="t1"><span><span class="en">more and more … teachers</span>：越來越多＋<b>複數</b>名詞。</span></label>
+<label><input type="checkbox" data-k="t2"><span><span class="en">have increased</span>：已經 → have＋過去分詞；主詞是複數，用 have。</span></label>
+<label><input type="checkbox" data-k="t3"><span><span class="en">the percentage of English</span>：…的百分比。</span></label>
+<label><input type="checkbox" data-k="t4"><span><span class="en">in class</span>：在課堂上，不加 the、不加 s。</span></label>
+</div>
+</div>
+</div>
+
+<div class="card">
+<b>交給老師</b>
+<div class="btns"><button class="btn" id="copy">複製我的作答</button><button class="btn ghost" id="export">匯出 TXT</button></div>
+<div class="msg" id="msg"></div>
+<div class="zh">作答只暫存在這個瀏覽器，完成後請複製貼到 LINE。</div>
+</div>
+
+<div class="card">
+<b>交出後再看：第一段參考寫法</b>
+<div class="zh">這不是唯一答案。你加的細節不同也完全可以。</div>
+<button class="show">看參考寫法</button><div class="ans"><div class="en">The two pictures show different scenes of people spending a typhoon day off. In the picture on the left, many people are waiting in line to buy tickets at a movie theater. They seem to enjoy their free time. In contrast, the right-hand picture shows some people riding scooters on a wet road. It is raining heavily, but they still have to go out. These two pictures show that a typhoon day off can be relaxing for some people but dangerous for others.</div></div>
+</div>
+
+<p class="foot">Day 13｜先拆題：每個項目至少一句。<br>第一段寫看得到的：誰、在哪、做什麼。</p>
+</div>
+<div class="zoom" id="zoom"><img alt=""></div>
+<script>
+(function(){
+var KEY='gsat-day13-v1',data={};
+try{data=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+
+/* 一、拆題 */
+var QS=[
+ {y:'114 學測',p:'每逢颱風逼近臺灣，各縣市政府會依氣象預報的內容而決定隔日是否停止上班上課。請針對這個議題寫一篇英文作文，文分兩段。第一段根據下方對比圖片，描述颱風假時，實際上可能出現的兩種不同情景；第二段說明你對放颱風假的看法與經驗。',
+  it:[['描述左圖的情景',1],['我對放颱風假的看法',2],['說明颱風是怎麼形成的',0],['描述右圖的情景',1],['我自己放颱風假的經驗',2]]},
+ {y:'115 學測',p:'近年來養寵物的風氣在臺灣日漸普遍，而寵物在人們生活中的角色也與過去不同。請以此為主題，並參照下列圖片，寫一篇英文作文，文分兩段。第一段描述這些圖片中所呈現的現象；第二段則根據你自身的經驗或觀察，說明此現象的原因以及可能的影響。',
+  it:[['這個現象可能的影響',2],['描述圖片呈現的現象',1],['介紹我最喜歡的寵物品種',0],['這個現象的原因',2],['用上我自己的經驗或觀察',2]]},
+ {y:'113 學測',p:'下列三張圖分別呈現青少年經常遭遇的三種問題，如果你有一個機器人小幫手可以幫你解決其中一個問題，你會選擇哪一個？請寫一篇英文作文，文分兩段，第一段說明你最想解決哪一個問題，並解釋原因。第二段說明你希望這個機器人小幫手具備什麼特質或能力、可以如何和你分工合作來解決此問題。',
+  it:[['機器人要有什麼特質或能力',2],['我最想解決哪一個問題',1],['把三張圖都仔細描述一遍',0],['我和機器人怎麼分工合作',2],['為什麼想解決這個問題',1]]}
+];
+var LAB=['不用寫','第一段','第二段'],ORD=[1,2,0];
+data.split=data.split||{};data.splitFirst=data.splitFirst||{};data.splitDone=data.splitDone||{};
+var sp=document.getElementById('split');
+QS.forEach(function(q,qi){
+  var card=el('div','card');
+  card.appendChild(el('span','pt','第 '+(qi+1)+' 題｜'+q.y));
+  card.appendChild(el('div',null,q.p));
+  var st=data.split[qi]=data.split[qi]||{};
+  var rows=[];
+  q.it.forEach(function(it,ii){
+    var row=el('div','item');row.appendChild(el('div','t',it[0]));
+    var seg=el('div','seg');
+    ORD.forEach(function(v){
+      var b=el('button',null,LAB[v]);b.type='button';b.setAttribute('data-v',v);
+      if(st[ii]===v)b.classList.add('on');
+      b.addEventListener('click',function(){
+        st[ii]=v;save();
+        seg.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});
+        row.classList.remove('ok','no');
+      });
+      seg.appendChild(b);
+    });
+    row.appendChild(seg);card.appendChild(row);rows.push(row);
+  });
+  var go=el('button','show','對答案');go.type='button';
+  var res=el('div','res');
+  function mark(){
+    var right=0;
+    q.it.forEach(function(it,ii){
+      var ok=st[ii]===it[1];if(ok)right++;
+      rows[ii].classList.toggle('ok',ok);rows[ii].classList.toggle('no',!ok);
+      rows[ii].querySelectorAll('button').forEach(function(x){x.classList.toggle('right',+x.getAttribute('data-v')===it[1])});
+    });
+    var n1=q.it.filter(function(x){return x[1]===1}).length,n2=q.it.filter(function(x){return x[1]===2}).length;
+    res.textContent='答對 '+right+' / '+q.it.length+'。這題第一段有 '+n1+' 個項目、第二段有 '+n2+' 個項目，每個至少寫一句。綠框是正確位置。';
+    return right;
+  }
+  go.addEventListener('click',function(){
+    for(var i=0;i<q.it.length;i++){if(st[i]==null){res.textContent='還有項目沒點。';return}}
+    var r=mark();
+    if(data.splitFirst[qi]==null)data.splitFirst[qi]=r;
+    data.splitDone[qi]=true;save();
+  });
+  card.appendChild(go);card.appendChild(res);sp.appendChild(card);
+  if(data.splitDone[qi])mark();
+});
+
+/* 二、觀察卡 */
+var OBS=[
+ {k:'lw',l:'左圖｜誰',o:['many person','many people'],a:1,w:'person 的複數是 people。'},
+ {k:'ld',l:'左圖｜做什麼',o:['waiting in line to buy tickets','wait in line to buy tickets'],a:0,w:'前面是 are，所以用 V-ing：are waiting。'},
+ {k:'lp',l:'左圖｜在哪',o:['at movie theater','at a movie theater'],a:1,w:'一間電影院 → 前面要有 a。'},
+ {k:'rw',l:'右圖｜誰',o:['some people','some peoples'],a:0,w:'people 已經是複數，不再加 s。'},
+ {k:'rd',l:'右圖｜做什麼',o:['ride scooters','riding scooters'],a:1,w:'shows + 人 + V-ing：shows some people riding scooters。'},
+ {k:'rp',l:'右圖｜在哪',o:['on a wet road','on wet road'],a:0,w:'一條路 → 前面要有 a。'},
+ {k:'la',l:'左圖給人的感覺',o:['relaxing','relax'],a:0,w:'can be 後面要形容詞；relax 是動詞。'},
+ {k:'ra',l:'右圖給人的感覺',o:['danger','dangerous'],a:1,w:'can be 後面要形容詞；danger 是名詞。'}
+];
+data.obs=data.obs||{};data.obsMiss=data.obsMiss||0;
+var ob=document.getElementById('obs'),mycard=document.getElementById('mycard');
+function drawCard(){
+  var g=function(k){var o=OBS.filter(function(x){return x.k===k})[0];return data.obs[k]?o.o[o.a]:'＿＿'};
+  mycard.innerHTML='';
+  [['左圖',g('lw')+' / '+g('ld')+' / '+g('lp')],['右圖',g('rw')+' / '+g('rd')+' / '+g('rp')],['感覺',g('la')+' ↔ '+g('ra')]].forEach(function(r){
+    var d=el('div');d.appendChild(el('span','zh',r[0]+'　'));d.appendChild(document.createTextNode(r[1]));mycard.appendChild(d);
+  });
+}
+OBS.forEach(function(o){
+  var q=el('div','q');q.appendChild(el('span','n',o.l));
+  var cs=el('div','chips'),why=el('span','why');why.style.display='none';
+  o.o.forEach(function(t,i){
+    var c=el('button','chip',t);c.type='button';
+    if(data.obs[o.k]&&i===o.a)c.classList.add('on');
+    c.addEventListener('click',function(){
+      if(data.obs[o.k])return;
+      if(i===o.a){data.obs[o.k]=true;c.classList.add('on');why.textContent='✓ '+o.w;drawCard()}
+      else{data.obsMiss++;c.classList.add('miss');why.textContent='再想一下：'+o.w}
+      why.style.display='block';save();
+    });
+    cs.appendChild(c);
+  });
+  q.appendChild(cs);q.appendChild(why);ob.appendChild(q);
+});
+drawCard();
+
+/* 三、排句 */
+var SEQ=['The two pictures','show','different scenes of','people','spending a typhoon day off.'],SHOW=[3,1,4,0,2];
+var built=document.getElementById('built'),pool=document.getElementById('pool'),omsg=document.getElementById('orderMsg'),pos=0;
+data.orderTries=data.orderTries||0;
+function drawOrder(){
+  pool.innerHTML='';built.textContent=SEQ.slice(0,pos).join(' ');
+  SHOW.forEach(function(i){
+    var c=el('button','chip',SEQ[i]);c.type='button';if(i<pos)c.classList.add('used');
+    c.addEventListener('click',function(){
+      if(i<pos)return;
+      if(i===pos){pos++;if(pos===SEQ.length){data.orderDone=true;omsg.textContent='✓ 主詞 The two pictures（複數）→ 動詞 show，不加 s。'}else omsg.textContent='';save();drawOrder()}
+      else{data.orderTries++;save();c.classList.add('miss');setTimeout(function(){c.classList.remove('miss')},500);omsg.textContent='順序不對，再想想：誰 → 做什麼 → 什麼內容。'}
+    });
+    pool.appendChild(c);
+  });
+}
+if(data.orderDone){pos=SEQ.length;omsg.textContent='✓ 主詞 The two pictures（複數）→ 動詞 show，不加 s。'}
+drawOrder();
+document.getElementById('orderReset').addEventListener('click',function(){pos=0;data.orderDone=false;omsg.textContent='';save();drawOrder()});
+
+/* 四、寫作區上方的固定列 */
+var tabs=document.querySelectorAll('.dock .tabs button');
+tabs.forEach(function(b){
+  b.addEventListener('click',function(){
+    var id=b.getAttribute('data-p'),open=!document.getElementById(id).classList.contains('open');
+    document.querySelectorAll('.dock .pane').forEach(function(p){p.classList.remove('open')});
+    tabs.forEach(function(x){x.classList.remove('on')});
+    if(open){document.getElementById(id).classList.add('open');b.classList.add('on')}
+  });
+});
+var zoom=document.getElementById('zoom');
+document.querySelectorAll('.zoomable').forEach(function(im){im.addEventListener('click',function(){zoom.firstChild.src=im.src;zoom.classList.add('open')})});
+zoom.addEventListener('click',function(){zoom.classList.remove('open')});
+
+document.querySelectorAll('.show').forEach(function(b){
+  if(b.id==='orderReset'||b.nextElementSibling==null||!b.nextElementSibling.classList.contains('ans'))return;
+  var label=b.textContent;
+  b.addEventListener('click',function(){var a=b.nextElementSibling,open=a.classList.toggle('open');b.textContent=open?'收起':label});
+});
+function count(v){var m=v.match(/[A-Za-z]+(?:['’\-][A-Za-z]+)*/g);return m?m.length:0}
+var ta=document.getElementById('essay'),wc=document.getElementById('wc');
+if(data.essay)ta.value=data.essay;wc.textContent=count(ta.value);
+ta.addEventListener('input',function(){data.essay=ta.value;save();wc.textContent=count(ta.value)});
+document.querySelectorAll('.check input').forEach(function(c){
+  var k=c.getAttribute('data-k');c.checked=!!data[k];
+  c.addEventListener('change',function(){data[k]=c.checked;save()});
+});
+var fixn=document.getElementById('fixn');data.fix=data.fix||0;fixn.textContent=data.fix;
+document.getElementById('plus').addEventListener('click',function(){data.fix++;fixn.textContent=data.fix;save()});
+document.getElementById('minus').addEventListener('click',function(){if(data.fix>0)data.fix--;fixn.textContent=data.fix;save()});
+
+/* 五、翻譯 */
+var tr=document.getElementById('tr'),trAns=document.getElementById('trAns'),trMsg=document.getElementById('trMsg'),trGo=document.getElementById('trGo');
+if(data.tr)tr.value=data.tr;
+function lockTr(){tr.readOnly=true;tr.style.background='#f3f1ec';trAns.style.display='block';trGo.style.display='none'}
+if(data.trFirst!=null)lockTr();
+tr.addEventListener('input',function(){if(data.trFirst==null){data.tr=tr.value;save()}});
+trGo.addEventListener('click',function(){
+  if(!tr.value.trim()){trMsg.textContent='先寫一次再看解析，寫不完整也沒關係。';return}
+  data.trFirst=tr.value.trim();save();trMsg.textContent='';lockTr();
+});
+
+function output(){
+  var s=QS.map(function(q,i){return data.splitFirst[i]==null?'未對答案':data.splitFirst[i]+'/'+q.it.length}).join('、');
+  var od=OBS.filter(function(o){return data.obs[o.k]}).length;
+  var tp=['t1','t2','t3','t4'].filter(function(k){return data[k]}).length;
+  var n=['c1','c2','c3'].filter(function(k){return data[k]}).length;
+  return 'Day13｜學生作答\n題目：114 學測颱風題（第一段）\n\n【拆題｜第一次對答案】\n'+s+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次；排句點錯 '+data.orderTries+' 次\n\n【第一段英文】\n'+(ta.value.trim()||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n檢查時自己改了幾處：'+data.fix+'\n三項檢查已勾選：'+n+' / 3\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
+}
+var msg=document.getElementById('msg');
+function fallback(v){var t=document.createElement('textarea');t.value=v;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();return ok}
+function copyText(v){
+  if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(v).then(function(){return true},function(){return fallback(v)})}
+  return Promise.resolve(fallback(v));
+}
+document.getElementById('copy').addEventListener('click',function(){
+  copyText(output()).then(function(ok){msg.textContent=ok?'已複製，請貼到 LINE 傳給老師。':'無法自動複製，請改用匯出 TXT 或手動選取。'});
+});
+document.getElementById('export').addEventListener('click',function(){
+  var blob=new Blob(['﻿'+output()],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='Day13_我的作答.txt';document.body.appendChild(a);a.click();a.remove();
+  msg.textContent='已匯出 Day13_我的作答.txt。';
+});
+})();
+</script>
+</body>
+</html>
