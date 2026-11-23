@@ -113,18 +113,32 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 .zoom{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:20;display:none;align-items:center;justify-content:center;padding:8px}
 .zoom.open{display:flex}
 .zoom img{max-width:100%;max-height:100%}
+.cw,.must u.cw{color:#b45309;font-weight:700}
+.cd,.must u.cd{color:#0e7a55;font-weight:700}
+.cp,.must u.cp{color:#6d28d9;font-weight:700}
+.cf,.must u.cf{color:#0f5f8c;font-weight:700}
+.n .cw,.n .cd,.n .cp,.n .cf{font-size:15.5px}
+.stickpics{position:sticky;top:0;z-index:4;background:var(--bg);padding:6px 0 8px;border-bottom:1px solid var(--line)}
+.stickpics img{max-height:118px;object-fit:cover}
+.stickpics .zh{font-size:14px;text-align:center;margin-top:2px}
+.zoom{flex-direction:column}
+.zoom .x{color:#fff;font-size:17px;margin-top:10px;border:1.5px solid #fff;border-radius:999px;padding:6px 18px}
+.legend2{font-size:16px;margin-top:6px}
+.rate{display:flex;gap:8px;margin-top:8px}
+.rate button{flex:1;min-height:42px;border:1.5px solid #a9bac7;background:#fff;border-radius:10px;font-size:16px}
+.rate button.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
 .stepper{display:flex;align-items:center;gap:14px;margin-top:8px}
 .stepper button{width:52px;height:48px;border-radius:12px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);font-size:24px;font-weight:700}
 .stepper span{font-size:26px;font-weight:800;min-width:36px;text-align:center}
 .zhta{font-family:inherit;font-size:18px}
 </style>
-<div class="course-id">GSAT ENGLISH · DAY 13 · 約 25 分鐘</div>
+<div class="course-id">GSAT ENGLISH · DAY 13 · 約 25–30 分鐘</div>
 <h1>先圈題目，再下筆：<br>兩張圖的第一段</h1>
 <p class="sub">今天開始新單元。前半用點的，後半才打字，打字只有一段和一句翻譯。</p>
 
 <div class="card goal">
 <b>今天的路線</b>（每一段都會自動儲存，被打斷可以回來接著做）<br>
-① 圈題目 → ② 觀察卡 → ③ 排出開頭句 → ④ 寫第一段、對項目 → ⑤ 翻譯一句
+① 圈題目 → ② 觀察卡 → ③ 背四個句構 → ④ 寫第一段、對項目 → ⑤ 翻譯一句
 </div>
 
 <div class="step">01 / 3 分鐘 / 用點的</div>
@@ -154,28 +168,70 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 </div>
 <div class="tip">考試時是<b>真的拿筆在題目卷上圈</b>，不是在腦袋裡想。圈完不到 30 秒。</div>
 
+<section id="obsSec">
 <div class="step">02 / 4 分鐘 / 用點的</div>
-<h2>二、觀察卡：誰、在哪、做什麼</h2>
-<p class="sub">今天寫 114 學測颱風題的<b>第一段</b>。先看圖（點圖可以放大），再把每一格選出來。兩個選項裡只有一個文法正確。</p>
-<div class="card">
+<h2>二、觀察卡：誰、做什麼、在哪</h2>
+<p class="sub">今天寫 114 學測颱風題的<b>第一段</b>。看圖，把每一格選出來。兩個選項裡只有一個文法正確。</p>
+<div class="stickpics">
 <div class="pics">
 <figure><img src="img/typhoon-left.png" alt="左圖" class="zoomable"><figcaption>左圖</figcaption></figure>
 <figure><img src="img/typhoon-right.jpeg" alt="右圖" class="zoomable"><figcaption>右圖</figcaption></figure>
 </div>
+<div class="zh">圖會一直留在上面。點圖放大，<b>再點一下畫面就關掉</b>。</div>
 </div>
+<div class="legend2">每張圖看三件事：<span class="cw">誰</span>　<span class="cd">做什麼</span>　<span class="cp">在哪</span>；最後看 <span class="cf">給人的感覺</span>。</div>
 <div class="card" id="obs"></div>
-<div class="tip">第一段只寫<b>看得到的</b>：誰、在哪、做什麼。<br>「我覺得颱風假好不好」是看法，留到第二段。</div>
+<div class="tip">第一段只寫<b>看得到的</b>：<span class="cw">誰</span>、<span class="cd">做什麼</span>、<span class="cp">在哪</span>。<br>「我覺得颱風假好不好」是看法，留到第二段。</div>
+</section>
 
-<div class="step">03 / 2 分鐘 / 用點的</div>
-<h2>三、排出開頭句</h2>
-<p class="sub">Day2 讀過的開頭。照順序點，把句子排出來。</p>
+<div class="step">03 / 6 分鐘 / 用點的</div>
+<h2>三、背四個句構</h2>
+<p class="sub">兩張圖的第一段，就用這四句。<span class="must">紅色粗字</span>是骨架，<b>要背起來</b>；有顏色的底線換成觀察卡的內容。每句小聲唸兩遍。</p>
+
+<div class="card pat"><span class="pt">① 開頭：這兩張圖在講什麼</span>
+<div class="en must">The two pictures show different scenes of <u>people spending a typhoon day off</u>.</div>
+<div class="zh">這兩張圖呈現＿＿的不同情景。</div>
+<div class="note"><span class="en">pictures</span> 是複數 → <span class="en">show</span> 不加 s。<span class="en">of</span> 後面接「人＋V-ing」。</div></div>
+
+<div class="card pat"><span class="pt">② 左圖</span>
+<div class="en must">In the picture on the left, <u class="cw">誰</u> are <u class="cd">V-ing</u> <u class="cp">在哪</u>.</div>
+<div class="en" style="margin-top:6px">In the picture on the left, <span class="cw">many people</span> are <span class="cd">waiting in line to buy tickets</span> <span class="cp">at a movie theater</span>.</div>
+<div class="zh">在左邊的圖裡，＿＿正在＿＿。</div>
+<div class="note">描述圖裡正在發生的事 → <span class="en">are + V-ing</span>。</div></div>
+
+<div class="card pat"><span class="pt">③ 右圖：對比</span>
+<div class="en must">In contrast, the right-hand picture shows <u class="cw">誰</u> <u class="cd">V-ing</u> <u class="cp">在哪</u>.</div>
+<div class="en" style="margin-top:6px">In contrast, the right-hand picture shows <span class="cw">some people</span> <span class="cd">riding scooters</span> <span class="cp">on a wet road</span>.</div>
+<div class="zh">相對地，右邊的圖呈現＿＿正在＿＿。</div>
+<div class="note"><span class="en">picture</span> 是單數 → <span class="en">shows</span> 要加 s。<span class="en">shows</span> 後面直接接「人＋V-ing」，<b>中間沒有 are</b>。</div></div>
+
+<div class="card pat"><span class="pt">④ 收尾：兩張圖合起來說明什麼</span>
+<div class="en must">These two pictures show that a typhoon day off can be <u class="cf">形容詞</u> for some people but <u class="cf">形容詞</u> for others.</div>
+<div class="en" style="margin-top:6px">… can be <span class="cf">relaxing</span> for some people but <span class="cf">dangerous</span> for others.</div>
+<div class="zh">這兩張圖顯示，颱風假對有些人來說＿＿，對其他人卻＿＿。</div>
+<div class="note"><span class="en">can be</span> 後面接形容詞。<span class="en">some people … others</span> 是一組。</div></div>
+
 <div class="card">
-<div class="zh">這兩張圖呈現人們度過颱風假的不同情景。</div>
+<b>練習 1｜排出開頭句</b>
+<div class="zh">這兩張圖呈現人們度過颱風假的不同情景。照順序點。</div>
 <div class="built en" id="built"></div>
 <div class="chips" id="pool"></div>
 <button class="show" id="orderReset" style="border-color:#a9bac7;color:#566473;font-size:15px;min-height:38px;padding:6px 14px">重排</button>
 <span class="why" id="orderMsg"></span>
 </div>
+
+<div class="card">
+<b>練習 2｜骨架裡的字</b>
+<div class="zh">不要往上看，選出骨架裡原本的字。</div>
+<div id="skq"></div>
+</div>
+
+<div class="card">
+<b>練習 3｜蓋起來背</b>
+<div class="zh">看中文，在心裡把整句骨架說出來，再翻開對。老實點「背出來了」或「還沒」。</div>
+<div id="recall"></div>
+</div>
+<div class="tip">這四句<b>下一課一開始會考默寫</b>。今天寫作時先靠記憶寫，真的忘了才點開「句構」。</div>
 
 <section id="write">
 <div class="step">04 / 9 分鐘 / 打字</div>
@@ -189,10 +245,11 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 <div class="pane" id="p2"><div class="pics"><figure><img src="img/typhoon-left.png" alt="左圖" class="zoomable"><figcaption>左圖</figcaption></figure><figure><img src="img/typhoon-right.jpeg" alt="右圖" class="zoomable"><figcaption>右圖</figcaption></figure></div></div>
 <div class="pane" id="p3"><div id="mycard" class="en"></div></div>
 <div class="pane" id="p4">
+<div class="zh">先靠記憶寫，真的忘了才看。</div>
 <div class="en must">① The two pictures show different scenes of <u>people spending a typhoon day off</u>.</div>
-<div class="en must" style="margin-top:6px">② In the picture on the left, <u>誰</u> are <u>V-ing</u> <u>在哪</u>.</div>
-<div class="en must" style="margin-top:6px">③ In contrast, the right-hand picture shows <u>誰</u> <u>V-ing</u> <u>在哪</u>.</div>
-<div class="en must" style="margin-top:6px">④ These two pictures show that a typhoon day off can be <u>形容詞</u> for some people but <u>形容詞</u> for others.</div>
+<div class="en must" style="margin-top:6px">② In the picture on the left, <u class="cw">誰</u> are <u class="cd">V-ing</u> <u class="cp">在哪</u>.</div>
+<div class="en must" style="margin-top:6px">③ In contrast, the right-hand picture shows <u class="cw">誰</u> <u class="cd">V-ing</u> <u class="cp">在哪</u>.</div>
+<div class="en must" style="margin-top:6px">④ These two pictures show that a typhoon day off can be <u class="cf">形容詞</u> for some people but <u class="cf">形容詞</u> for others.</div>
 <div class="zh">②③ 後面可以各加一句自己看到的細節。</div>
 </div>
 </div>
@@ -256,12 +313,12 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 <button class="show">看參考寫法</button><div class="ans"><div class="en">The two pictures show different scenes of people spending a typhoon day off. In the picture on the left, many people are waiting in line to buy tickets at a movie theater. They seem to enjoy their free time. In contrast, the right-hand picture shows some people riding scooters on a wet road. It is raining heavily, but they still have to go out. These two pictures show that a typhoon day off can be relaxing for some people but dangerous for others.</div></div>
 </div>
 
-<p class="foot">Day 13｜拿到題目先圈，寫完一項打一個勾。<br>第一段寫看得到的：誰、在哪、做什麼。</p>
+<p class="foot">Day 13｜拿到題目先圈，寫完一項打一個勾。<br>兩張圖的第一段：開頭、左圖、右圖、收尾，四句骨架要背起來。</p>
 </div>
-<div class="zoom" id="zoom"><img alt=""></div>
+<div class="zoom" id="zoom"><img alt=""><div class="x">點一下任何地方關閉</div></div>
 <script>
 (function(){
-var KEY='gsat-day13-v3',data={};
+var KEY='gsat-day13-v4',data={};
 try{data=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
@@ -329,42 +386,85 @@ COV.forEach(function(c){
 });
 
 /* 二、觀察卡 */
+var SLOT={w:['誰','cw'],d:['做什麼','cd'],p:['在哪','cp'],f:['給人的感覺','cf']};
 var OBS=[
- {k:'lw',l:'左圖｜誰',o:['many person','many people'],a:1,w:'person 的複數是 people。'},
- {k:'ld',l:'左圖｜做什麼',o:['waiting in line to buy tickets','wait in line to buy tickets'],a:0,w:'前面是 are，所以用 V-ing：are waiting。'},
- {k:'lp',l:'左圖｜在哪',o:['at movie theater','at a movie theater'],a:1,w:'一間電影院 → 前面要有 a。'},
- {k:'rw',l:'右圖｜誰',o:['some people','some peoples'],a:0,w:'people 已經是複數，不再加 s。'},
- {k:'rd',l:'右圖｜做什麼',o:['ride scooters','riding scooters'],a:1,w:'shows + 人 + V-ing：shows some people riding scooters。'},
- {k:'rp',l:'右圖｜在哪',o:['on a wet road','on wet road'],a:0,w:'一條路 → 前面要有 a。'},
- {k:'la',l:'左圖給人的感覺',o:['relaxing','relax'],a:0,w:'can be 後面要形容詞；relax 是動詞。'},
- {k:'ra',l:'右圖給人的感覺',o:['danger','dangerous'],a:1,w:'can be 後面要形容詞；danger 是名詞。'}
+ {k:'lw',s:'左圖',t:'w',o:['many person','many people'],a:1,w:'person 的複數是 people。'},
+ {k:'ld',s:'左圖',t:'d',o:['waiting in line to buy tickets','wait in line to buy tickets'],a:0,w:'前面是 are，所以用 V-ing：are waiting。'},
+ {k:'lp',s:'左圖',t:'p',o:['at movie theater','at a movie theater'],a:1,w:'一間電影院 → 前面要有 a。'},
+ {k:'rw',s:'右圖',t:'w',o:['some people','some peoples'],a:0,w:'people 已經是複數，不再加 s。'},
+ {k:'rd',s:'右圖',t:'d',o:['ride scooters','riding scooters'],a:1,w:'shows + 人 + V-ing：shows some people riding scooters。'},
+ {k:'rp',s:'右圖',t:'p',o:['on a wet road','on wet road'],a:0,w:'一條路 → 前面要有 a。'},
+ {k:'la',s:'左圖',t:'f',o:['relaxing','relax'],a:0,w:'can be 後面要形容詞；relax 是動詞。'},
+ {k:'ra',s:'右圖',t:'f',o:['danger','dangerous'],a:1,w:'can be 後面要形容詞；danger 是名詞。'}
 ];
-data.obs=data.obs||{};data.obsMiss=data.obsMiss||0;
-var ob=document.getElementById('obs'),mycard=document.getElementById('mycard');
+data.obs=data.obs||{};data.obsMiss=data.obsMiss||0;data.sk=data.sk||{};data.skMiss=data.skMiss||0;
+var mycard=document.getElementById('mycard');
 function drawCard(){
-  var g=function(k){var o=OBS.filter(function(x){return x.k===k})[0];return data.obs[k]?o.o[o.a]:'＿＿'};
+  var g=function(k){var o=OBS.filter(function(x){return x.k===k})[0];var s=el('span',SLOT[o.t][1],data.obs[k]?o.o[o.a]:'＿＿');return s};
   mycard.innerHTML='';
-  [['左圖',g('lw')+' / '+g('ld')+' / '+g('lp')],['右圖',g('rw')+' / '+g('rd')+' / '+g('rp')],['感覺',g('la')+' ↔ '+g('ra')]].forEach(function(r){
-    var d=el('div');d.appendChild(el('span','zh',r[0]+'　'));d.appendChild(document.createTextNode(r[1]));mycard.appendChild(d);
+  [['左圖',['lw','ld','lp']],['右圖',['rw','rd','rp']],['感覺',['la','ra']]].forEach(function(r){
+    var d=el('div');d.appendChild(el('span','zh',r[0]+'　'));
+    r[1].forEach(function(k,i){if(i)d.appendChild(document.createTextNode(' / '));d.appendChild(g(k))});
+    mycard.appendChild(d);
   });
 }
-OBS.forEach(function(o){
-  var q=el('div','q');q.appendChild(el('span','n',o.l));
-  var cs=el('div','chips'),why=el('span','why');why.style.display='none';
-  o.o.forEach(function(t,i){
-    var c=el('button','chip',t);c.type='button';
-    if(data.obs[o.k]&&i===o.a)c.classList.add('on');
-    c.addEventListener('click',function(){
-      if(data.obs[o.k])return;
-      if(i===o.a){data.obs[o.k]=true;c.classList.add('on');why.textContent='✓ '+o.w;drawCard()}
-      else{data.obsMiss++;c.classList.add('miss');why.textContent='再想一下：'+o.w}
-      why.style.display='block';save();
+function chipQuiz(box,list,store,missKey,labelFn,onHit){
+  list.forEach(function(o){
+    var q=el('div','q');q.appendChild(labelFn(o));
+    var cs=el('div','chips'),why=el('span','why');why.style.display='none';
+    o.o.forEach(function(t,i){
+      var c=el('button','chip',t);c.type='button';
+      if(store[o.k]&&i===o.a)c.classList.add('on');
+      c.addEventListener('click',function(){
+        if(store[o.k])return;
+        if(i===o.a){store[o.k]=true;c.classList.add('on');why.textContent='✓ '+o.w;if(onHit)onHit()}
+        else{data[missKey]++;c.classList.add('miss');why.textContent='再想一下：'+o.w}
+        why.style.display='block';save();
+      });
+      cs.appendChild(c);
     });
-    cs.appendChild(c);
+    q.appendChild(cs);q.appendChild(why);box.appendChild(q);
   });
-  q.appendChild(cs);q.appendChild(why);ob.appendChild(q);
-});
+}
+chipQuiz(document.getElementById('obs'),OBS,data.obs,'obsMiss',function(o){
+  var n=el('span','n',o.s+'｜');n.appendChild(el('span',SLOT[o.t][1],SLOT[o.t][0]));return n;
+},drawCard);
 drawCard();
+
+/* 三之二、骨架裡的字 */
+var SK=[
+ {k:'s1',q:'The two pictures ____ different scenes of …',o:['shows','show'],a:1,w:'pictures 是複數 → show。'},
+ {k:'s2',q:'In ____ picture on the left, …',o:['the','a'],a:0,w:'指題目給的那張圖 → the。'},
+ {k:'s3',q:'In contrast, the right-hand picture ____ some people riding scooters.',o:['shows','show'],a:0,w:'picture 是單數 → shows。'},
+ {k:'s4',q:'… the right-hand picture shows some people ____ scooters.',o:['are riding','riding'],a:1,w:'shows 後面直接接 人＋V-ing，沒有 are。'},
+ {k:'s5',q:'… can be relaxing for some people ____ dangerous for others.',o:['but','so'],a:0,w:'兩邊相反 → but。'}
+];
+chipQuiz(document.getElementById('skq'),SK,data.sk,'skMiss',function(o){return el('div','en',o.q)});
+
+/* 三之三、蓋起來背 */
+var RC=[
+ ['① 這兩張圖呈現＿＿的不同情景。','The two pictures show different scenes of …'],
+ ['② 在左邊的圖裡，＿＿正在＿＿。','In the picture on the left, … are …'],
+ ['③ 相對地，右邊的圖呈現＿＿正在＿＿。','In contrast, the right-hand picture shows …'],
+ ['④ 這兩張圖顯示，颱風假對有些人＿＿，對其他人卻＿＿。','These two pictures show that a typhoon day off can be … for some people but … for others.']
+];
+data.rc=data.rc||{};
+var rcBox=document.getElementById('recall');
+RC.forEach(function(r,i){
+  var q=el('div','q');q.appendChild(el('div',null,r[0]));
+  var open=el('button','show','想好了，翻開');open.type='button';
+  var ans=el('div','ans');ans.appendChild(el('div','en must',r[1]));
+  var rate=el('div','rate');
+  [['背出來了',1],['還沒',0]].forEach(function(x){
+    var b=el('button',null,x[0]);b.type='button';if(data.rc[i]===x[1])b.classList.add('on');
+    b.addEventListener('click',function(){data.rc[i]=x[1];save();rate.querySelectorAll('button').forEach(function(y){y.classList.toggle('on',y===b)})});
+    rate.appendChild(b);
+  });
+  ans.appendChild(rate);
+  if(data.rc[i]!=null){ans.classList.add('open');open.textContent='收起'}
+  open.addEventListener('click',function(){var o=ans.classList.toggle('open');open.textContent=o?'收起':'想好了，翻開'});
+  q.appendChild(open);q.appendChild(ans);rcBox.appendChild(q);
+});
 
 /* 三、排句 */
 var SEQ=['The two pictures','show','different scenes of','people','spending a typhoon day off.'],SHOW=[3,1,4,0,2];
@@ -401,7 +501,7 @@ document.querySelectorAll('.zoomable').forEach(function(im){im.addEventListener(
 zoom.addEventListener('click',function(){zoom.classList.remove('open')});
 
 document.querySelectorAll('.show').forEach(function(b){
-  if(b.id==='orderReset'||b.nextElementSibling==null||!b.nextElementSibling.classList.contains('ans'))return;
+  if(b.id==='orderReset'||b.id==='splitGo'||b.parentNode.parentNode.id==='recall'||b.nextElementSibling==null||!b.nextElementSibling.classList.contains('ans'))return;
   var label=b.textContent;
   b.addEventListener('click',function(){var a=b.nextElementSibling,open=a.classList.toggle('open');b.textContent=open?'收起':label});
 });
@@ -430,10 +530,10 @@ trGo.addEventListener('click',function(){
 
 function output(){
   var s=data.splitFirst||'未對答案';var cv=function(k){var v=data.cover[k];return v==null?'未點':(v===0?'沒寫':'第 '+v+' 句')};
-  var od=OBS.filter(function(o){return data.obs[o.k]}).length;
+  var od=OBS.filter(function(o){return data.obs[o.k]}).length;var sd=SK.filter(function(o){return data.sk[o.k]}).length;var rk=0,rn=0;for(var ri=0;ri<RC.length;ri++){if(data.rc[ri]!=null)rn++;if(data.rc[ri]===1)rk++}
   var tp=['t1','t2','t3','t4'].filter(function(k){return data[k]}).length;
   var n=['c1','c2','c3'].filter(function(k){return data[k]}).length;
-  return 'Day13｜學生作答\n題目：114 學測颱風題（第一段）\n\n【拆題｜圈題目，第一次對答案】\n'+s+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次；排句點錯 '+data.orderTries+' 次\n\n【第一段英文】\n'+(ta.value.trim()||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n對項目：左圖情景 '+cv('l')+'；右圖情景 '+cv('r')+'\n檢查時自己改了幾處：'+data.fix+'\n三項檢查已勾選：'+n+' / 3\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
+  return 'Day13｜學生作答\n題目：114 學測颱風題（第一段）\n\n【拆題｜圈題目，第一次對答案】\n'+s+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次\n\n【句構】\n排句點錯 '+data.orderTries+' 次；骨架選字完成 '+sd+' / '+SK.length+'，點錯 '+data.skMiss+' 次；蓋起來背：自評背出 '+rk+' / '+RC.length+'（已翻開 '+rn+' 句）\n\n【第一段英文】\n'+(ta.value.trim()||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n對項目：左圖情景 '+cv('l')+'；右圖情景 '+cv('r')+'\n檢查時自己改了幾處：'+data.fix+'\n三項檢查已勾選：'+n+' / 3\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
 }
 var msg=document.getElementById('msg');
 function fallback(v){var t=document.createElement('textarea');t.value=v;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();return ok}
