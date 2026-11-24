@@ -151,11 +151,12 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 
 <div class="step">01 / 3 分鐘 / 填字</div>
 <h2>一、默寫：上一課的四個句構</h2>
-<p class="sub">不要回去看上一課。每個空格填一個字，想不起來就空著，填完按對答案。</p>
+<p class="sub">先不要回去看上一課。每個空格填一個字，句子開頭要大寫。至少填 8 格才能對答案。</p>
 <div class="card">
 <div id="dict"></div>
 <button class="show" id="dictGo" type="button">對答案</button>
 <div class="res" id="dictRes"></div>
+<div class="zh" id="dictHelp" style="display:none;margin-top:8px">真的想不起來：<a href="day13.html#frames" target="_blank" rel="noopener" id="dictLink">打開上一課看四個句構</a>（會另開一頁），看完回到這一頁填。</div>
 </div>
 
 <div class="step">02 / 2 分鐘 / 用點的</div>
@@ -172,6 +173,7 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 <section id="obsSec">
 <div class="step">03 / 3 分鐘 / 用點的</div>
 <h2>三、觀察卡：誰、做什麼、在哪</h2>
+<p class="sub">今天每格有<b>三個</b>選項，只有一個完全正確。</p>
 <p class="sub">題目自己就提示了：「正在發生的事情、人物、背景」，就是<span class="cd">做什麼</span>、<span class="cw">誰</span>、<span class="cp">在哪</span>。</p>
 <div class="stickpics">
 <div class="pics">
@@ -202,6 +204,7 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 <h2>五、寫第一段</h2>
 <p class="sub">寫成<b>一段</b>，約 55–75 字：開頭 → 左圖＋細節 → 右圖＋細節 → 收尾。先靠記憶寫，忘了才點開「句構」。</p>
 <div class="dock">
+<div class="zh" id="live" style="text-align:center;font-weight:700;margin:0 0 6px">目前 0 字 ／ 目標 55–75 字</div>
 <div class="tabs">
 <button data-p="p1">題目</button><button data-p="p2">圖片</button><button data-p="p3">我的卡</button><button data-p="p4">句構</button>
 </div>
@@ -285,14 +288,14 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 <div class="zoom" id="zoom"><img alt=""><div class="x">點一下任何地方關閉</div></div>
 <script>
 (function(){
-var KEY='gsat-day14-v1',data={};
+var KEY='gsat-day14-v2',data={};
 try{data=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 
 /* 一、默寫 */
 var DICT=[
- ['① 這兩張圖呈現＿＿的不同情景。',['The two pictures ',['show'],' different ',['scenes'],' of …']],
+ ['① 這兩張圖呈現＿＿的不同情景。',[['The'],' two pictures ',['show'],' different ',['scenes'],' of …']],
  ['② 在左邊的圖裡，＿＿正在＿＿。',[['In'],' the picture ',['on'],' the left, …']],
  ['③ 相對地，右邊的圖呈現＿＿正在＿＿。',['In ',['contrast'],', the right-hand picture ',['shows'],' …']],
  ['④ 這兩張圖顯示，有些＿＿喜歡＿＿，其他人則比較喜歡＿＿。',['These two pictures show ',['that'],' some … enjoy …, ',['while'],' others ',['prefer'],' ….']]
@@ -314,15 +317,22 @@ DICT.forEach(function(d,i){
 function markDict(){
   var ok=0,miss=[];
   gaps.forEach(function(g){
-    var v=(data.dict[g[2]]||'').trim().toLowerCase(),good=v===g[1].toLowerCase();
+    var v=(data.dict[g[2]]||'').trim(),good=v===g[1],cap=!good&&v.toLowerCase()===g[1].toLowerCase();
     g[0].readOnly=true;g[0].classList.add(good?'good':'bad');
-    if(good)ok++;else{miss.push(g[1]+'（你寫：'+(v||'空白')+'）');g[0].value=g[1];g[0].classList.remove('bad');g[0].classList.add('bad')}
+    if(good)ok++;else{miss.push(g[1]+'（你寫：'+(v||'空白')+(cap?'，大小寫不對':'')+'）');g[0].value=g[1]}
   });
   dRes.innerHTML='';dRes.appendChild(el('div',null,'填對 '+ok+' / '+gaps.length+'。'+(miss.length?'紅框是正確的字，小聲把整句再唸一遍。':'四句都記住了。')));
+  if(miss.length)dRes.appendChild(el('div','zh','你原本寫的：'+miss.join('、')));
   return [ok,miss];
 }
+var NEED=Math.ceil(gaps.length*0.8),dHelp=document.getElementById('dictHelp');
+function filled(){return gaps.filter(function(g){return (data.dict[g[2]]||'').trim()}).length}
+document.getElementById('dictLink').addEventListener('click',function(){data.dictPeek=(data.dictPeek||0)+1;save()});
 document.getElementById('dictGo').addEventListener('click',function(){
   if(data.dictDone)return;
+  var n=filled();
+  if(n<NEED){dRes.textContent='目前填了 '+n+' 格，至少要填 '+NEED+' 格才能對答案。';dHelp.style.display='block';data.dictBlocked=(data.dictBlocked||0)+1;save();return}
+  dHelp.style.display='none';
   var r=markDict();data.dictDone=true;data.dictFirst='填對 '+r[0]+' / '+gaps.length+(r[1].length?'；錯：'+r[1].join('、'):'');save();
 });
 if(data.dictDone)markDict();
@@ -386,7 +396,7 @@ document.getElementById('covGo').addEventListener('click',function(){
   var v=document.getElementById('essay').value.trim();
   if(!v){covBox.textContent='先寫完再按。';return}
   var m=drawCover();
-  if(data.draft1==null){data.draft1=v;data.covFirstMiss=m}
+  if(data.draft1==null){data.draft1=v;data.covFirstMiss=m;data.wCov=Date.now()}
   data.covShown=true;save();drawDiff();
 });
 function lcs(a,b){var m=a.length,n=b.length,p=[],i,j,c;for(j=0;j<=n;j++)p[j]=0;
@@ -397,14 +407,14 @@ function drawDiff(){var d=diffN(),m=document.getElementById('diffMsg');m.textCon
 /* 三、觀察卡 */
 var SLOT={w:['誰','cw'],d:['做什麼','cd'],p:['在哪','cp'],f:['差在哪','cf']};
 var OBS=[
- {k:'lw',s:'左圖',t:'w',o:['some student','some students'],a:1,w:'some 後面的可數名詞要加 s。'},
- {k:'ld',s:'左圖',t:'d',o:['talking with elderly people','talk with elderly people'],a:0,w:'前面是 are，所以用 V-ing：are talking。'},
- {k:'lp',s:'左圖',t:'p',o:['at nursing home','at a nursing home'],a:1,w:'一間安養院 → 前面要有 a。'},
- {k:'rw',s:'右圖',t:'w',o:['a student','a students'],a:0,w:'a 後面是單數，不加 s。'},
- {k:'rd',s:'右圖',t:'d',o:['read a book to children','reading a book to children'],a:1,w:'shows + 人 + V-ing：shows a student reading a book to children。'},
- {k:'rp',s:'右圖',t:'p',o:['in a public library','in public library'],a:0,w:'一間圖書館 → 前面要有 a。'},
- {k:'la',s:'左圖',t:'f',o:['help elderly people','helping elderly people'],a:1,w:'enjoy 後面接 V-ing：enjoy helping elderly people。'},
- {k:'ra',s:'右圖',t:'f',o:['helping children','helping childrens'],a:0,w:'children 已經是複數，不再加 s。'}
+ {k:'lw',s:'左圖',t:'w',o:['some student','some of student','some students'],a:2,w:'some 後面的可數名詞要加 s；some of 後面要接 the students 或 them。'},
+ {k:'ld',s:'左圖',t:'d',o:['talking with elderly people','talk with elderly people','talking with elderly peoples'],a:0,w:'前面是 are → talking；people 已經是複數，不加 s。'},
+ {k:'lp',s:'左圖',t:'p',o:['at nursing home','in a nursing homes','in a nursing home'],a:2,w:'一間安養院 → 要有 a，名詞不加 s。'},
+ {k:'rw',s:'右圖',t:'w',o:['an student','a student','a students'],a:1,w:'student 開頭是子音 → a；a 後面是單數。'},
+ {k:'rd',s:'右圖',t:'d',o:['reads a book to children','read a book to children','reading a book to children'],a:2,w:'shows + 人 + V-ing：shows a student reading a book to children。'},
+ {k:'rp',s:'右圖',t:'p',o:['in a public library','in public library','in a public libraries'],a:0,w:'一間圖書館 → 要有 a，名詞不加 s。'},
+ {k:'la',s:'左圖',t:'f',o:['help elderly people','to helping elderly people','helping elderly people'],a:2,w:'enjoy 後面直接接 V-ing，不加 to。'},
+ {k:'ra',s:'右圖',t:'f',o:['helping childrens','helping children','help children'],a:1,w:'prefer 後面這裡也用 V-ing，和前半句對稱；children 已經是複數。'}
 ];
 data.obs=data.obs||{};data.obsMiss=data.obsMiss||0;data.dt=data.dt||{};data.dtMiss=data.dtMiss||0;
 var mycard=document.getElementById('mycard');
@@ -416,7 +426,7 @@ function drawCard(){
     r[1].forEach(function(k,i){if(i)d.appendChild(document.createTextNode(' / '));d.appendChild(g(k))});
     mycard.appendChild(d);
   });
-  var x=el('div');x.appendChild(el('span','zh','細節　'));x.appendChild(document.createTextNode('sitting in wheelchairs / sweeping the floor'));mycard.appendChild(x);
+  var x=el('div');x.appendChild(el('span','zh','細節　'));x.appendChild(document.createTextNode('sitting in wheelchairs / sweeping the floor / putting books on the shelf'));mycard.appendChild(x);
 }
 function chipQuiz(box,list,store,missKey,labelFn,onHit){
   list.forEach(function(o){
@@ -443,9 +453,11 @@ drawCard();
 
 /* 四、細節句 */
 var DT=[
- {k:'d1',q:'左圖：Some of them ____ sitting in wheelchairs.',o:['is','are'],a:1,w:'some of them 是好幾個人 → are。'},
- {k:'d2',q:'右圖：Another ____ is sweeping the floor.',o:['student','students'],a:0,w:'another 後面接單數名詞。'},
- {k:'d3',q:'右圖：Another student ____ the floor.',o:['sweeping','is sweeping'],a:1,w:'句子要有動詞：is sweeping。只有 sweeping 不算動詞。'}
+ {k:'d1',q:'左圖：Some of them ____ sitting in wheelchairs.',o:['is','be','are'],a:2,w:'some of them 是好幾個人 → are。'},
+ {k:'d2',q:'左圖：Some of them are sitting in ____.',o:['wheelchairs','wheelchair','a wheelchairs'],a:0,w:'好幾個人、好幾張輪椅 → 複數，前面不能有 a。'},
+ {k:'d3',q:'右圖：Another ____ is sweeping the floor.',o:['students','student','of student'],a:1,w:'another 後面接單數名詞。'},
+ {k:'d4',q:'右圖：Another student ____ the floor.',o:['sweeping','are sweeping','is sweeping'],a:2,w:'一個人 → is sweeping。只有 sweeping 不算動詞。'},
+ {k:'d5',q:'右圖還有一個女孩在放書。哪一句完全正確？',o:['A girl putting books on the shelf.','A girl is putting books on the shelf.','A girl is put books on the shelf.'],a:1,w:'be + V-ing：is putting。少了 is 就沒有動詞；is put 不是進行式。'}
 ];
 chipQuiz(document.getElementById('dtq'),DT,data.dt,'dtMiss',function(o){return el('div','en',o.q)});
 
@@ -471,7 +483,15 @@ document.querySelectorAll('.show').forEach(function(b){
 function count(v){return words(v).length}
 var ta=document.getElementById('essay'),wc=document.getElementById('wc');
 if(data.essay)ta.value=data.essay;wc.textContent=count(ta.value);
-ta.addEventListener('input',function(){data.essay=ta.value;save();wc.textContent=count(ta.value);drawDiff()});
+var live=document.getElementById('live');
+function drawLive(){var n=count(ta.value);live.textContent='目前 '+n+' 字 ／ 目標 55–75 字'+(n>=55?'　✓':'');live.style.color=n>=55?'#0e7a55':''}
+drawLive();
+ta.addEventListener('focus',function(){if(!data.wStart){data.wStart=Date.now();save()}});
+ta.addEventListener('input',function(){
+  var now=Date.now();if(!data.wStart)data.wStart=now;
+  if(data.wLast&&now-data.wLast<60000)data.wActive=(data.wActive||0)+(now-data.wLast);
+  data.wLast=now;
+  data.essay=ta.value;save();wc.textContent=count(ta.value);drawLive();drawDiff()});
 if(data.covShown){drawCover();drawDiff()}
 document.querySelectorAll('.check input').forEach(function(c){
   var k=c.getAttribute('data-k');c.checked=!!data[k];
@@ -504,7 +524,9 @@ trGo.addEventListener('click',function(){
   data.trFirst=tr.value.trim();save();trMsg.textContent='';lockTr();
 });
 
+function ms(x){x=Math.round(x/1000);return Math.floor(x/60)+' 分 '+(x%60)+' 秒'}
 function output(){
+  var tm=!data.wStart?'未開始':('開始 '+new Date(data.wStart).toLocaleString('zh-TW',{hour12:false})+'；到第一次按「寫完了」'+(data.wCov?ms(data.wCov-data.wStart):'（未按）')+'；到最後一次輸入 '+(data.wLast?ms(data.wLast-data.wStart):'0')+'；其中連續打字約 '+ms(data.wActive||0)+'（停頓超過 1 分鐘不計）');
   var od=OBS.filter(function(o){return data.obs[o.k]}).length,dd=DT.filter(function(o){return data.dt[o.k]}).length;
   var tp=['t1','t2','t3','t4'].filter(function(k){return data[k]}).length;
   var n=['c1','c2','c3'].filter(function(k){return data[k]}).length;
@@ -512,7 +534,7 @@ function output(){
   var cov=data.draft1==null?'未按「寫完了，對一下」':('第一次按時缺 '+data.covFirstMiss+' 項；目前'+(nowMiss.length?'仍缺：'+nowMiss.join('、'):'三項都有'));
   var d1=(data.draft1!=null&&data.draft1!==cur)?'\n\n【第一次寫完時的版本（系統自動留存）】\n'+data.draft1:'';
   var ex=EXP.map(function(x){return x[1]+'：'+((data.exp[x[0]]||'').trim()||'（空白）')}).join('\n');
-  return 'Day14｜學生作答\n題目：志工服務地點兩圖對比（第一段）\n\n【默寫四個句構｜第一次對答案】\n'+(data.dictFirst||'未對答案')+'\n\n【圈題目｜第一次對答案】\n'+(data.splitFirst||'未對答案')+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次\n\n【細節句】\n完成 '+dd+' / '+DT.length+'，點錯 '+data.dtMiss+' 次\n\n【第一段英文】\n'+(cur||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n寫作時點開「句構」：'+(data.peek||0)+' 次\n對項目（系統比對）：'+cov+'\n檢查後更動（系統比對）：'+(dn==null?'無法比對':dn+' 個字')+'\n三項檢查已勾選：'+n+' / 3'+d1+'\n\n【我的經驗（中文）】\n'+ex+'\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
+  return 'Day14｜學生作答\n題目：志工服務地點兩圖對比（第一段）\n\n【默寫四個句構｜第一次對答案】\n'+(data.dictFirst||'未對答案')+'\n未填滿 8 格就按對答案：'+(data.dictBlocked||0)+' 次；點開上一課：'+(data.dictPeek||0)+' 次'+'\n\n【圈題目｜第一次對答案】\n'+(data.splitFirst||'未對答案')+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次\n\n【細節句】\n完成 '+dd+' / '+DT.length+'，點錯 '+data.dtMiss+' 次\n\n【第一段英文】\n'+(cur||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n寫作時間（系統記錄）：'+tm+'\n寫作時點開「句構」：'+(data.peek||0)+' 次\n對項目（系統比對）：'+cov+'\n檢查後更動（系統比對）：'+(dn==null?'無法比對':dn+' 個字')+'\n三項檢查已勾選：'+n+' / 3'+d1+'\n\n【我的經驗（中文）】\n'+ex+'\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
 }
 var msg=document.getElementById('msg');
 function fallback(v){var t=document.createElement('textarea');t.value=v;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();return ok}
