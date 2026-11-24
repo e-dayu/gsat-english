@@ -146,8 +146,29 @@ textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
 
 <div class="card goal">
 <b>今天的路線</b>（每一段都會自動儲存）<br>
-① 默寫句構 → ② 圈題目 → ③ 觀察卡 → ④ 加細節 → ⑤ 寫第一段 → ⑥ 我的經驗 → ⑦ 翻譯一句
+⓪ 上一課回饋 → ① 默寫句構 → ② 圈題目 → ③ 觀察卡 → ④ 加細節 → ⑤ 寫第一段 → ⑥ 我的經驗 → ⑦ 翻譯一句
 </div>
+
+<div class="step">00 / 2 分鐘 / 上一課的回饋</div>
+<h2>上一課寫得很好，有三個地方要修</h2>
+<div class="card">
+<b>做得好的</b>
+<div class="zh">四個句構都用上了，三個項目都寫到。你還自己加了一句 <span class="en">Although …, these children look happy.</span>，寫法正確，而且讓段落更完整。<span class="en">enjoy playing</span>、<span class="en">prefer having</span> 也都對。</div>
+</div>
+<div class="card">
+<b>作文：兩個地方</b>
+<div class="fixed"><div class="en">the right-hand picture shows two children <span class="del">are</span> flying kites</div>
+<div class="zh"><span class="en">shows</span> 後面直接接「人＋V-ing」，中間<b>沒有 are</b>。一個句子已經有動詞 shows，就不能再放一個 are。</div></div>
+<div class="fixed"><div class="en">there is <span class="fix">a</span> significant difference</div>
+<div class="zh"><span class="en">difference</span> 是可數名詞，一個差異 → 前面要有 <span class="en">a</span>。這就是「名詞看前面的字」。</div></div>
+<div class="zh" style="margin-top:8px">這兩個錯，三項檢查都勾了，但系統記錄你按下「寫完了」之後沒有改任何字。今天檢查時，請真的一句一句看。</div>
+</div>
+<div class="card">
+<b>翻譯：兩個地方（各扣 0.5 分）</b>
+<div class="fixed"><div class="en">senior high <span class="del">schools</span> <span class="fix">school English</span> teachers</div>
+<div class="zh">① 名詞放在另一個名詞前面當形容詞時<b>不加 s</b>：<span class="en">high school teachers</span>。複數只加在最後的 teachers。<br>② 題目是「高中<b>英文</b>老師」，你漏了 <span class="en">English</span>。翻譯漏字就扣分，寫完要拿中文一個詞一個詞對。</div></div>
+</div>
+<div class="card"><b>馬上練 3 題</b><div id="fbq"></div></div>
 
 <div class="step">01 / 3 分鐘 / 填字</div>
 <h2>一、默寫：上一課的四個句構</h2>
@@ -451,6 +472,14 @@ chipQuiz(document.getElementById('obs'),OBS,data.obs,'obsMiss',function(o){
 },drawCard);
 drawCard();
 
+/* 回饋小練習 */
+data.fb=data.fb||{};data.fbMiss=data.fbMiss||0;
+chipQuiz(document.getElementById('fbq'),[
+ {k:'f1',q:'The picture shows a girl ____ a book.',o:['is reading','reading','reads'],a:1,w:'shows + 人 + V-ing，中間沒有 is。'},
+ {k:'f2',q:'There is ____ between the two pictures.',o:['big difference','a big differences','a big difference'],a:2,w:'一個差異 → a big difference。'},
+ {k:'f3',q:'many junior high ____',o:['school students','schools students','school student'],a:0,w:'school 當形容詞不加 s；many 後面的 students 才加 s。'}
+],data.fb,'fbMiss',function(o){return el('div','en',o.q)});
+
 /* 四、細節句 */
 var DT=[
  {k:'d1',q:'左圖：Some of them ____ sitting in wheelchairs.',o:['is','be','are'],a:2,w:'some of them 是好幾個人 → are。'},
@@ -534,7 +563,7 @@ function output(){
   var cov=data.draft1==null?'未按「寫完了，對一下」':('第一次按時缺 '+data.covFirstMiss+' 項；目前'+(nowMiss.length?'仍缺：'+nowMiss.join('、'):'三項都有'));
   var d1=(data.draft1!=null&&data.draft1!==cur)?'\n\n【第一次寫完時的版本（系統自動留存）】\n'+data.draft1:'';
   var ex=EXP.map(function(x){return x[1]+'：'+((data.exp[x[0]]||'').trim()||'（空白）')}).join('\n');
-  return 'Day14｜學生作答\n題目：志工服務地點兩圖對比（第一段）\n\n【默寫四個句構｜第一次對答案】\n'+(data.dictFirst||'未對答案')+'\n未填滿 8 格就按對答案：'+(data.dictBlocked||0)+' 次；點開上一課：'+(data.dictPeek||0)+' 次'+'\n\n【圈題目｜第一次對答案】\n'+(data.splitFirst||'未對答案')+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次\n\n【細節句】\n完成 '+dd+' / '+DT.length+'，點錯 '+data.dtMiss+' 次\n\n【第一段英文】\n'+(cur||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n寫作時間（系統記錄）：'+tm+'\n寫作時點開「句構」：'+(data.peek||0)+' 次\n對項目（系統比對）：'+cov+'\n檢查後更動（系統比對）：'+(dn==null?'無法比對':dn+' 個字')+'\n三項檢查已勾選：'+n+' / 3'+d1+'\n\n【我的經驗（中文）】\n'+ex+'\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
+  return 'Day14｜學生作答\n題目：志工服務地點兩圖對比（第一段）\n\n【上一課回饋的 3 題】\n完成 '+['f1','f2','f3'].filter(function(k){return data.fb[k]}).length+' / 3，點錯 '+data.fbMiss+' 次\n\n【默寫四個句構｜第一次對答案】\n'+(data.dictFirst||'未對答案')+'\n未填滿 8 格就按對答案：'+(data.dictBlocked||0)+' 次；點開上一課：'+(data.dictPeek||0)+' 次'+'\n\n【圈題目｜第一次對答案】\n'+(data.splitFirst||'未對答案')+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次\n\n【細節句】\n完成 '+dd+' / '+DT.length+'，點錯 '+data.dtMiss+' 次\n\n【第一段英文】\n'+(cur||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n寫作時間（系統記錄）：'+tm+'\n寫作時點開「句構」：'+(data.peek||0)+' 次\n對項目（系統比對）：'+cov+'\n檢查後更動（系統比對）：'+(dn==null?'無法比對':dn+' 個字')+'\n三項檢查已勾選：'+n+' / 3'+d1+'\n\n【我的經驗（中文）】\n'+ex+'\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
 }
 var msg=document.getElementById('msg');
 function fallback(v){var t=document.createElement('textarea');t.value=v;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();return ok}
