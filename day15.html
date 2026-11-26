@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fbfaf7">
+<title>Day15｜骨架先寫對，再加自己的句子</title>
+<style>
+:root{--ink:#1b2733;--muted:#566473;--blue:#0f5f8c;--blue-light:#e6f2f9;--bg:#fbfaf7;--card:#fff;--line:#e3e0d8;--red:#c81e2d;--red-bg:#fdf1f1;--del:#7b8794;--warn:#fff3d6;--good:#0e7a55;--good-bg:#eaf7f1}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:19px;line-height:1.85}
+button,textarea{font:inherit}button{cursor:pointer}
+.wrap{max-width:720px;margin:0 auto;padding:18px 16px 90px}
+a{color:var(--blue)}
+a.back{font-size:16px;text-decoration:none}
+.course-id{font-weight:800;letter-spacing:.08em;color:var(--blue);font-size:13.5px;margin-top:12px}
+h1{font-size:26px;line-height:1.4;margin:4px 0 8px}
+.sub{color:var(--muted);font-size:17px;margin:4px 0 14px}
+.step{font-size:14px;font-weight:800;color:var(--blue);letter-spacing:.06em;margin-top:40px}
+h2{font-size:22px;line-height:1.45;margin:0 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 1px 2px rgba(27,39,51,.04)}
+.goal{background:var(--blue-light);border-color:#c3deee}
+.praise{background:var(--good-bg);border-color:#c4e6d6}
+.praise li{margin-bottom:6px}
+ul{padding-left:22px;margin:6px 0}
+.tip{background:var(--warn);border-left:5px solid #e0a43a;border-radius:10px;padding:10px 13px;font-size:17.5px;margin:12px 0}
+.legend{font-size:16px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 13px}
+/* 英文：手機上用無襯線、字放大 */
+.en{font-family:"Helvetica Neue",Arial,system-ui,sans-serif;font-size:20px;line-height:1.75;letter-spacing:.005em;color:var(--ink)}
+.fix{color:var(--red);font-weight:400}
+del{color:var(--del);text-decoration-thickness:1.5px}
+.must{color:var(--red);font-weight:700}
+.must u,.en u{text-decoration-thickness:2px;text-underline-offset:4px}
+.must u{color:var(--ink)}
+.zh{font-size:16.5px;color:var(--muted)}
+.n{display:inline-block;font-size:13.5px;font-weight:800;color:var(--blue);letter-spacing:.04em;margin-bottom:2px}
+.fixed{margin-top:10px;padding:10px 12px;background:var(--red-bg);border-radius:12px}
+.note{font-size:17px;line-height:1.8;color:#2a3a49;margin-top:10px}
+.note .en{font-size:18px}
+.rule{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line)}
+.rule:last-child{border-bottom:0}
+.num{flex:none;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:16px;margin-top:3px}
+.rule b{display:block}
+.rule small{font-size:16.5px;color:var(--muted);display:block;line-height:1.7}
+.q{padding:14px 0;border-bottom:1px solid var(--line)}
+.q:first-child{padding-top:0}.q:last-child{border-bottom:0;padding-bottom:0}
+.show{display:block;margin-top:10px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:9px 18px;font-size:17px;font-weight:700;min-height:44px}
+.ans{display:none;margin-top:10px;background:var(--red-bg);border-radius:12px;padding:11px 13px}
+.ans.open{display:block}
+.why{color:#2a3a49;font-size:16.5px;display:block;margin-top:4px;line-height:1.7}
+.pt{display:inline-block;font-size:13.5px;font-weight:700;color:var(--blue);background:var(--blue-light);border-radius:999px;padding:2px 11px;margin-bottom:6px}
+.pat .zh{margin-top:6px}
+textarea{width:100%;border:1.5px solid #a9bac7;border-radius:12px;padding:12px;font-size:19px;line-height:1.7;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;color:var(--ink);background:#fff;resize:vertical;margin-top:8px}
+textarea:focus{outline:3px solid #0f5f8c33;border-color:var(--blue)}
+.count{font-size:15px;color:var(--muted);text-align:right}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;font-size:17.5px;border-bottom:1px dashed var(--line)}
+.check label:last-child{border-bottom:0}
+.check input{width:24px;height:24px;flex:none;margin-top:5px;accent-color:var(--blue)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.btn{border:0;border-radius:12px;background:var(--blue);color:#fff;font-weight:700;padding:12px 20px;font-size:18px;min-height:48px}
+.btn.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}
+.msg{font-size:16px;color:var(--good);min-height:1.7em;margin-top:6px}
+.foot{font-size:15px;color:var(--muted);margin-top:30px;text-align:center}
+.tapline{line-height:2.3}
+.w{display:inline-block;padding:1px 5px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tapline.done .w{border-color:transparent;background:none;cursor:default;padding:1px 0}
+.w.hit{background:var(--red-bg)!important}
+.w.miss{background:#e9edf1;color:var(--del)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← 回課程首頁</a>
+<style>
+.seg{display:flex;gap:6px;margin-top:6px}
+.seg button{flex:1;min-height:42px;border:1.5px solid #a9bac7;background:#fff;color:var(--ink);border-radius:10px;font-size:16px;padding:4px 2px}
+.seg button.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.item{padding:10px 0;border-bottom:1px dashed var(--line)}
+.item:last-of-type{border-bottom:0}
+.item.ok .t::after{content:" ✓";color:var(--good);font-weight:800}
+.item.no .t::after{content:" ✗";color:var(--red);font-weight:800}
+.item.no .seg button.right{outline:3px solid #0e7a5566}
+.ph{display:inline-block;padding:0 3px;margin:0 -1px;border:2.5px solid transparent;border-radius:50%;cursor:pointer;-webkit-tap-highlight-color:transparent;line-height:1.5}
+.ph.on{border-color:var(--red)}
+.ph.hit{border-color:var(--good);font-weight:700}
+.ph.okay{border-color:#8aa0b3}
+.ph.bad{border-color:#c9cfd6;color:var(--del)}
+.ph.missed{border:2.5px dashed var(--good);font-weight:700}
+.circ{display:inline-block;padding:0 5px;border:2.5px solid var(--red);border-radius:50%;line-height:1.5}
+.circ sup,.ph sup{color:var(--red);font-weight:800;font-size:13px;margin-left:1px}
+.prompt{font-size:19px;line-height:2.3}
+.seg.nums button{min-width:0;font-size:17px}
+.res{font-size:16.5px;margin-top:8px;color:#2a3a49}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{min-height:44px;border:1.5px solid #a9bac7;background:#fff;color:var(--ink);border-radius:12px;padding:6px 12px;font-family:"Helvetica Neue",Arial,system-ui,sans-serif;font-size:18px}
+.chip.on{background:var(--good-bg);border-color:var(--good);font-weight:700}
+.chip.miss{background:#e9edf1;color:var(--del);text-decoration:line-through}
+.chip.used{opacity:.35}
+.built{min-height:64px;border:1.5px dashed #a9bac7;border-radius:12px;padding:10px 12px;margin-top:8px;background:#fff}
+.pics{display:flex;gap:8px}
+.pics figure{flex:1;margin:0}
+.pics img{width:100%;border-radius:10px;border:1px solid var(--line);display:block}
+.pics figcaption{font-size:14.5px;color:var(--muted);text-align:center}
+.dock{position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0 6px;border-bottom:1px solid var(--line)}
+.dock .tabs{display:flex;gap:6px}
+.dock .tabs button{flex:1;min-height:42px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);border-radius:10px;font-size:15.5px;font-weight:700;padding:2px}
+.dock .tabs button.on{background:var(--blue);color:#fff}
+.dock .pane{display:none;max-height:40vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:6px;font-size:16.5px}
+.dock .pane.open{display:block}
+.dock .pane .en{font-size:17.5px;line-height:1.6}
+.zoom{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:20;display:none;align-items:center;justify-content:center;padding:8px}
+.zoom.open{display:flex}
+.zoom img{max-width:100%;max-height:100%}
+.cw,.must u.cw{color:#b45309;font-weight:700}
+.cd,.must u.cd{color:#0e7a55;font-weight:700}
+.cp,.must u.cp{color:#6d28d9;font-weight:700}
+.cf,.must u.cf{color:#0f5f8c;font-weight:700}
+.n .cw,.n .cd,.n .cp,.n .cf{font-size:15.5px}
+.stickpics{position:sticky;top:0;z-index:4;background:var(--bg);padding:6px 0 8px;border-bottom:1px solid var(--line)}
+.stickpics img{max-height:118px;object-fit:cover}
+.stickpics .zh{font-size:14px;text-align:center;margin-top:2px}
+.zoom{flex-direction:column}
+.zoom .x{color:#fff;font-size:17px;margin-top:10px;border:1.5px solid #fff;border-radius:999px;padding:6px 18px}
+.legend2{font-size:16px;margin-top:6px}
+.rate{display:flex;gap:8px;margin-top:8px}
+.rate button{flex:1;min-height:42px;border:1.5px solid #a9bac7;background:#fff;border-radius:10px;font-size:16px}
+.rate button.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.stepper{display:flex;align-items:center;gap:14px;margin-top:8px}
+.stepper button{width:52px;height:48px;border-radius:12px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);font-size:24px;font-weight:700}
+.stepper span{font-size:26px;font-weight:800;min-width:36px;text-align:center}
+.zhta{font-family:inherit;font-size:18px}
+</style>
+<style>
+.exp{margin-top:12px}
+.exp b{display:block}
+.mine{background:#f3f1ec;border-radius:10px;padding:8px 10px;margin-top:6px}
+.fxres{font-size:16px;margin-top:6px}
+.fxres.good{color:var(--good);font-weight:700}
+</style>
+<div class="course-id">GSAT ENGLISH · DAY 15 · 約 25–30 分鐘</div>
+<h1>骨架先寫對，<br>再加自己的句子</h1>
+<p class="sub">上一課你默寫 10 格全對，也寫到 80 字。今天把「會背」變成「寫出來也對」。</p>
+
+<div class="card goal">
+<b>今天的路線</b>（每一段都會自動儲存）<br>
+① 改自己的兩句 → ② 圈題目 → ③ 觀察卡 → ④ 寫第一段 → ⑤ 我的經驗（補細節）→ ⑥ 翻譯一句
+</div>
+
+<div class="step">01 / 5 分鐘 / 回饋＋打字</div>
+<h2>一、上一課的回饋：改自己的兩句</h2>
+<div class="card">
+<b>做得好的</b>
+<div class="zh">四個句構默寫 10 格全對，而且沒有偷看。段落寫到 80 字。<span class="en">taking care of elderly people</span>、<span class="en">Although they are all helping others</span> 都是你自己想的，而且正確。</div>
+</div>
+<div class="card">
+<b>最重要的一件事</b>
+<div class="zh">你默寫全對、選擇題也全對，但<b>自己寫的時候</b>，開頭句不見了，第 ③ 句也寫錯了，而且和上一課錯在同一個地方。<br>想寫得更有變化是好事，順序是：<b>四句骨架先原封不動寫出來，再加自己的句子。</b>骨架是保底的分數。</div>
+</div>
+
+<div class="card">
+<b>改寫 1｜這一句有兩個錯</b>
+<div class="mine en">In contrast, the right-hand picture show some students are helping in a library.</div>
+<div class="zh">把改對的整句打出來。提示：想一下第 ③ 句骨架。</div>
+<textarea id="fx1" rows="3" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="In contrast, …"></textarea>
+<button class="show" id="fx1Go" type="button">對一下</button>
+<div class="fxres" id="fx1Res"></div>
+</div>
+
+<div class="card">
+<b>改寫 2｜這一句也有兩個錯</b>
+<div class="mine en">a student is mapping the floor, another is reading a story to children.</div>
+<div class="zh">提示：① 拖地是 <span class="en">mop</span>，<span class="en">map</span> 是地圖。② 兩個完整的句子不能只用逗號接，中間要有連接詞。</div>
+<textarea id="fx2" rows="3" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="A student is …"></textarea>
+<button class="show" id="fx2Go" type="button">對一下</button>
+<div class="fxres" id="fx2Res"></div>
+</div>
+
+<div class="card">
+<b>其他三個地方（看過就好）</b>
+<div class="fixed"><div class="en"><del>According to the two pictures, I can clearly see that</del> → <span class="fix">The two pictures show different scenes of students doing volunteer work.</span></div>
+<div class="zh">開頭直接用第 ① 句骨架。<span class="en">I can clearly see that</span> 沒有內容，只是佔字數。</div></div>
+<div class="fixed"><div class="en">their <del>objects</del> are different → <span class="fix">the people they help</span> are different</div>
+<div class="zh"><span class="en">object</span> 是「物品」。「服務的對象」說 <span class="en">the people they help</span>。</div></div>
+<div class="fixed"><div class="en">while others prefer <del>volunteering</del> → <span class="fix">helping children</span></div>
+<div class="zh">兩張圖都是志工，所以 <span class="en">volunteering</span> 分不出差別。收尾句兩邊要寫出<b>不一樣的地方</b>。</div></div>
+<div class="fixed"><div class="zh"><b>翻譯</b>（上一課）</div><div class="en">… according to their English ability <span class="fix">and do</span> a variety of listening and speaking activities.</div>
+<div class="zh">「<b>進行</b>多樣的聽、說活動」的動詞你漏了，逗號後面只剩名詞。翻譯寫完，拿中文一個詞一個詞對。<span class="en">divide … into</span>、<span class="en">according to</span>、<span class="en">a variety of</span> 都寫對了。</div></div>
+</div>
+
+<div class="step">02 / 2 分鐘 / 用點的</div>
+<h2>二、圈題目</h2>
+<div class="card">
+<span class="pt">今天的題目</span>
+<div class="zh">生字：<span class="en">banquet</span> 宴席（一桌人合菜）　<span class="en">buffet</span> 自助餐（吃到飽，自己拿）<br>點一下就圈起來。圈完按對答案。</div>
+<div class="prompt" id="prompt"></div>
+<button class="show" id="splitGo" type="button">對答案</button>
+<div class="res" id="splitRes"></div>
+</div>
+
+<section id="obsSec">
+<div class="step">03 / 4 分鐘 / 用點的</div>
+<h2>三、觀察卡</h2>
+<p class="sub">每格三個選項，只有一個完全正確。最後三題是細節句。</p>
+<div class="stickpics">
+<div class="pics">
+<figure><img src="img/meal-left.jpg" alt="圖 A" class="zoomable"><figcaption>圖 A（左）宴席</figcaption></figure>
+<figure><img src="img/meal-right.jpg" alt="圖 B" class="zoomable"><figcaption>圖 B（右）自助餐</figcaption></figure>
+</div>
+<div class="zh">圖會一直留在上面。點圖放大，<b>再點一下畫面就關掉</b>。</div>
+</div>
+<div class="card" id="obs"></div>
+<div class="card"><b>細節句</b><div id="dtq"></div></div>
+</section>
+
+<section id="write">
+<div class="step">04 / 10 分鐘 / 打字</div>
+<h2>四、寫第一段</h2>
+<p class="sub">約 60–80 字。順序固定：<b>① 開頭 → ② 左圖＋細節 → ③ 右圖＋細節 → ④ 收尾</b>。四句骨架先照背的寫，想加自己的句子就加在細節的位置。</p>
+<div class="dock">
+<div class="zh" id="live" style="text-align:center;font-weight:700;margin:0 0 6px">目前 0 字 ／ 目標 60–80 字</div>
+<div class="tabs">
+<button data-p="p1">題目</button><button data-p="p2">圖片</button><button data-p="p3">我的卡</button><button data-p="p4">句構</button>
+</div>
+<div class="pane" id="p1">……請以「聚會用餐」為主題，並依據下列兩張圖片的內容，寫一篇英文作文，文分兩段。<b>第一段描述圖 A（a 10-course banquet）和圖 B（an all-you-can-eat buffet）的兩種用餐方式各有什麼特色。</b>第二段則說明與朋友聚餐時，這兩種用餐方式當中，你比較喜歡哪一種，並解釋你的理由。<div class="zh">今天只寫第一段。</div></div>
+<div class="pane" id="p2"><div class="pics"><figure><img src="img/meal-left.jpg" alt="圖 A" class="zoomable"><figcaption>圖 A（左）</figcaption></figure><figure><img src="img/meal-right.jpg" alt="圖 B" class="zoomable"><figcaption>圖 B（右）</figcaption></figure></div></div>
+<div class="pane" id="p3"><div id="mycard" class="en"></div></div>
+<div class="pane" id="p4">
+<div class="zh">先靠記憶寫，真的忘了才看。</div>
+<div class="en must">① The two pictures show different scenes of <u>people eating together</u>.</div>
+<div class="en must" style="margin-top:6px">② In the picture on the left, <u class="cw">誰</u> is / are <u class="cd">V-ing</u> <u class="cp">在哪</u>.</div>
+<div class="en must" style="margin-top:6px">③ In contrast, the right-hand picture shows <u class="cw">誰</u> <u class="cd">V-ing</u> <u class="cp">在哪</u>.</div>
+<div class="en must" style="margin-top:6px">④ These two pictures show that some <u>people</u> enjoy <u class="cf">V-ing</u>, while others prefer <u class="cf">V-ing</u>.</div>
+</div>
+</div>
+<div class="card">
+<textarea id="essay" rows="9" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="The two pictures show …" style="margin-top:0"></textarea>
+<div class="count"><span id="wc">0</span> 個英文單字（建議 60–80 字）</div>
+</div>
+
+<div class="card">
+<b>寫完了，讓系統幫你對</b>
+<div class="zh">今天系統多看一件事：骨架有沒有寫對。有問題它只會告訴你<b>在第幾句</b>，錯在哪要自己找。</div>
+<button class="btn" id="covGo" type="button" style="margin-top:8px">寫完了，對一下</button>
+<div id="cover" style="margin-top:8px"></div>
+</div>
+
+<div class="card check">
+<b>再照這三項看一遍，有錯直接在上面的框裡改</b>
+<label><input type="checkbox" data-k="c1"><span><b>名詞看前面的字</b>：<span class="en">a / the / some / many</span> 後面的名詞，s 對嗎？</span></label>
+<label><input type="checkbox" data-k="c2"><span><b>動詞配主詞</b>：<span class="en">pictures show</span>、<span class="en">picture shows</span>、<span class="en">people are</span>、<span class="en">a man is</span>。</span></label>
+<label><input type="checkbox" data-k="c3"><span><b>每句都有動詞</b>；兩個句子不能只用逗號接。</span></label>
+<div class="zh" id="diffMsg" style="margin-top:8px"></div>
+</div>
+</section>
+
+<div class="step">05 / 4 分鐘 / 打中文</div>
+<h2>五、我的經驗：補上細節</h2>
+<p class="sub">上一課你寫的太短，還不能變成一段英文。每一格照問題用<b>中文</b>補 2–3 句，越具體越好（時間、跟誰、做了什麼、結果怎樣）。</p>
+<div class="card" id="exp"></div>
+<div class="tip">下一課開始寫第二段，就會用到這些。老師會幫你變成英文。</div>
+
+<div class="step">06 / 5 分鐘 / 打字</div>
+<h2>六、翻譯一句</h2>
+<p class="sub">114 學測中譯英第 1 題。<b>先不看答案寫一次。</b>寫完拿中文一個詞一個詞對，確定沒有漏，再按鈕。</p>
+<div class="card">
+<b>人類的想像和創意是科技進步最大的驅動力。</b>
+<div class="zh">提示：想像 imagination　·　創意 creativity　·　驅動力 driving force</div>
+<textarea id="tr" rows="4" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="Human …"></textarea>
+<button class="btn" id="trGo" style="margin-top:10px">寫好了，看解析</button>
+<div class="msg" id="trMsg"></div>
+<div id="trAns" style="display:none">
+<div class="fixed"><div class="zh">參考譯法（老師寫的，不是官方答案；寫法不只一種）</div>
+<div class="en"><span class="fix">Human imagination and creativity are</span> <span class="fix">the greatest driving force</span> behind <span class="fix">technological progress</span>.</div></div>
+<div class="note">對照你的句子，寫對的部分打勾：</div>
+<div class="check">
+<label><input type="checkbox" data-k="t1"><span><span class="en">human imagination and creativity</span>：人類的想像和創意，兩個都有寫到。</span></label>
+<label><input type="checkbox" data-k="t2"><span><span class="en">are</span>：主詞是「想像<b>和</b>創意」兩樣東西 → are，不是 is。</span></label>
+<label><input type="checkbox" data-k="t3"><span><span class="en">the greatest / the biggest driving force</span>：最大的 → 最高級，前面有 the。</span></label>
+<label><input type="checkbox" data-k="t4"><span><span class="en">technological progress</span> 或 <span class="en">the progress of technology</span>：科技進步。</span></label>
+</div>
+</div>
+</div>
+
+<div class="card">
+<b>交給老師</b>
+<div class="btns"><button class="btn" id="copy">複製我的作答</button><button class="btn ghost" id="export">匯出 TXT</button></div>
+<div class="msg" id="msg"></div>
+<div class="zh">作答只暫存在這個瀏覽器，完成後請複製貼到 LINE。</div>
+</div>
+
+<div class="card">
+<b>交出後再看：第一段參考寫法</b>
+<div class="zh">這不是唯一答案。</div>
+<button class="show">看參考寫法</button><div class="ans"><div class="en">The two pictures show different scenes of people eating together. In the picture on the left, some people are sitting around a round table at a banquet. They are sharing many dishes and talking with each other. In contrast, the right-hand picture shows a man choosing food at a buffet. There are many kinds of food on the counter, and he is taking the food by himself. These two pictures show that some people enjoy sharing dishes at a table, while others prefer choosing their own food.</div></div>
+</div>
+
+<p class="foot">Day 15｜骨架先原封不動寫出來，再加自己的句子。</p>
+</div>
+<div class="zoom" id="zoom"><img alt=""><div class="x">點一下任何地方關閉</div></div>
+<script>
+(function(){
+var KEY='gsat-day15-v1',data={};
+try{data=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function words(v){return v.match(/[A-Za-z]+(?:['’\-][A-Za-z]+)*/g)||[]}
+function count(v){return words(v).length}
+
+/* 一、改寫自己的句子 */
+var FX={
+ fx1:{tests:[[/\bpicture shows\b/i,'主詞 picture 是單數，動詞還沒改對。'],[function(v){return !/\b(is|are)\s+helping\b/i.test(v)&&/\bhelping\b/i.test(v)},'shows 後面是「人＋V-ing」，中間不能再有一個動詞。']],
+      ans:'In contrast, the right-hand picture shows some students helping in a library.'},
+ fx2:{tests:[[/\b(mopping|sweeping)\b/i,'拖地的字還沒改：mop → mopping。'],[/(,\s*(and|while)\s+another)|(\.\s*Another)|(;\s*another)/,'兩個句子中間還是只有逗號。加 and，或改成句號再大寫 Another。']],
+      ans:'A student is mopping the floor, and another is reading a story to children.'}
+};
+Object.keys(FX).forEach(function(id){
+  var t=document.getElementById(id),res=document.getElementById(id+'Res'),x=FX[id];
+  if(data[id])t.value=data[id];
+  data[id+'Try']=data[id+'Try']||0;
+  function show(ok,msgs){res.innerHTML='';res.className='fxres'+(ok?' good':'');
+    if(ok){res.appendChild(el('div',null,'✓ 兩個都改對了。'));res.appendChild(el('div','en',x.ans))}
+    else{msgs.forEach(function(m){res.appendChild(el('div',null,'還有：'+m))});
+      if(data[id+'Try']>=3){res.appendChild(el('div','zh','參考：'));res.appendChild(el('div','en',x.ans))}}}
+  function run(){var v=t.value.trim(),msgs=[];
+    x.tests.forEach(function(c){var ok=typeof c[0]==='function'?c[0](v):c[0].test(v);if(!ok)msgs.push(c[1])});return msgs}
+  t.addEventListener('input',function(){data[id]=t.value;save()});
+  document.getElementById(id+'Go').addEventListener('click',function(){
+    if(!t.value.trim()){res.textContent='先打出整句再對。';return}
+    data[id+'Try']++;if(data[id+'First']==null)data[id+'First']=t.value.trim();
+    var m=run();if(!m.length&&!data[id+'OkAt'])data[id+'OkAt']=data[id+'Try'];save();show(!m.length,m);
+  });
+  if(data[id+'Try']){var m0=run();show(!m0.length,m0)}
+});
+
+/* 二、圈題目 */
+var PH=[['請以',0],['「聚會用餐」為主題',0],'，',['並依據',0],['下列兩張圖片的內容',0],'，',['寫一篇',0],['英文作文',0],'，',['文分',0],['兩段',2],'。',
+ ['第一段',2],['描述',0],['圖 A',2],['和',0],['圖 B',2],['的',0],['兩種用餐方式',0],['各有什麼',0],['特色',1],'。',
+ ['第二段',2],['則說明',0],['與朋友聚餐時',2],'，',['這兩種用餐方式當中',0],'，',['你',0],['比較喜歡哪一種',1],'，',['並',0],['解釋',0],['你的',0],['理由',1],'。'];
+data.pick=data.pick||{};
+var pr=document.getElementById('prompt'),sres=document.getElementById('splitRes'),spans=[];
+PH.forEach(function(p,i){
+  if(typeof p==='string'){pr.appendChild(document.createTextNode(p));spans.push(null);return}
+  var s=el('span','ph',p[0]);if(data.pick[i])s.classList.add('on');
+  s.addEventListener('click',function(){if(data.splitDone)return;data.pick[i]=!data.pick[i];s.classList.toggle('on',!!data.pick[i]);save()});
+  pr.appendChild(s);spans.push(s);
+});
+function markSplit(){
+  var hit=0,wrong=0,okay=0,no=0;
+  PH.forEach(function(p,i){
+    if(typeof p==='string')return;
+    var on=!!data.pick[i],s=spans[i];s.classList.remove('on');
+    if(p[1]===1){no++;var sup=el('sup',null,'①②③'.charAt(no-1));if(on){hit++;s.classList.add('hit')}else s.classList.add('missed');s.appendChild(sup)}
+    else if(p[1]===2&&on){okay++;s.classList.add('okay')}
+    else if(p[1]===0&&on){wrong++;s.classList.add('bad')}
+  });
+  sres.innerHTML='';
+  sres.appendChild(el('div',null,'圈到 '+hit+' / 3 項'+(wrong?'，多圈了 '+wrong+' 處（灰色）':'')+'。'));
+  var b=el('div');b.style.marginTop='6px';
+  b.innerHTML='<b>第一段</b>：① 特色。「各有什麼」表示圖 A、圖 B 都要寫。<br><b>第二段</b>：② 比較喜歡哪一種　③ 理由。注意條件是「與朋友聚餐時」。<br>今天只寫第一段。';
+  sres.appendChild(b);
+  return [hit,wrong];
+}
+document.getElementById('splitGo').addEventListener('click',function(){
+  if(data.splitDone)return;
+  var any=false;for(var k in data.pick){if(data.pick[k])any=true}
+  if(!any){sres.textContent='先圈，再對答案。';return}
+  var r=markSplit();data.splitFirst='圈到 '+r[0]+' / 3，多圈 '+r[1]+' 處';data.splitDone=true;save();
+});
+if(data.splitDone)markSplit();
+
+/* 四之二、系統比對 */
+var COV=[['o','開頭句',function(v){return /\btwo pictures show\b/i.test((v.split(/[.!?]/)[0]||''))},'第一句不是第 ① 句骨架。開頭先寫：The two pictures show different scenes of …'],
+ ['l','左圖',function(v){return /\bleft\b/i.test(v)},'找不到 left。補一句：In the picture on the left, …'],
+ ['r','右圖',function(v){return /\bright\b/i.test(v)},'找不到 right。補一句：In contrast, the right-hand picture shows …'],
+ ['d','差在哪',function(v){return /\b(while|but|whereas)\b/i.test(v)},'找不到 while 或 but。補上收尾那一句。']];
+var RULES=[[/\bpictures\s+shows\b|\bpicture\s+show\b/i,'動詞配主詞'],
+ [/\bshows\b[^.!?]*?\b(is|are)\s+\w+ing\b/i,'第 ③ 句骨架'],
+ [/[a-z]+\s+(is|are)\s+\w+ing\b[^.!?]*,\s*(another|he|she|they|some)\s+\w*\s*(is|are)\b/i,'兩個句子只用逗號接'],
+ [/\b(a|an)\s+\w+\s+\w+ing\s+(?!is\b|are\b)[^.!?]*$/i,null]];
+var covBox=document.getElementById('cover');
+function sents(v){return (v.match(/[^.!?]+[.!?]*/g)||[]).map(function(x){return x.trim()}).filter(function(x){return x})}
+function flags(v){var out=[];sents(v).forEach(function(s,i){RULES.forEach(function(r){if(r[1]&&r[0].test(s))out.push('第 '+(i+1)+' 句：'+r[1]+'有問題')})});return out}
+function drawCover(){
+  var v=document.getElementById('essay').value,miss=0;covBox.innerHTML='';
+  COV.forEach(function(c){
+    var ok=c[2](v);if(!ok)miss++;
+    var row=el('div','item '+(ok?'ok':'no'));row.appendChild(el('div','t',c[1]));
+    if(!ok)row.appendChild(el('div','zh',c[3]));
+    covBox.appendChild(row);
+  });
+  var fl=flags(v),n=count(v);
+  if(fl.length){var w=el('div','res');w.style.color='#b3261e';w.textContent=fl.join('；')+'。自己找出來改，改完再按一次。';covBox.appendChild(w)}
+  covBox.appendChild(el('div','res','共 '+sents(v).length+' 句、'+n+' 個字。'+(miss?'有 '+miss+' 項沒寫到，補完再按一次。':'四項都寫到了。')+(!fl.length&&!miss?' 系統沒有發現骨架的問題，但名詞的 s 和 a 它不會看，要自己檢查。':'')+(n<60?' 字數還不到 60。':'')));
+  return [miss,fl.length];
+}
+document.getElementById('covGo').addEventListener('click',function(){
+  var v=document.getElementById('essay').value.trim();
+  if(!v){covBox.textContent='先寫完再按。';return}
+  var m=drawCover();data.covPress=(data.covPress||0)+1;
+  if(data.draft1==null){data.draft1=v;data.covFirstMiss=m[0];data.flagFirst=flags(v).join('；')||'無';data.wCov=Date.now()}
+  data.covShown=true;save();drawDiff();
+});
+function lcs(a,b){var m=a.length,n=b.length,p=[],i,j,c;for(j=0;j<=n;j++)p[j]=0;
+  for(i=1;i<=m;i++){c=[0];for(j=1;j<=n;j++)c[j]=a[i-1]===b[j-1]?p[j-1]+1:Math.max(p[j],c[j-1]);p=c}return p[n]}
+function diffN(){if(data.draft1==null)return null;var a=words(data.draft1),b=words(document.getElementById('essay').value);return Math.max(a.length,b.length)-lcs(a,b)}
+function drawDiff(){var d=diffN(),m=document.getElementById('diffMsg');m.textContent=d==null?'':(d===0?'按下「寫完了」之後，你還沒有改任何字。':'按下「寫完了」之後，你改了 '+d+' 個字。')}
+
+/* 三、觀察卡 */
+var SLOT={w:['誰','cw'],d:['做什麼','cd'],p:['在哪','cp'],f:['差在哪','cf']};
+var OBS=[
+ {k:'lw',s:'左圖',t:'w',o:['some peoples','some person','some people'],a:2,w:'person 的複數是 people，不再加 s。'},
+ {k:'ld',s:'左圖',t:'d',o:['sitting around a round table','sit around a round table','sitting around a round tables'],a:0,w:'前面是 are → sitting；a 後面的 table 不加 s。'},
+ {k:'lp',s:'左圖',t:'p',o:['at banquet','at a banquets','at a banquet'],a:2,w:'一場宴席 → 要有 a，名詞不加 s。'},
+ {k:'rw',s:'右圖',t:'w',o:['a men','a man','an man'],a:1,w:'一個人是 a man；men 是複數。'},
+ {k:'rd',s:'右圖（接在 shows a man 後面）',t:'d',o:['is choosing food','chooses food','choosing food'],a:2,w:'shows + 人 + V-ing：shows a man choosing food。中間沒有 is。'},
+ {k:'rp',s:'右圖',t:'p',o:['at a buffet','at buffet','at a buffets'],a:0,w:'一間自助餐 → 要有 a，名詞不加 s。'},
+ {k:'la',s:'左圖',t:'f',o:['share dishes at a table','sharing dishes at a table','to sharing dishes at a table'],a:1,w:'enjoy 後面直接接 V-ing。'},
+ {k:'ra',s:'右圖',t:'f',o:['choosing their own food','choose their own food','choosing they own food'],a:0,w:'prefer 後面用 V-ing，和前半句對稱；「他們自己的」是 their own。'}
+];
+data.obs=data.obs||{};data.obsMiss=data.obsMiss||0;data.dt=data.dt||{};data.dtMiss=data.dtMiss||0;
+var mycard=document.getElementById('mycard');
+function drawCard(){
+  var g=function(k){var o=OBS.filter(function(x){return x.k===k})[0];return el('span',SLOT[o.t][1],data.obs[k]?o.o[o.a]:'＿＿')};
+  mycard.innerHTML='';
+  [['左圖',['lw','ld','lp']],['右圖',['rw','rd','rp']],['差在哪',['la','ra']]].forEach(function(r){
+    var d=el('div');d.appendChild(el('span','zh',r[0]+'　'));
+    r[1].forEach(function(k,i){if(i)d.appendChild(document.createTextNode(' / '));d.appendChild(g(k))});
+    mycard.appendChild(d);
+  });
+  var x=el('div');x.appendChild(el('span','zh','細節　'));x.appendChild(document.createTextNode('They are sharing many dishes. / There are many kinds of food on the counter.'));mycard.appendChild(x);
+}
+function chipQuiz(box,list,store,missKey,labelFn,onHit){
+  list.forEach(function(o){
+    var q=el('div','q');q.appendChild(labelFn(o));
+    var cs=el('div','chips'),why=el('span','why');why.style.display='none';
+    o.o.forEach(function(t,i){
+      var c=el('button','chip',t);c.type='button';
+      if(store[o.k]&&i===o.a)c.classList.add('on');
+      c.addEventListener('click',function(){
+        if(store[o.k])return;
+        if(i===o.a){store[o.k]=true;c.classList.add('on');why.textContent='✓ '+o.w;if(onHit)onHit()}
+        else{data[missKey]++;c.classList.add('miss');why.textContent='再想一下：'+o.w}
+        why.style.display='block';save();
+      });
+      cs.appendChild(c);
+    });
+    q.appendChild(cs);q.appendChild(why);box.appendChild(q);
+  });
+}
+chipQuiz(document.getElementById('obs'),OBS,data.obs,'obsMiss',function(o){
+  var n=el('span','n',o.s+'｜');n.appendChild(el('span',SLOT[o.t][1],SLOT[o.t][0]));return n;
+},drawCard);
+drawCard();
+var DT=[
+ {k:'d1',q:'左圖：They ____ many dishes.',o:['sharing','are sharing','is sharing'],a:1,w:'they → are sharing。只有 sharing 不算動詞。'},
+ {k:'d2',q:'右圖：There ____ many kinds of food on the counter.',o:['are','is','have'],a:0,w:'many kinds 是複數 → There are。'},
+ {k:'d3',q:'哪一句完全正確？',o:['They are eating, a man is taking photos.','They are eating, and a man is taking photos.','They are eating, and a man taking photos.'],a:1,w:'兩個句子用「逗號＋and」接，而且 and 後面也要有動詞 is。'}
+];
+chipQuiz(document.getElementById('dtq'),DT,data.dt,'dtMiss',function(o){return el('div','en',o.q)});
+
+/* 寫作區固定列 */
+var tabs=document.querySelectorAll('.dock .tabs button');
+tabs.forEach(function(b){
+  b.addEventListener('click',function(){
+    var id=b.getAttribute('data-p'),open=!document.getElementById(id).classList.contains('open');
+    document.querySelectorAll('.dock .pane').forEach(function(p){p.classList.remove('open')});
+    tabs.forEach(function(x){x.classList.remove('on')});
+    if(open){document.getElementById(id).classList.add('open');b.classList.add('on');if(id==='p4'){data.peek=(data.peek||0)+1;save()}}
+  });
+});
+var zoom=document.getElementById('zoom');
+document.querySelectorAll('.zoomable').forEach(function(im){im.addEventListener('click',function(){zoom.firstChild.src=im.src;zoom.classList.add('open')})});
+zoom.addEventListener('click',function(){zoom.classList.remove('open')});
+document.querySelectorAll('.show').forEach(function(b){
+  if(b.id||b.nextElementSibling==null||!b.nextElementSibling.classList.contains('ans'))return;
+  var label=b.textContent;
+  b.addEventListener('click',function(){var a=b.nextElementSibling,open=a.classList.toggle('open');b.textContent=open?'收起':label});
+});
+var ta=document.getElementById('essay'),wc=document.getElementById('wc'),live=document.getElementById('live');
+if(data.essay)ta.value=data.essay;wc.textContent=count(ta.value);
+function drawLive(){var n=count(ta.value);live.textContent='目前 '+n+' 字 ／ 目標 60–80 字'+(n>=60?'　✓':'');live.style.color=n>=60?'#0e7a55':''}
+drawLive();
+ta.addEventListener('focus',function(){if(!data.wStart){data.wStart=Date.now();save()}});
+ta.addEventListener('input',function(){
+  var now=Date.now();if(!data.wStart)data.wStart=now;
+  if(data.wLast&&now-data.wLast<60000)data.wActive=(data.wActive||0)+(now-data.wLast);
+  data.wLast=now;data.essay=ta.value;save();wc.textContent=count(ta.value);drawLive();drawDiff()});
+if(data.covShown){drawCover();drawDiff()}
+document.querySelectorAll('.check input').forEach(function(c){
+  var k=c.getAttribute('data-k');c.checked=!!data[k];
+  c.addEventListener('change',function(){data[k]=c.checked;save()});
+});
+
+/* 五、我的經驗 */
+var EXP=[['trip','去日本','你上次寫：去日本到處逛、買東西。','什麼時候、跟誰去？最喜歡哪一個地方或買到的哪一樣東西？為什麼？'],
+ ['money','柯南的週邊和電影票','你上次寫：買過最值錢的東西是柯南的週邊商品還有電影票。','買了什麼週邊？大概花多少錢？為什麼覺得值得（或後來有沒有後悔）？'],
+ ['school','學校社團','你上次寫：我參與過學校社團。','哪一個社團？你在裡面做什麼？有沒有一次活動或比賽讓你學到東西？'],
+ ['phone','手機或 AI','你上次寫：幫助我更了解學習內容。','用哪一個 App 或 AI？舉一次例子：哪一科、問了什麼、結果怎樣？'],
+ ['food','吃的','上次這格是空的。','平常午餐或晚餐都吃什麼？在哪裡、跟誰吃？有沒有特別喜歡的一家店或一道菜？']];
+data.exp=data.exp||{};
+var eBox=document.getElementById('exp');
+EXP.forEach(function(x){
+  var d=el('div','exp');d.appendChild(el('b',null,x[1]));d.appendChild(el('div','zh',x[2]));d.appendChild(el('div',null,x[3]));
+  var t=el('textarea','zhta');t.rows=3;t.value=data.exp[x[0]]||'';t.placeholder='用中文寫 2–3 句';
+  t.addEventListener('input',function(){data.exp[x[0]]=t.value;save()});
+  d.appendChild(t);eBox.appendChild(d);
+});
+
+/* 六、翻譯 */
+var tr=document.getElementById('tr'),trAns=document.getElementById('trAns'),trMsg=document.getElementById('trMsg'),trGo=document.getElementById('trGo');
+if(data.tr)tr.value=data.tr;
+function lockTr(){tr.readOnly=true;tr.style.background='#f3f1ec';trAns.style.display='block';trGo.style.display='none'}
+if(data.trFirst!=null)lockTr();
+tr.addEventListener('input',function(){if(data.trFirst==null){data.tr=tr.value;save()}});
+trGo.addEventListener('click',function(){
+  if(!tr.value.trim()){trMsg.textContent='先寫一次再看解析，寫不完整也沒關係。';return}
+  data.trFirst=tr.value.trim();save();trMsg.textContent='';lockTr();
+});
+
+function ms(x){x=Math.round(x/1000);return Math.floor(x/60)+' 分 '+(x%60)+' 秒'}
+function output(){
+  var tm=!data.wStart?'未開始':('開始 '+new Date(data.wStart).toLocaleString('zh-TW',{hour12:false})+'；到第一次按「寫完了」'+(data.wCov?ms(data.wCov-data.wStart):'（未按）')+'；到最後一次輸入 '+(data.wLast?ms(data.wLast-data.wStart):'0')+'；其中連續打字約 '+ms(data.wActive||0)+'（停頓超過 1 分鐘不計）');
+  var od=OBS.filter(function(o){return data.obs[o.k]}).length,dd=DT.filter(function(o){return data.dt[o.k]}).length;
+  var tp=['t1','t2','t3','t4'].filter(function(k){return data[k]}).length;
+  var n=['c1','c2','c3'].filter(function(k){return data[k]}).length;
+  var cur=ta.value.trim(),dn=diffN(),nowMiss=COV.filter(function(c){return !c[2](cur)}).map(function(c){return c[1]}),nowFl=flags(cur);
+  var cov=data.draft1==null?'未按「寫完了，對一下」':('共按 '+(data.covPress||0)+' 次；第一次按時缺 '+data.covFirstMiss+' 項、骨架提示：'+data.flagFirst+'；目前'+(nowMiss.length?'仍缺：'+nowMiss.join('、'):'四項都有')+'、骨架提示：'+(nowFl.join('；')||'無'));
+  var d1=(data.draft1!=null&&data.draft1!==cur)?'\n\n【第一次寫完時的版本（系統自動留存）】\n'+data.draft1:'';
+  var fx=function(id){return '第一次：'+(data[id+'First']||'（未作答）')+'\n最後：'+((data[id]||'').trim()||'（未作答）')+'\n按了 '+(data[id+'Try']||0)+' 次'+(data[id+'OkAt']?'，第 '+data[id+'OkAt']+' 次通過':'，未通過')};
+  var ex=EXP.map(function(x){return x[1]+'：'+((data.exp[x[0]]||'').trim()||'（空白）')}).join('\n');
+  return 'Day15｜學生作答\n題目：聚會用餐兩圖對比（第一段）\n\n【改寫 1】\n'+fx('fx1')+'\n\n【改寫 2】\n'+fx('fx2')+'\n\n【圈題目｜第一次對答案】\n'+(data.splitFirst||'未對答案')+'\n\n【觀察卡】\n完成 '+od+' / '+OBS.length+'，點錯 '+data.obsMiss+' 次；細節句 '+dd+' / '+DT.length+'，點錯 '+data.dtMiss+' 次\n\n【第一段英文】\n'+(cur||'（未作答）')+'\n\n字數：'+count(ta.value)+'\n寫作時間（系統記錄）：'+tm+'\n寫作時點開「句構」：'+(data.peek||0)+' 次\n系統比對：'+cov+'\n檢查後更動（系統比對）：'+(dn==null?'無法比對':dn+' 個字')+'\n三項檢查已勾選：'+n+' / 3'+d1+'\n\n【我的經驗（中文補充）】\n'+ex+'\n\n【翻譯｜首答（未看解析）】\n'+(data.trFirst||'（未作答）')+'\n自評寫對的部分：'+tp+' / 4';
+}
+var msg=document.getElementById('msg');
+function fallback(v){var t=document.createElement('textarea');t.value=v;t.setAttribute('readonly','');t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}t.remove();return ok}
+function copyText(v){
+  if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(v).then(function(){return true},function(){return fallback(v)})}
+  return Promise.resolve(fallback(v));
+}
+document.getElementById('copy').addEventListener('click',function(){
+  copyText(output()).then(function(ok){msg.textContent=ok?'已複製，請貼到 LINE 傳給老師。':'無法自動複製，請改用匯出 TXT 或手動選取。'});
+});
+document.getElementById('export').addEventListener('click',function(){
+  var blob=new Blob(['﻿'+output()],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='Day15_我的作答.txt';document.body.appendChild(a);a.click();a.remove();
+  msg.textContent='已匯出 Day15_我的作答.txt。';
+});
+})();
+</script>
+</body>
+</html>
